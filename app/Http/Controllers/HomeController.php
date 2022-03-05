@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = DB::table('users')->get();
+
+        return view('home', ["users"=>$user]);
+    }
+
+    public function delete($id)
+    {
+        DB::table('users')->where("id", $id)->delete();
+        return redirect('/login');
     }
 }
