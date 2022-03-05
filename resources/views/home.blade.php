@@ -14,6 +14,10 @@
                         </div>
                     @endif
 
+                        <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
+                            Dodaj novog korisnika
+                        </button>
+
                     <table class="table">
                         <tr>
                             <th>ID</th>
@@ -39,6 +43,65 @@
 
                     </table>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <form method="POST" action="{{ route('users.add') }}">
+                                @csrf
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Dodavanje korisnika</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="name">Ime korisnika</label>
+                                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" value="{{ old('name') }}" placeholder="Unesite ime korisnika">
+
+                                                @error('name')
+                                                     <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                     </span>
+                                                @enderror
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="email">Email adresa</label>
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" aria-describedby="emailHelp" placeholder="Unesite e-mail">
+
+                                                @error('email')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                     </span>
+                                                @enderror
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password">Lozinka</label>
+                                                <input type="password" class="form-control" name="password" id="password" placeholder="Unesite lozinku">
+
+                                                @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                     </span>
+                                                @enderror
+
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="password_confirmation">Ponovite lozinku</label>
+                                                <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Ponovno unesite lozinku">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                                            <button type="submit" class="btn btn-primary">Spremi</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                 </div>
             </div>
         </div>

@@ -25,3 +25,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/users/delete/{id}', 'App\Http\Controllers\HomeController@delete')->name('users.delete');
+Route::post('/users/add', 'App\Http\Controllers\HomeController@add')->name('users.add');
