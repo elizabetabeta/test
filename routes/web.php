@@ -24,5 +24,7 @@ Route::get('/o-nama', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/users/delete/{id}', 'App\Http\Controllers\HomeController@delete')->name('users.delete');
-Route::post('/users/add', 'App\Http\Controllers\HomeController@add')->name('users.add');
+
+Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->name('users');
+Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@delete')->name('users.delete');
+Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->name('users.add');
