@@ -98,7 +98,7 @@
                                         >
                                     </th>
                                     <th>
-                                        <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/2367px-Vue.js_Logo_2.svg.png"
+                                        <img src ="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png"
                                              style="height:150px;width:150px"
                                         >
                                     </th>
