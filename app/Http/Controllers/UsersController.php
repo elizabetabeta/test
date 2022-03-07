@@ -28,7 +28,8 @@ class UsersController extends Controller
     public function delete($id)
     {
         DB::table('users')->where("id", $id)->delete();
-        return redirect('/users');
+        return redirect('/users')->with('success','Obrisali ste korisnika.');
+
     }
 
     public function add(Request $request)
@@ -49,7 +50,7 @@ class UsersController extends Controller
                 'email' => $data['email'],
                 'password' => Hash::make($data['password']),
             ]);
-            return redirect("/users");
+            return redirect("/users")->with('success','Dodali ste korisnika.');
         }
     }
 }

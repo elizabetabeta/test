@@ -10,7 +10,7 @@
         "watch-poll": "mix watch -- --watch-options-poll=1000"
     },
     "dependencies": {
-        "vuetify": "^2.6.0"
+        "vuetify": "^2.6.3"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
