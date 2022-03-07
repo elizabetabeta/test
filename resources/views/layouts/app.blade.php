@@ -89,7 +89,7 @@
 </html>
 <style>
     .container {
-        background-image: url("slikica.jpg");
+        background-image: url("slikica.png");
 
     }
 </style>
