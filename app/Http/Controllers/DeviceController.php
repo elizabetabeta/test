@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+use DB;
+use Illuminate\Support\Facades\Validator;
+use App\Models\User;
+
+
 
 class DeviceController extends Controller
 {
@@ -13,9 +20,9 @@ class DeviceController extends Controller
      * @return \Illuminate\Http\Response
      */
     //dohvacanje svih modela tog tipa npr. /devices
-    public function index()
-    {
-        return Device::get();
+    public function index(){
+        $devices = DB::select('select * from devices');
+        return view('oglasi',['devices'=>$devices]);
     }
 
     /**
@@ -37,19 +44,23 @@ class DeviceController extends Controller
     //kreiranje modela, POST na /devices
     public function store(Request $request)
     {
-        $device = Device::create([
-            'tip'=>$request->tip,
-            'sistem'=>$request->sistem,
-            'godina_izdanja'=>$request->godina_izdanja,
-            'boja'=>$request->boja,
-            'velicina'=>$request->velicina,
-            'kapacitet_baterije'=>$request->kapacitet_baterije,
-            'memorija'=>$request->memorija,
-            'RAM'=>$request->RAM,
-            'user_id'=>$request->user_id
-        ]);
+            $device = Device::create([
+                'tip' => $request->tip,
+                'sistem' => $request->sistem,
+                'godina_izdanja' => $request->godina_izdanja,
+                'boja' => $request->boja,
+                'velicina' => $request->velicina,
+                'kapacitet_baterije' => $request->kapacitet_baterije,
+                'memorija' => $request->memorija,
+                'RAM' => $request->RAM,
+                'kontakt' => $request->kontakt,
+                'cijena' => $request->cijena,
+                'opis' => $request->opis,
 
-        return $device;
+            ]);
+
+            return redirect("/oglasi")->with('success','Uspješno ste dodali oglas.');
+
     }
 
     /**
@@ -93,7 +104,8 @@ class DeviceController extends Controller
             'kapacitet_baterije'=>$request->kapacitet_baterije,
             'memorija'=>$request->memorija,
             'RAM'=>$request->RAM,
-            'user_id'=>$request->user_id
+            'user_id'=>$request->user_id,
+            'cijena'=>$request->cijena,
         ]);
 
         return $device;
@@ -105,8 +117,10 @@ class DeviceController extends Controller
      * @param  \App\Models\Device  $device
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Device $device)
+    public function delete($id)
     {
-        return $device->delete();
+        DB::table('devices')->where("id", $id)->delete();
+        return redirect('/oglasi')->with('success','Obrisali ste oglas.');
     }
+
 }

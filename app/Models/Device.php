@@ -12,7 +12,7 @@ class Device extends Model
     protected $fillable = [
       'tip', 'sistem', 'godina_izdanja',
       'boja', 'velicina','kapacitet_baterije',
-      'memorija', 'RAM', 'user_id'
+      'memorija', 'RAM', 'kontakt', 'user_id', 'cijena'
     ];
 
     public function user()

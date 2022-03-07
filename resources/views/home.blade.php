@@ -10,19 +10,17 @@
                 @endAdmin
 
                 @Moderator
+                @include('layouts.moderatormenu')
                 @endModerator
 
                 @User
-                <ul class="list-group">
-                    <li class="list-group-item">Moji oglasi</li>
-                    <li class="list-group-item">Drugi oglasi</li>
-                    <li class="list-group-item">Kupljeno</li>
-                    <li class="list-group-item">Prodano</li>
-                </ul>
+                @include('layouts.usermenu')
                 @endUser
 
             </div>
             <div class = "col-md-9"></div>
         </div>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
+
 @endsection

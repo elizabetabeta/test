@@ -87,3 +87,9 @@
 
 </body>
 </html>
+<style>
+    .container {
+        background-image: url("slikica.jpg");
+
+    }
+</style>

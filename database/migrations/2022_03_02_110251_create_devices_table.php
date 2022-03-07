@@ -23,6 +23,8 @@ class CreateDevicesTable extends Migration
             $table->integer('kapacitet_baterije');
             $table->integer('memorija');
             $table->integer('RAM');
+            $table->string('kontakt');
+            $table->text('opis');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
