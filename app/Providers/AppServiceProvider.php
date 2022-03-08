@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
         \Blade::if('User', function() {
             return Auth::user()->hasRole('User');
         });
+        Schema::defaultStringLength(191);
     }
 }

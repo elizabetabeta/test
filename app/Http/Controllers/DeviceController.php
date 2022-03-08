@@ -20,6 +20,11 @@ class DeviceController extends Controller
     //dohvacanje svih modela tog tipa npr. /devices
     public function index(){
         $devices = DB::select('select * from devices order by created_at desc ');
+        $devices = Device::query()->orderBy('created_at');
+        if (auth()->user()->role !== 'Admin') {
+            $devices->where('user_id', auth()->id());
+        }
+        $devices = $devices->get();
         return view('oglasi',['devices'=>$devices]);
 
     }
