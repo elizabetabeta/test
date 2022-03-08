@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Device;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use DB;
-use Illuminate\Support\Facades\Validator;
-use App\Models\User;
+use Illuminate\Support\Facades\Gate;
 
 
 
@@ -21,9 +19,11 @@ class DeviceController extends Controller
      */
     //dohvacanje svih modela tog tipa npr. /devices
     public function index(){
-        $devices = DB::select('select * from devices');
+        $devices = DB::select('select * from devices order by created_at desc ');
         return view('oglasi',['devices'=>$devices]);
+
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,6 +46,7 @@ class DeviceController extends Controller
     {
             $device = Device::create([
                 'tip' => $request->tip,
+                'naziv' => $request->naziv,
                 'sistem' => $request->sistem,
                 'godina_izdanja' => $request->godina_izdanja,
                 'boja' => $request->boja,
@@ -56,8 +57,9 @@ class DeviceController extends Controller
                 'kontakt' => $request->kontakt,
                 'cijena' => $request->cijena,
                 'opis' => $request->opis,
+                'user_id' => auth()->user()->id
 
-            ]);
+        ]);
 
             return redirect("/oglasi")->with('success','Uspješno ste dodali oglas.');
 
@@ -97,6 +99,7 @@ class DeviceController extends Controller
     {
         $device->update([
             'tip'=>$request->tip,
+            'naziv'=>$request->naziv,
             'sistem'=>$request->sistem,
             'godina_izdanja'=>$request->godina_izdanja,
             'boja'=>$request->boja,
@@ -106,6 +109,8 @@ class DeviceController extends Controller
             'RAM'=>$request->RAM,
             'user_id'=>$request->user_id,
             'cijena'=>$request->cijena,
+            'opis' => $request->opis,
+
         ]);
 
         return $device;
@@ -119,8 +124,15 @@ class DeviceController extends Controller
      */
     public function delete($id)
     {
+        $device = Device::find($id);
+
+        if(auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
+            abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+        }
+
         DB::table('devices')->where("id", $id)->delete();
-        return redirect('/oglasi')->with('success','Obrisali ste oglas.');
+        return redirect('/oglasi')->with('success', 'Uspješno ste obrisali oglas');
     }
+
 
 }

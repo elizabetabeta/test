@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DeviceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +29,14 @@ Route::get('/uroglasa', function () {
     return view('oglasi');
 });
 
+Route::get('/create', function () {
+    return view('create');
+});
+
+Route::get('/mojioglasi', function () {
+    return view('mojioglasi');
+});
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -41,4 +48,9 @@ Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->name('use
 Route::get('/oglasi','App\Http\Controllers\DeviceController@index');
 Route::post('/devices/add', 'App\Http\Controllers\DeviceController@store')->name('devices.store');
 Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
+
+
+Route::resource('products', 'App\Http\Controllers\ProductController');
+
+
 

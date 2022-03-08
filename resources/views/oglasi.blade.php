@@ -23,6 +23,13 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                            @if (\Session::has('success'))
+                                <div class="alert alert-success">
+                                    <ul>
+                                        <li>{!! \Session::get('success') !!}</li>
+                                    </ul>
+                                </div>
+                            @endif
 
                         <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
                             Dodaj novi oglas
@@ -38,6 +45,11 @@
                                 <td>{{ $device->tip }}</td>
 
                             </tr>
+                                <tr>
+                                    <th>Naziv</th>
+                                    <td>{{ $device->naziv }}</td>
+
+                                </tr>
                             <tr>
                                 <th>Cijena</th>
                                 <td>{{ $device->cijena }} KM</td>
@@ -83,16 +95,16 @@
                                 <td>{{ $device->opis }}</td>
 
                             </tr>
-                            @Admin
+                                <tr>
+                                    <th>Dodan datuma</th>
+                                    <td>{{ $device->created_at }}</td>
+
+                                </tr>
+
                                 <td>
                                     <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
                                 </td>
-                            @endAdmin
-                                @Moderator
-                                <td>
-                                    <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
-                                </td>
-                                @endModerator
+
                                 <tr>
                                     <th></th>
                                     <th></th>
@@ -128,8 +140,15 @@
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="name">Naziv uređaja</label>
-                                                <input type="text" class="form-control" name="tip" id="tip" value="{{ old('tip') }}" placeholder="Unesite naziv uređaja">
+                                                <label for="tip">Tip uređaja</label>
+                                                <input type="text" class="form-control" name="tip" id="tip" value="{{ old('tip') }}" placeholder="Mobitel, tablet, laptop...">
+
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="naziv">Naziv uređaja</label>
+                                                    <input type="text" class="form-control" name="naziv" id="name" value="{{ old('naziv') }}" placeholder="Naziv uređaja">
 
 
                                             </div>
@@ -196,6 +215,7 @@
                                             <button id="addDeviceBtn" type="submit" class="btn btn-primary">Spremi</button>
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </form>
                         </div>

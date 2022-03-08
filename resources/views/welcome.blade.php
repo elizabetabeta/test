@@ -49,10 +49,10 @@
                     <b>LINK ZA VIZIJU:</b> <a href ="https://docs.google.com/document/d/1wjlTuFE9WsNjAdaUO1eB5VC4M6KlusyK/edit"
                                               target="_blank"
                                               style="color:darkblue"><u>Vizija</u></a>
-                    <br>
+                    <br><br><br>
                     <a href="/o-nama"><b><u>O nama</u></b></a>
                 <div id = "sve" style="text-align: center">
-                    <div class = "container">
+                    <div>
                         <br> <br> <br>
 
 
@@ -77,7 +77,6 @@
                         </p>
                         <br> <br>
                         <h4>Tehnologije koje smo koristili u ovome projektu su:</h4>
-                        <p id="text">
 
                         <table class="table">
 
@@ -105,6 +104,7 @@
                                 </tr>
 
                         </table>
+
 
                         <br>
 
@@ -135,11 +135,6 @@
         background-size: cover;
     }
 
-    .container{
-        max-width: 60%;
-        margin-left: 250px;
-    }
-
     #pozadina {
         background-color:lightgray;
     }
@@ -150,6 +145,10 @@
 
     #text{
         font-family: 'Times New Roman', Times, serif;
+    }
+    .table {
+        margin-left: auto;
+        margin-right: auto;
     }
 
 </style>

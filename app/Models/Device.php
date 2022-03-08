@@ -10,9 +10,9 @@ class Device extends Model
     use HasFactory;
 
     protected $fillable = [
-      'tip', 'sistem', 'godina_izdanja',
+      'tip', 'naziv','sistem', 'godina_izdanja',
       'boja', 'velicina','kapacitet_baterije',
-      'memorija', 'RAM', 'kontakt', 'user_id', 'cijena'
+      'memorija', 'RAM', 'kontakt', 'user_id', 'cijena', 'opis'
     ];
 
     public function user()

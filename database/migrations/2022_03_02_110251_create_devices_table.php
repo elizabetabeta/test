@@ -16,6 +16,7 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('tip');
+            $table->string('naziv');
             $table->string('sistem');
             $table->year('godina_izdanja');
             $table->string('boja');
@@ -24,7 +25,7 @@ class CreateDevicesTable extends Migration
             $table->integer('memorija');
             $table->integer('RAM');
             $table->string('kontakt');
-            $table->text('opis');
+            $table->string('opis');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });

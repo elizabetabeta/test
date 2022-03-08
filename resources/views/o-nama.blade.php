@@ -37,7 +37,7 @@
     @endif
     <br><br>
         <div id = "sve" style="text-align: center">
-            <div class = "container">
+            <div>
         <h1 style="text-align:center;color:darkblue;font-size:40px">O nama</h1> <br><br>
         <table class ="table">
             <tr>
@@ -95,11 +95,6 @@
 </body>
 </html>
 <style>
-    .container{
-        max-width: 60%;
-        margin-left: 200px;
-    }
-
     #pozadina {
         background-color:lightgray;
     }
@@ -110,6 +105,10 @@
 
     #text{
         font-family: 'Times New Roman', Times, serif;
+    }
+    .table {
+        margin-left: auto;
+        margin-right: auto;
     }
 
 </style>
