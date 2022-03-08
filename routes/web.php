@@ -46,8 +46,10 @@ Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@delete')-
 Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->name('users.add');
 
 Route::get('/oglasi','App\Http\Controllers\DeviceController@index');
+Route::get('/mojioglasi','App\Http\Controllers\DeviceController@index2');
 Route::post('/devices/add', 'App\Http\Controllers\DeviceController@store')->name('devices.store');
 Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
+Route::get('/devices/delete2/{id}', 'App\Http\Controllers\DeviceController@delete2')->name('devices.delete2');
 
 
 Route::resource('products', 'App\Http\Controllers\ProductController');

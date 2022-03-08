@@ -118,11 +118,7 @@
                                     <th></th>
                                 </tr>
 
-
                             @endforeach
-
-
-
 
                         </table>
 

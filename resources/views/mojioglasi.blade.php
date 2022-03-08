@@ -35,10 +35,99 @@
                             Dodaj novi oglas
                         </button>
 
+                        <table class="table">
+
+                            @foreach($devices as $device)
 
 
+                                <tr>
+                                    <th>Tip</th>
+                                    <td>{{ $device->tip }}</td>
 
-                            <!-- Modal -->
+                                </tr>
+                                <tr>
+                                    <th>Naziv</th>
+                                    <td>{{ $device->naziv }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Cijena</th>
+                                    <td>{{ $device->cijena }} KM</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Operativni sistem</th>
+                                    <td>{{ $device->sistem }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Godina izdanja</th>
+                                    <td>{{ $device->godina_izdanja }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Boja</th>
+                                    <td>{{ $device->boja }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Velicina </th>
+                                    <td>{{ $device->velicina }} inča</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Kapacitet baterije</th>
+                                    <td>{{ $device->kapacitet_baterije }} mAh</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Memorija</th>
+                                    <td>{{ $device->memorija }} GB</td>
+
+                                </tr>
+                                <tr>
+                                    <th>RAM</th>
+                                    <td>{{ $device->RAM }} GB </td>
+
+                                </tr>
+                                <tr>
+                                    <th>Kontaktirajte korisnika</th>
+                                    <td>{{ $device->kontakt }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Kratki opis uređaja</th>
+                                    <td>{{ $device->opis }}</td>
+
+                                </tr>
+                                <tr>
+                                    <th>Dodan datuma</th>
+                                    <td>{{ $device->created_at }}</td>
+
+                                </tr>
+
+                                <td>
+                                    <a href="{{ route("devices.delete2", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
+                                </td>
+
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+
+                            @endforeach
+
+                        </table>
+
+                        <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <form method="POST" action="{{ route('devices.store') }}">
                                 @csrf
@@ -130,7 +219,6 @@
                                     </div>
                                 </div>
                             </form>
-
                         </div>
                     </div>
                 </div>

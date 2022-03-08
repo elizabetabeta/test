@@ -50,6 +50,8 @@ class ProductController extends Controller
                 'image' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
 
+            $file = $request->file('file');
+
             // Save the file locally in the storage/public/ folder under a new folder named /product
             $request->file->store('product', 'public');
 

@@ -19,13 +19,21 @@ class DeviceController extends Controller
      */
     //dohvacanje svih modela tog tipa npr. /devices
     public function index(){
-        $devices = DB::select('select * from devices order by created_at desc ');
-        $devices = Device::query()->orderBy('created_at');
+        //$devices = DB::select('select * from devices order by created_at desc ');
+        $devices = Device::query()->orderBy('created_at', 'DESC');
+
+        $devices = $devices->get();
+        return view('oglasi',['devices'=>$devices]);
+    }
+
+    public function index2(){
+        //$devices = DB::select('select * from devices order by created_at desc ');
+        $devices = Device::query()->orderBy('created_at', 'DESC');
         if (auth()->user()->role !== 'Admin') {
             $devices->where('user_id', auth()->id());
         }
         $devices = $devices->get();
-        return view('oglasi',['devices'=>$devices]);
+        return view('mojioglasi',['devices'=>$devices]);
 
     }
 
@@ -65,6 +73,8 @@ class DeviceController extends Controller
                 'user_id' => auth()->user()->id
 
         ]);
+
+            //$slika = $request->file('slika');
 
             return redirect("/oglasi")->with('success','Uspješno ste dodali oglas.');
 
@@ -118,7 +128,8 @@ class DeviceController extends Controller
 
         ]);
 
-        return $device;
+        return redirect("/oglasi")->with('success','Uspješno ste uredili oglas.');
+
     }
 
     /**
@@ -137,6 +148,18 @@ class DeviceController extends Controller
 
         DB::table('devices')->where("id", $id)->delete();
         return redirect('/oglasi')->with('success', 'Uspješno ste obrisali oglas');
+    }
+
+    public function delete2($id)
+    {
+        $device = Device::find($id);
+
+        if(auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
+            abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+        }
+
+        DB::table('devices')->where("id", $id)->delete();
+        return redirect('/mojioglasi')->with('success', 'Uspješno ste obrisali oglas');
     }
 
 
