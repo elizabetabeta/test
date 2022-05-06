@@ -47,7 +47,8 @@ Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->name('use
 
 Route::get('/oglasi','App\Http\Controllers\DeviceController@index');
 Route::get('/mojioglasi','App\Http\Controllers\DeviceController@index2');
-Route::post('/devices/add', 'App\Http\Controllers\DeviceController@store')->name('devices.store');
+Route::post('/oglas', 'App\Http\Controllers\DeviceController@store');
+Route::get('/oglas/{device}', 'App\Http\Controllers\DevicesController@show');
 Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
 Route::get('/devices/delete2/{id}', 'App\Http\Controllers\DeviceController@delete2')->name('devices.delete2');
 

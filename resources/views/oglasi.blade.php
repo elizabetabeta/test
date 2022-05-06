@@ -35,96 +35,71 @@
                             Dodaj novi oglas
                         </button>
 
-                        <table class="table">
+                        @foreach($devices as $device)
 
-                            @foreach($devices as $device)
-
-
-                            <tr>
-                                <th>Tip</th>
-                                <td>{{ $device->tip }}</td>
-
-                            </tr>
+                            <table class="table" style="background-color: #757575; color: white">
                                 <tr>
-                                    <th>Naziv</th>
-                                    <td>{{ $device->naziv }}</td>
-
-                                </tr>
-                            <tr>
-                                <th>Cijena</th>
-                                <td>{{ $device->cijena }} KM</td>
-
-                            </tr>
-                            <tr>
-                                <th>Godina izdanja</th>
-                                <td>{{ $device->godina_izdanja }}</td>
-
-                            </tr>
-                            <tr>
-                                 <th>Boja</th>
-                                <td>{{ $device->boja }}</td>
-
-                            </tr>
-                            <tr>
-                                <th>Velicina </th>
-                                <td>{{ $device->velicina }} inča</td>
-
-                            </tr>
-                            <tr>
-                                <th>Kapacitet baterije</th>
-                                <td>{{ $device->kapacitet_baterije }} mAh</td>
-
-                            </tr>
-                            <tr>
-                                <th>Memorija</th>
-                                <td>{{ $device->memorija }} GB</td>
-
-                            </tr>
-                            <tr>
-                                <th>RAM</th>
-                                <td>{{ $device->RAM }} GB </td>
-
-                            </tr>
-                            <tr>
-                                <th>Kontaktirajte korisnika</th>
-                                <td>{{ $device->kontakt }}</td>
-
-                            </tr>
-                            <tr>
-                                <th>Kratki opis uređaja</th>
-                                <td>{{ $device->opis }}</td>
-
-                            </tr>
-                                <tr>
-                                    <th>Dodan datuma</th>
-                                    <td>{{ $device->created_at }}</td>
+                                    <td rowspan="7"><a href="#">
+                                        <img src="/storage/{{ $device->image }}" style="height: 300px;padding: 5px">
+                                    </a></td>
 
                                 </tr>
 
-                                <td>
-                                    <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
-                                </td>
+                                <tr>
+                                    <th>Tip</th>
+                                    <td class="col-4">{{ $device->tip }}</td>
+                                    <td class="col-3"></td>
+                                </tr>
+                                    <tr>
+                                        <th>Naziv</th>
+                                        <td>{{ $device->naziv }}</td>
+                                        <td class="col-3"></td>
+
+                                    </tr>
+                                <tr>
+                                    <th>Cijena</th>
+                                    <td>{{ $device->cijena }} KM</td>
+                                    <td class="col-3"></td>
+
+                                </tr>
 
                                 <tr>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th></th>
-                                    <th></th>
+                                     <th>Boja</th>
+                                    <td>{{ $device->boja }}</td>
+                                    <td class="col-3"></td>
+
                                 </tr>
 
-                            @endforeach
 
-                        </table>
+                                <tr>
+                                    <th>Kratki opis uređaja</th>
+                                    <td>{{ $device->opis }}</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td class="col-5">
+                                        <a href="#"
+                                           style="color: #39005c;font-size: 20px">
+                                            Detaljno...
+                                        </a>
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                                <img src="http://ebis.co.za/main/wp-content/plugins/perspective/perspective/images/apple-devices-minimal.png" alt="#"
+                                style="height: 80px; padding-left: 280px; margin-top: 20px; margin-bottom: 25px">
+
+                        @endforeach
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <form method="POST" action="{{ route('devices.store') }}">
+                            <form method="POST" action="/oglas" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
@@ -205,8 +180,11 @@
                                                 <input type="opis" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
 
                                             </div>
-                                        </div>
-                                        <div class="modal-footer">
+                                                <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>
+
+                                                <input type="file", class="form-control-file" id = "image" name="image">
+
+                                                <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
                                             <button id="addDeviceBtn" type="submit" class="btn btn-primary">Spremi</button>
                                         </div>
