@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Illuminate\Support\Facades\Gate;
-
+use Intervention\Image\Facades\Image;
 
 
 class DeviceController extends Controller
@@ -55,26 +55,46 @@ class DeviceController extends Controller
      * @return \Illuminate\Http\Response
      */
     //kreiranje modela, POST na /devices
-    public function store(Request $request)
+    public function store()
     {
-            $device = Device::create([
-                'tip' => $request->tip,
-                'naziv' => $request->naziv,
-                'sistem' => $request->sistem,
-                'godina_izdanja' => $request->godina_izdanja,
-                'boja' => $request->boja,
-                'velicina' => $request->velicina,
-                'kapacitet_baterije' => $request->kapacitet_baterije,
-                'memorija' => $request->memorija,
-                'RAM' => $request->RAM,
-                'kontakt' => $request->kontakt,
-                'cijena' => $request->cijena,
-                'opis' => $request->opis,
-                'user_id' => auth()->user()->id
+
+            $data = request()->validate([
+                'tip' => 'required',
+                'naziv' => 'required',
+                'sistem' => 'required',
+                'godina_izdanja' => 'required',
+                'boja' => 'required',
+                'velicina' => 'required',
+                'kapacitet_baterije' => 'required',
+                'memorija' => 'required',
+                'RAM' => 'required',
+                'kontakt' => 'required',
+                'cijena' => 'required',
+                'opis' => 'required',
+                'image' => ['required','image'],
+            ]);
+
+            $imagePath = (request('image')->store('uploads', 'public'));
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+            $image->save();
+
+            auth()->user()->devices()->create([
+                'tip' => $data['tip'],
+                'naziv' => $data['naziv'],
+                'sistem' => $data['sistem'],
+                'godina_izdanja' => $data['godina_izdanja'],
+                'boja' => $data['boja'],
+                'velicina' => $data['velicina'],
+                'kapacitet_baterije' => $data['kapacitet_baterije'],
+                'memorija' => $data['memorija'],
+                'RAM' => $data['RAM'],
+                'kontakt' => $data['kontakt'],
+                'cijena' => $data['cijena'],
+                'opis' => $data['opis'],
+                'image' => $imagePath,
 
         ]);
-
-            //$slika = $request->file('slika');
 
             return redirect("/oglasi")->with('success','Uspješno ste dodali oglas.');
 
@@ -89,7 +109,9 @@ class DeviceController extends Controller
     // Dohvacanje pojedinacnog uredjaja
     public function show(Device $device)
     {
-        return $device;
+        return view('devices.show',
+            compact('device')
+        );
     }
 
     /**
