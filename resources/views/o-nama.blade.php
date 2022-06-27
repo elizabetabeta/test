@@ -37,61 +37,46 @@
     @endif
     <br><br>
         <div id = "sve" style="text-align: center">
-            <div>
+                <br>
         <h1 style="text-align:center;color:darkblue;font-size:40px">O nama</h1> <br><br>
-        <table class ="table">
-            <tr>
-                <th style="padding-left:170px">
-                    <img
-                        src="Ivona.jpg"
-                        class="img-thumbnail"  alt="error"
-                        style="height:250px;width:180px">
-                    <th>
 
-                    <p id="text">
-                        <br>
-                        <b>Ivona Krezić</b><br>
-                        Studentica 3. godine informatike<br>
-                        Imam 22 godine, dolazim iz Mostara. <br>
-                        Slobodno vrijeme nastojim iskoristiti sto <br>
-                        efektivnije, tako da se bavim sportom, <br>
-                        vozim biciklo, boksam, družiti se sa <br>
-                        prijateljima, putujem, te učim <br>
-                        uvijek nešto novo pretražujući internet.
-                    </p>
-                </th>
-            </tr>
-                <tr>
-                <th style="padding-left: 200px;">
-                    <br><br><br>
-                    <img
-                        class="img-thumbnail"  alt="error"
-                        src="Elizabeta.jpg"
-                        style="height:230px;width:200px">
+                <table class="table" style="background-color: whitesmoke; color: gray">
+                    <tr>
+                        <td rowspan="7">
+                                <img src="Ivona.jpg" style="height: 300px;padding: 5px">
+                        </td>
 
-                </th>
-                    <th>
-                    <p id="text">
-                        <br>
-                        <b>Elizabeta Miličević</b><br>
-                        Studentica 3. godine informatike<br>
-                        Imam 21 godinu, dolazim iz Kiseljaka. <br>
-                        U slobodno vrijeme volim crtati, svirati klavir, <br>
-                        čitati knjige i provoditi vrijeme sa svojim <br>
-                        prijateljima.
-                    </p>
-                </th>
-            </tr>
+                        <td> <b>Ivona Krezić</b><br>
+                            Studentica 3. godine informatike<br>
+                            Imam 22 godine, dolazim iz Mostara. <br>
+                            Slobodno vrijeme nastojim iskoristiti sto <br>
+                            efektivnije, tako da se bavim sportom, <br>
+                            vozim biciklo, boksam, družiti se sa <br>
+                            prijateljima, putujem, te učim <br>
+                            uvijek nešto novo pretražujući internet.</td>
+
+                        <td rowspan="7">
+                                <img src="Elizabeta.jpg" style="height: 250px;padding: 5px">
+                        </td>
+
+                        <td> <b>Elizabeta Miličević</b><br>
+                            Studentica 3. godine informatike<br>
+                            Imam 22 godine, dolazim iz Kiseljaka. <br>
+                            U slobodno vrijeme volim crtati, svirati klavir, <br>
+                            čitati knjige i provoditi vrijeme sa svojim <br>
+                            prijateljima. </td>
+                        <td class="col-3"></td>
+
+                    </tr>
             </table>
                 <br><br><br><br>
             </div>
             <footer class="bg-light text-center text-lg-start">
-                <div class="text-center" style="background-color: rebeccapurple;">
+                <div class="text-center" style="background-color: black;color:white;">
                     © 2022 Copyright: Prodaja uređaja PRUR
                 </div>
             </footer>
         </div>
-</div>
 </body>
 </html>
 <style>
@@ -100,7 +85,7 @@
     }
 
     #sve{
-        background: linear-gradient(to bottom, lightgray 0%, mediumpurple 100%);
+        background: linear-gradient(to bottom, whitesmoke 0%, lightgray 100%);
     }
 
     #text{

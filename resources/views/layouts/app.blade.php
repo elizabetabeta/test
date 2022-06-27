@@ -20,8 +20,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
 </head>
-<body style="background: gray">
+<body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm">
             <div class="container">
@@ -35,7 +37,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li>
+                            <a class="nav-link" href="/oglasi">Oglasi</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/mojioglasi">Moji Oglasi</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="/kontakt">Kontakt</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -88,8 +98,71 @@
 </body>
 </html>
 <style>
-    .container {
-        background-image: url("slikica.png");
 
+    .container {
+        background-color: ghostwhite;
+        background-image: url("plavo.png");
+        background-repeat: repeat-y;
     }
+    @media only screen and (max-width: 600px) {
+        #kartica{
+            background-color: ghostwhite;
+            height: 600px;
+            width: 300px;
+            margin-left: 80px;
+            background-image: url("mobitel.png");
+            background-size: 400px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            border: 1px solid transparent;
+        }
+    }
+    @media only screen and (min-width: 600px) {
+
+        #kartica {
+            border: 1px solid transparent;
+            background: ghostwhite;
+            /*background-image: url("slikica.png");
+            background-repeat: no-repeat;*/
+
+        }
+    }
+    @media only screen and (min-width: 1000px) {
+
+        #kartica {
+            border: 1px solid transparent;
+            height: 500px;
+            width: 800px;
+            background: ghostwhite;
+            background-image: url("laptop.png");
+            background-size: 950px;
+            background-position: top;
+            background-repeat: no-repeat;
+            /*height: 500px;
+            width: 800px;
+            background-image: url("https://i.pinimg.com/originals/31/8c/20/318c201e1e2e314e5d9098ff0a1ad6ab.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 800px;*/
+        }
+    }
+     #nodeco{
+         text-decoration: none;
+     }
+
+    #imgshadow {
+        border-radius: 25px;
+        -webkit-box-shadow: -16px 15px 16px 2px rgba(173,173,173,0.93);
+        -moz-box-shadow: -16px 15px 16px 2px rgba(173,173,173,0.93);
+        box-shadow: -16px 15px 16px 2px rgba(173,173,173,0.93);
+    }
+
+    .py-4{
+        background-color: lightblue;
+    }
+
+    #prozirno{
+        background: transparent;
+    }
+
 </style>

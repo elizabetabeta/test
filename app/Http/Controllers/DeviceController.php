@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\DeviceType;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
@@ -20,20 +22,55 @@ class DeviceController extends Controller
     //dohvacanje svih modela tog tipa npr. /devices
     public function index(){
         //$devices = DB::select('select * from devices order by created_at desc ');
-        $devices = Device::query()->orderBy('created_at', 'DESC');
+        $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(5);
+        $type = DeviceType::all();
+        $number = Device::all()->count();
 
-        $devices = $devices->get();
-        return view('oglasi',['devices'=>$devices]);
+        return view('oglasi',['devices'=>$devices], compact('type', 'number'));
     }
 
-    public function index2(){
+    public function dostupni(){
         //$devices = DB::select('select * from devices order by created_at desc ');
-        $devices = Device::query()->orderBy('created_at', 'DESC');
+        $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(5);
+        $type = DeviceType::all();
+        $number = Device::all()->count();
+
+        return view('oglasi/dostupni',['devices'=>$devices], compact('type', 'number'));
+    }
+
+    public function prodani(){
+        //$devices = DB::select('select * from devices order by created_at desc ');
+        $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(5);
+        $type = DeviceType::all();
+        $number = Device::all()->count();
+
+        return view('oglasi/prodani',['devices'=>$devices], compact('type', 'number'));
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+
+        $devices = Device::query()
+            ->with('type')
+            ->where('naziv', 'LIKE', "%{$search}%")
+            ->orWhere('sistem', 'LIKE', "%{$search}%")
+            ->orWhereBetween('cijena', [ 1, $search ])
+            ->get();
+
+        $number = $devices->count();
+
+        return view('search', compact('devices', 'search', 'number'));
+    }
+
+    public function mojioglasi(){
+        //$devices = DB::select('select * from devices order by created_at desc ');
         if (auth()->user()->role !== 'Admin') {
-            $devices->where('user_id', auth()->id());
+            $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(6);
+            $type = DeviceType::all();
         }
-        $devices = $devices->get();
-        return view('mojioglasi',['devices'=>$devices]);
+
+        return view('mojioglasi',['devices'=>$devices], compact('type'));
 
     }
 
@@ -41,7 +78,7 @@ class DeviceController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     /* public function create()
     {
@@ -59,7 +96,7 @@ class DeviceController extends Controller
     {
 
             $data = request()->validate([
-                'tip' => 'required',
+                'device_type_id' => 'required',
                 'naziv' => 'required',
                 'sistem' => 'required',
                 'godina_izdanja' => 'required',
@@ -79,8 +116,8 @@ class DeviceController extends Controller
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
             $image->save();
 
-            auth()->user()->devices()->create([
-                'tip' => $data['tip'],
+            Device::create([
+                'device_type_id' => $data['device_type_id'],
                 'naziv' => $data['naziv'],
                 'sistem' => $data['sistem'],
                 'godina_izdanja' => $data['godina_izdanja'],
@@ -92,6 +129,7 @@ class DeviceController extends Controller
                 'kontakt' => $data['kontakt'],
                 'cijena' => $data['cijena'],
                 'opis' => $data['opis'],
+                'user_id' => auth()->id(),
                 'image' => $imagePath,
 
         ]);
@@ -104,13 +142,16 @@ class DeviceController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     // Dohvacanje pojedinacnog uredjaja
     public function show(Device $device)
     {
-        return view('devices.show',
-            compact('device')
+        $user = User::all()->where('id', '=', $device->user_id );
+        $type = DeviceType::all();
+
+        return view('showoglas',
+            compact('device', 'user', 'type')
         );
     }
 
@@ -118,11 +159,18 @@ class DeviceController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
-    /* public function edit(Device $device)
+    public function edit(Device $device)
     {
-        //
+        $type = DeviceType::all();
+
+        if(auth()->user()->id !==$device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
+            return abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+        }
+        return view('editoglas',
+            compact('device', 'type')
+        );
     }
 
     /**
@@ -130,59 +178,85 @@ class DeviceController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function update(Request $request, Device $device)
-    {
-        $device->update([
-            'tip'=>$request->tip,
-            'naziv'=>$request->naziv,
-            'sistem'=>$request->sistem,
-            'godina_izdanja'=>$request->godina_izdanja,
-            'boja'=>$request->boja,
-            'velicina'=>$request->velicina,
-            'kapacitet_baterije'=>$request->kapacitet_baterije,
-            'memorija'=>$request->memorija,
-            'RAM'=>$request->RAM,
-            'user_id'=>$request->user_id,
-            'cijena'=>$request->cijena,
-            'opis' => $request->opis,
-
-        ]);
-
-        return redirect("/oglasi")->with('success','Uspješno ste uredili oglas.');
-
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
-     */
-    public function delete($id)
+    public function update(Request $request, $id)
     {
         $device = Device::find($id);
+        $device->device_type_id= $request->input('device_type_id');
+        $device->naziv= $request->input('naziv');
+        $device->sistem= $request->input('sistem');
+        $device->godina_izdanja= $request->input('godina_izdanja');
+        $device->boja= $request->input('boja');
+        $device->velicina= $request->input('velicina');
+        $device->kapacitet_baterije= $request->input('kapacitet_baterije');
+        $device->memorija= $request->input('memorija');
+        $device->RAM= $request->input('RAM');
+        $device->kontakt= $request->input('kontakt');
+        $device->cijena= $request->input('cijena');
+        $device->opis= $request->input('opis');
 
-        if(auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
-            abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+
+        if($request->hasFile('image')){
+            $imagePath = request('image')->store('uploads', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200,1200);
+            $image->save();
+
+            $device->image = $imagePath;
+
         }
 
-        DB::table('devices')->where("id", $id)->delete();
-        return redirect('/oglasi')->with('success', 'Uspješno ste obrisali oglas');
+        $device->update();
+
+
+        return redirect("/oglasi/{$device->id}")->with('success','Uspješno ste uredili oglas.');
     }
 
-    public function delete2($id)
-    {
-        $device = Device::find($id);
 
-        if(auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
-            abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+        /**
+         * Remove the specified resource from storage.
+         *
+         * @param \App\Models\Device $device
+         * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+         */
+        public function delete($id)
+        {
+            $device = Device::find($id);
+
+            if (auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))) {
+                abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+            }
+
+            DB::table('devices')->where("id", $id)->delete();
+            return redirect('/oglasi')->with('success', 'Uspješno ste obrisali oglas');
         }
 
-        DB::table('devices')->where("id", $id)->delete();
-        return redirect('/mojioglasi')->with('success', 'Uspješno ste obrisali oglas');
-    }
+        public function delete2($id)
+        {
+            $device = Device::find($id);
+
+            if (auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))) {
+                abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+            }
+
+            DB::table('devices')->where("id", $id)->delete();
+            return redirect('/mojioglasi')->with('success', 'Uspješno ste obrisali oglas');
+        }
 
 
+        public function changeIsSold($id)
+        {
+            /*$this->validate($request, [
+                'isSold' => 'required'
+            ]);*/
+            $device = Device::find($id);
+            $device->isSold = 1;
+            $device->save();
+
+            /*if (auth()->user()->id !== $device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))) {
+                abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+            }*/
+            return redirect('/mojioglasi')->with('success', 'Uspješno ste prodali uredjaj.');
+        }
 }

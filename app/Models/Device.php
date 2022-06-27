@@ -9,8 +9,10 @@ class Device extends Model
 {
     use HasFactory;
 
+    //protected $guarded = [];
+
     protected $fillable = [
-      'tip', 'naziv', 'sistem', 'godina_izdanja',
+      'device_type_id', 'naziv', 'sistem', 'godina_izdanja',
       'boja', 'velicina','kapacitet_baterije',
       'memorija', 'RAM', 'kontakt', 'user_id', 'cijena',
       'image', 'opis'
@@ -20,4 +22,10 @@ class Device extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function type()
+    {
+        return $this->hasOne(DeviceType::class, 'id', 'device_type_id');
+    }
+
 }

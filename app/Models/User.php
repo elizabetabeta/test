@@ -44,16 +44,16 @@ class User extends Authenticatable
 
     public function devices()
     {
-        return $this->hasMany(Device::class);
+        return $this->hasMany(Device::class, 'id');
     }
 
-    public function roles()
-    {
-        return $this->belongsToMany(Role::class);
-    }
+    //public function roles()
+    //{
+    //  return $this->belongsToMany(Role::class);
+    //}
 
     public function hasRole($role)
     {
-        return $this->role == $role;
+       return $this->role == $role;
     }
 }

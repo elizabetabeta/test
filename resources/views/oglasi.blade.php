@@ -1,21 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-3">
-                @User
-                @include('layouts.usermenu')
-                @endUser
-                @Moderator
-                @include('layouts.moderatormenu')
-                @endModerator
-                @Admin
                 @include('layouts.menu')
-                @endAdmin
+                <br>
+                <h2 class="text text-primary text-end">Broj oglasa: {{ $number }}</h2>
             </div>
             <div class="col-md-9">
-                <div class="card">
+                <div class="card" id="prozirno">
                     <div class="card-header">Oglasi</div>
                     <div class="card-body">
                         @if (session('status'))
@@ -31,71 +26,94 @@
                                 </div>
                             @endif
 
-                        <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
-                            Dodaj novi oglas
-                        </button>
+                            <div class="row">
+                                <div class="col">
+                                    <form action="{{ route('search') }}" method="GET" role="search">
+
+                                    <div class="input-group">
+                                        <div class="form-outline">
+                                            <input type="text" name="search" placeholder="Pretrazi..." class="form-control" />
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
+                                    </form>
+                                </div>
+                                <div class="col">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Filter
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="/oglasi/dostupni">Dostupni</a>
+                                            <a class="dropdown-item" href="/oglasi/prodani">Prodani</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+
+                                <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
+                                    Dodaj novi oglas
+                                </button>
+                                </div>
+                            </div>
+
+                            <br>
 
                         @foreach($devices as $device)
 
-                            <table class="table" style="background-color: #757575; color: white">
-                                <tr>
-                                    <td rowspan="7"><a href="#">
-                                        <img src="/storage/{{ $device->image }}" style="height: 300px;padding: 5px">
-                                    </a></td>
+                                <div class="card mb-3">
+                                    <div class="row g-0">
+                                        <div class="col-md-4">
+                                            <a href="/oglasi/{{ $device->id }}">
+                                            <img style="border-radius: 25px"
+                                                src="/storage/{{ $device->image }}" class="img-fluid rounded-start pb-2 ps-2" alt="Nema slike...">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ $device->type->naziv }}</h5> <hr>
+                                                <h5 class="card-text">{{ $device->naziv }}</h5>
+                                                <p class="card-text">{{ $device->opis }}</p>
+                                                <p class="card-text">{{ $device->cijena }} KM</p>
+                                                @if( $device->isSold === 0 )
+                                                    <h4 class="text text-success">
+                                                        <i class="fa-solid fa-circle-check"></i>
+                                                        Dostupno
+                                                    </h4>
+                                                @else
+                                                    <h4 class="text text-danger">
+                                                        <i class="fa-solid fa-circle-xmark"></i>
+                                                        Prodano
+                                                    </h4>
+                                                @endif
+                                                <br>
+                                                <a href="/oglasi/{{ $device->id }}">
+                                                <p class="card-text"><small class="text-muted">
+                                                        Više...
+                                                    </small></p>
+                                                </a>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                </tr>
-
-                                <tr>
-                                    <th>Tip</th>
-                                    <td class="col-4">{{ $device->tip }}</td>
-                                    <td class="col-3"></td>
-                                </tr>
-                                    <tr>
-                                        <th>Naziv</th>
-                                        <td>{{ $device->naziv }}</td>
-                                        <td class="col-3"></td>
-
-                                    </tr>
-                                <tr>
-                                    <th>Cijena</th>
-                                    <td>{{ $device->cijena }} KM</td>
-                                    <td class="col-3"></td>
-
-                                </tr>
-
-                                <tr>
-                                     <th>Boja</th>
-                                    <td>{{ $device->boja }}</td>
-                                    <td class="col-3"></td>
-
-                                </tr>
-
-
-                                <tr>
-                                    <th>Kratki opis uređaja</th>
-                                    <td>{{ $device->opis }}</td>
-
-                                </tr>
-
-                                <tr>
-                                    <td class="col-5">
-                                        <a href="#"
-                                           style="color: #39005c;font-size: 20px">
-                                            Detaljno...
-                                        </a>
+                                    <!-- <td>
+                                        <a href="/" type="button" class = "btn btn-primary">Uredi oglas</a>
                                     </td>
-                                    <td></td>
                                     <td>
-                                        <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši ovaj oglas</a>
-                                    </td>
-                                </tr>
-                            </table>
+                                        <a href="{{ route("devices.delete", $device->id) }}" class = "btn btn-danger">Obriši oglas</a>
+                                    </td> -->
 
-                                <img src="http://ebis.co.za/main/wp-content/plugins/perspective/perspective/images/apple-devices-minimal.png" alt="#"
-                                style="height: 80px; padding-left: 280px; margin-top: 20px; margin-bottom: 25px">
+                                <!--<img src="http://ebis.co.za/main/wp-content/plugins/perspective/perspective/images/apple-devices-minimal.png" alt="#"
+                                style="height: 80px; padding-left: 280px; margin-top: 20px; margin-bottom: 25px">-->
 
                         @endforeach
-
+                        {{$devices->links('pagination::bootstrap-4')}}
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -108,81 +126,88 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
+
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="tip">Tip uređaja</label>
-                                                <input type="text" class="form-control" name="tip" id="tip" value="{{ old('tip') }}" placeholder="Mobitel, tablet, laptop...">
+                                                <label for="device_type_id">Tip uređaja</label>
+                                                <select
+                                                        class="form-control" name="device_type_id" id="device_type_id">
+                                                    @foreach($type as $t)
+                                                        <option value="{{$t->id}}">
+                                                            {{$t->naziv}}
+                                                        </option>
+                                                    @endforeach
 
-
+                                                </select>
                                             </div>
+
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="naziv">Naziv uređaja</label>
-                                                    <input type="text" class="form-control" name="naziv" id="name" value="{{ old('naziv') }}" placeholder="Naziv uređaja">
-
+                                                    <input type="text" class="form-control" name="naziv" id="naziv" value="{{ old('naziv') }}" placeholder="Naziv uređaja">
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="sistem">Operativni sistem</label>
-                                                <input type="sistem" class="form-control" name="sistem" id="sistem" placeholder="Unesite sistem">
+                                                <input type="text" class="form-control" name="sistem" id="sistem" placeholder="Unesite sistem">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="godina_izdanja">Godina izdanja</label>
-                                                <input type="godina_izdanja" class="form-control" name="godina_izdanja" id="godina_izdanja" placeholder="Unesite godinu izdanja uređaja">
+                                                <input type="number" class="form-control" name="godina_izdanja" id="godina_izdanja" placeholder="Unesite godinu izdanja uređaja">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="velicina">Velicina uređaja</label>
-                                                <input type="velicina" class="form-control" name="velicina" id="velicina" placeholder="Velicina uređaja">
+                                                <input type="number" class="form-control" name="velicina" id="velicina" placeholder="Velicina uređaja">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="kapacitet_baterije">kapacitet baterije uređaja</label>
-                                                <input type="kapacitet_baterije" class="form-control" name="kapacitet_baterije" id="kapacitet_baterije" placeholder="Kapacitet baterije">
+                                                <input type="number" class="form-control" name="kapacitet_baterije" id="kapacitet_baterije" placeholder="Kapacitet baterije">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="memorija">Memorija uređaja</label>
-                                                <input type="memorija" class="form-control" name="memorija" id="memorija" placeholder="Memorija uređaja">
+                                                <input type="number" class="form-control" name="memorija" id="memorija" placeholder="Memorija uređaja">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="RAM">RAM uređaja</label>
-                                                <input type="RAM" class="form-control" name="RAM" id="RAM" placeholder="RAM uređaja">
+                                                <input type="number" class="form-control" name="RAM" id="RAM" placeholder="RAM uređaja">
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="kontakt">Vaš kontakt</label>
-                                                <input type="kontakt" class="form-control" name="kontakt" id="kontakt" placeholder="Unesite način na koji vas korisnici mogu kontaktirati">
+                                                <input type="text" class="form-control" name="kontakt" id="kontakt" placeholder="Unesite način na koji vas korisnici mogu kontaktirati">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="cijena">Cijena uređaja</label>
-                                                <input type="cijena" class="form-control" name="cijena" id="cijena" placeholder="Cijena uređaja">
+                                                <input type="number" class="form-control" name="cijena" id="cijena" placeholder="Cijena uređaja">
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="boja">Boja uređaja</label>
-                                                <input type="boja" class="form-control" name="boja" id="boja" placeholder="Boja uređaja">
+                                                <input type="text" class="form-control" name="boja" id="boja" placeholder="Boja uređaja">
 
 
                                             </div>
                                             <div class="form-group">
                                                 <label for="opis">Opis vašeg uređaja</label>
-                                                <input type="opis" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
+                                                <input type="text" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
 
                                             </div>
                                                 <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>
 
-                                                <input type="file", class="form-control-file" id = "image" name="image">
+                                                <input type="file" class="form-control-file" id = "image" name="image">
 
                                                 <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
@@ -191,8 +216,11 @@
                                     </div>
                                 </div>
                                 </div>
+                                </div>
                             </form>
+
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -200,3 +228,5 @@
     </div>
 
 @endsection
+
+

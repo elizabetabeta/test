@@ -38,9 +38,7 @@
             <br><br>
 
             <div id = "pozadina">
-                <br>
                 <h1 style="text-align:center;color:darkblue;font-size:40px">Prodaja uređaja PRUR</h1>
-                <br>
                 <div  class="col-md-12">
                 <div class="parallax"></div>
                 </div>
@@ -106,11 +104,9 @@
                         </table>
 
 
-                        <br>
-
                     </div>
                     <footer class="bg-light text-center text-lg-start">
-                        <div class="text-center" style="background-color: rebeccapurple;">
+                        <div class="text-center" style="background-color: black;color: white">
                             © 2022 Copyright: Prodaja uređaja PRUR
                         </div>
                     </footer>
@@ -136,11 +132,12 @@
     }
 
     #pozadina {
-        background-color:lightgray;
+        /*background-image: url("zutoo.jpg");*/
+        background-color: white;
     }
 
     #sve{
-        background: linear-gradient(to bottom, lightgray 0%, mediumpurple 100%);
+        background: linear-gradient(to bottom, white 0%, lightgray 100%);
     }
 
     #text{
@@ -150,6 +147,5 @@
         margin-left: auto;
         margin-right: auto;
     }
-
 </style>
 
