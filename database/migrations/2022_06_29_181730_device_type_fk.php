@@ -14,7 +14,7 @@ class DeviceTypeFk extends Migration
     public function up()
     {
         Schema::table('devices', function ($table) {
-            $table->foreign('device_type_id')->references('id')->on('device_types');
+            $table->foreignId('device_type_id')->constrained('device_types');
         });
     }
 
@@ -26,7 +26,7 @@ class DeviceTypeFk extends Migration
     public function down()
     {
         Schema::table('devices', function ($table) {
-            $table->dropColumn('device_type_id');
+            $table->dropForeign(['device_type_id']);
         });
     }
 }

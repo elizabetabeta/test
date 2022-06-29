@@ -20,10 +20,11 @@ Route::get('/o-nama', function () {
     return view('o-nama');
 });
 
-Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt');
+Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt')->middleware('auth');
+;
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->middleware('role:Admin')->name('users');
 Route::get('/users/deleteuser/{id}', 'App\Http\Controllers\UsersController@delete')->middleware('role:Admin')->name('users.delete');
