@@ -26,25 +26,25 @@ class DeviceController extends Controller
         $type = DeviceType::all();
         $number = Device::all()->count();
 
-        return view('oglasi',['devices'=>$devices], compact('type', 'number'));
+        return view('oglasi.oglasi',['devices'=>$devices], compact('type', 'number'));
     }
 
-    public function dostupni(){
+    public function dostupni(Device $device){
         //$devices = DB::select('select * from devices order by created_at desc ');
-        $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(5);
+        $devices = Device::with('type')->where('isSold','=',  0)->orderBy('created_at', 'DESC')->paginate(5);
         $type = DeviceType::all();
-        $number = Device::all()->count();
+        $number = Device::all()->where('isSold', '=', 0)->count();
 
-        return view('oglasi/dostupni',['devices'=>$devices], compact('type', 'number'));
+        return view('oglasi.dostupni',['devices'=>$devices], compact('type', 'number'));
     }
 
     public function prodani(){
         //$devices = DB::select('select * from devices order by created_at desc ');
-        $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(5);
+        $devices = Device::with('type')->where('isSold','!=',  0)->orderBy('created_at', 'DESC')->paginate(5);
         $type = DeviceType::all();
-        $number = Device::all()->count();
+        $number = Device::all()->where('isSold', '!=', 0)->count();
 
-        return view('oglasi/prodani',['devices'=>$devices], compact('type', 'number'));
+        return view('oglasi.prodani',['devices'=>$devices], compact('type', 'number'));
     }
 
     public function search(Request $request)
@@ -56,11 +56,12 @@ class DeviceController extends Controller
             ->where('naziv', 'LIKE', "%{$search}%")
             ->orWhere('sistem', 'LIKE', "%{$search}%")
             ->orWhereBetween('cijena', [ 1, $search ])
+            ->orderByDesc('created_at')
             ->get();
 
         $number = $devices->count();
 
-        return view('search', compact('devices', 'search', 'number'));
+        return view('oglasi.search', compact('devices', 'search', 'number'));
     }
 
     public function mojioglasi(){
@@ -69,8 +70,11 @@ class DeviceController extends Controller
             $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(6);
             $type = DeviceType::all();
         }
+        if (auth()->user()->role == 'Admin') {
+            return abort('403', "Ups! Admin može samo uređivati i brisati oglase, a ne dodavati svoje.");
+        }
 
-        return view('mojioglasi',['devices'=>$devices], compact('type'));
+        return view('oglasi.mojioglasi',['devices'=>$devices], compact('type'));
 
     }
 
@@ -94,7 +98,6 @@ class DeviceController extends Controller
     //kreiranje modela, POST na /devices
     public function store()
     {
-
             $data = request()->validate([
                 'device_type_id' => 'required',
                 'naziv' => 'required',
@@ -108,6 +111,7 @@ class DeviceController extends Controller
                 'kontakt' => 'required',
                 'cijena' => 'required',
                 'opis' => 'required',
+                'location' => 'required',
                 'image' => ['required','image'],
             ]);
 
@@ -129,12 +133,13 @@ class DeviceController extends Controller
                 'kontakt' => $data['kontakt'],
                 'cijena' => $data['cijena'],
                 'opis' => $data['opis'],
+                'location' => $data['location'],
                 'user_id' => auth()->id(),
                 'image' => $imagePath,
 
         ]);
 
-            return redirect("/oglasi")->with('success','Uspješno ste dodali oglas.');
+            return redirect("/mojioglasi")->with('success','Uspješno ste dodali oglas.');
 
     }
 
@@ -150,7 +155,7 @@ class DeviceController extends Controller
         $user = User::all()->where('id', '=', $device->user_id );
         $type = DeviceType::all();
 
-        return view('showoglas',
+        return view('oglasi.showoglas',
             compact('device', 'user', 'type')
         );
     }
@@ -168,7 +173,7 @@ class DeviceController extends Controller
         if(auth()->user()->id !==$device->user_id && auth()->user()->role !== 'Admin' && auth()->user()->role !== 'Moderator' && !(Gate::allows('delete-posts'))){
             return abort('403', "Niste vlasnik oglasa ili admin/moderator!");
         }
-        return view('editoglas',
+        return view('oglasi.editoglas',
             compact('device', 'type')
         );
     }
@@ -193,6 +198,7 @@ class DeviceController extends Controller
         $device->memorija= $request->input('memorija');
         $device->RAM= $request->input('RAM');
         $device->kontakt= $request->input('kontakt');
+        $device->location= $request->input('location');
         $device->cijena= $request->input('cijena');
         $device->opis= $request->input('opis');
 

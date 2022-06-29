@@ -7,9 +7,9 @@
             <div class="col-md-3">
                 @include('layouts.menu')
                 <br>
-                <h2 class="text text-primary text-end">Broj oglasa: {{ $number }}</h2>
+                <h2 class="text text-light text-center" id="broj">Broj oglasa: {{ $number }}</h2>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9" id="visina">
                 <div class="card" id="prozirno">
                     <div class="card-header">Oglasi</div>
                     <div class="card-body">
@@ -32,12 +32,13 @@
 
                                     <div class="input-group">
                                         <div class="form-outline">
-                                            <input type="text" name="search" placeholder="Pretrazi..." class="form-control" />
+                                            <input type="text" name="search" placeholder="Pretraži..." class="form-control" />
                                         </div>
                                         <button type="submit" class="btn btn-primary">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
+                                        <p><small class="text-muted">Pretraži po nazivu, sistemu ili max cijeni...</small></p>
                                     </form>
                                 </div>
                                 <div class="col">
@@ -46,11 +47,9 @@
                                             Filter
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="/oglasi/dostupni">Dostupni</a>
-                                            <a class="dropdown-item" href="/oglasi/prodani">Prodani</a>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Separated link</a>
+                                            <a class="dropdown-item" href="/dostupni">Dostupni</a>
+                                            <a class="dropdown-item" href="/prodani">Prodani</a>
+
                                         </div>
                                     </div>
                                 </div>
@@ -66,7 +65,7 @@
 
                         @foreach($devices as $device)
 
-                                <div class="card mb-3">
+                                <div class="card mb-3" id="oglasikartice">
                                     <div class="row g-0">
                                         <div class="col-md-4">
                                             <a href="/oglasi/{{ $device->id }}">
@@ -76,8 +75,11 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title">{{ $device->type->naziv }}</h5> <hr>
-                                                <h5 class="card-text">{{ $device->naziv }}</h5>
+                                                <a href="/oglasi/{{ $device->id }}" style="text-decoration: none">
+                                                <h5 class="card-title text-primary">{{ $device->naziv }}</h5>
+                                                </a>
+                                                    <hr>
+                                                <h5 class="card-text">{{ $device->type->naziv }}</h5>
                                                 <p class="card-text">{{ $device->opis }}</p>
                                                 <p class="card-text">{{ $device->cijena }} KM</p>
                                                 @if( $device->isSold === 0 )
@@ -113,7 +115,9 @@
                                 style="height: 80px; padding-left: 280px; margin-top: 20px; margin-bottom: 25px">-->
 
                         @endforeach
-                        {{$devices->links('pagination::bootstrap-4')}}
+                        <!--<div class="d-flex justify-content-center"></div>-->
+                            {{$devices->links('pagination::bootstrap-4')}}
+
 
                         <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -122,7 +126,7 @@
                                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLongTitle">Dodavanje oglasa</h5>
+                                            <h5 class="modal-title text-primary" id="exampleModalLongTitle">Dodavanje oglasa</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -205,6 +209,11 @@
                                                 <input type="text" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
 
                                             </div>
+                                                <div class="form-group">
+                                                    <label for="location">Lokacija</label>
+                                                    <input type="text" class="form-control" name="location" id="location" placeholder="Lokacija uređaja">
+
+                                                </div>
                                                 <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>
 
                                                 <input type="file" class="form-control-file" id = "image" name="image">
@@ -229,4 +238,12 @@
 
 @endsection
 
+<style>
+    #broj{
+        background-color: transparent;
+        border: 1px solid white;
+        border-radius: 15px;
+        font-family: "Roboto", sans-serif;
+    }
+</style>
 

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="pozadina">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" id = "kartica">
@@ -13,7 +13,7 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label
+                            <label id="slova"
                                 for="email" class="col-md-4 col-form-label text-md-end">&nbsp&nbsp{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">&nbsp&nbsp{{ __('Password') }}</label>
+                            <label for="password" id="slova" class="col-md-4 col-form-label text-md-end">&nbsp&nbsp{{ __('Password') }}</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -46,7 +46,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="form-check-label" for="remember" id="slova">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
@@ -60,7 +60,7 @@
                                 </button>
 
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" id="slova">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif

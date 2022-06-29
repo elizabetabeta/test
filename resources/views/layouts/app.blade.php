@@ -26,8 +26,8 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+            <div class="container" id="navbar2">
+                <a class="navbar-brand" id="slova" href="{{ url('/') }}">
                     {{ config('app.name', 'PRUR') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -36,17 +36,19 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <!--<ul class="navbar-nav me-auto">
                         <li>
-                            <a class="nav-link" href="/oglasi">Oglasi</a>
+                            <a class="nav-link" href="/oglasi" id="slova">Oglasi</a>
                         </li>
+
                         <li>
-                            <a class="nav-link" href="/mojioglasi">Moji Oglasi</a>
+                            <a class="nav-link" href="/mojioglasi" id="slova">Moji Oglasi</a>
                         </li>
+
                         <li>
-                            <a class="nav-link" href="/kontakt">Kontakt</a>
+                            <a class="nav-link" href="/kontakt" id="slova">Kontakt</a>
                         </li>
-                    </ul>
+                    </ul>-->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -54,13 +56,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" id="slova" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" id="slova" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -70,6 +72,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if(auth()->user()->role !== "Admin")
+                                    <a class="dropdown-item" href="/profile{{ auth()->user()->id }}">Moj profil</a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -91,6 +96,11 @@
             @yield('content')
         </main>
     </div>
+    <footer class="border-top footer text-light">
+        <div class="container" id="footer2">
+            &copy; 2022 - PRUR - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -99,14 +109,18 @@
 </html>
 <style>
 
+    #pozadina{
+        background-color: transparent;
+    }
+
     .container {
-        background-color: ghostwhite;
-        background-image: url("plavo.png");
-        background-repeat: repeat-y;
+        background-color: transparent;
+        /*background-image: url("plavo.png");
+        background-repeat: repeat-y;*/
     }
     @media only screen and (max-width: 600px) {
         #kartica{
-            background-color: ghostwhite;
+            background-color: transparent;
             height: 600px;
             width: 300px;
             margin-left: 80px;
@@ -121,7 +135,7 @@
 
         #kartica {
             border: 1px solid transparent;
-            background: ghostwhite;
+            background: transparent;
             /*background-image: url("slikica.png");
             background-repeat: no-repeat;*/
 
@@ -133,7 +147,7 @@
             border: 1px solid transparent;
             height: 500px;
             width: 800px;
-            background: ghostwhite;
+            background: transparent;
             background-image: url("laptop.png");
             background-size: 950px;
             background-position: top;
@@ -158,11 +172,45 @@
     }
 
     .py-4{
-        background-color: lightblue;
+        background-image: url("loginregister.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-color: rgba(255, 255, 255, 0.486);
+        background-blend-mode: overlay;
     }
 
     #prozirno{
-        background: transparent;
+        background-image: linear-gradient(whitesmoke, antiquewhite);
+        border: transparent;
+    }
+
+    .footer, .navbar{
+        background-color: #d285ff;
+    }
+
+    #footer2, #navbar2{
+        background-color: transparent;
+    }
+
+    #email, #password, #remember, #name, #password-confirm {
+        background-color: transparent;
+        border-color: white;
+        color: white;
+    }
+
+    #slova, #navbarDropdown{
+        color: white;
+    }
+
+    #oglasikartice{
+        background-color: transparent;
+        border-radius: 15px;
+        border-color: transparent;
+    }
+
+    #visina {
+        min-height: 470px;
     }
 
 </style>

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
+use Intervention\Image\Facades\Image;
 
 
 class UsersController extends Controller
@@ -15,21 +17,67 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:Admin');
     }
 
     public function index()
     {
-        $user = DB::table('users')->get();
+        $user = DB::table('users')->orderByDesc('id')->paginate(10);
 
-        return view('users', ["users"=>$user]);
+        return view('korisnici.users', ["users"=>$user]);
+    }
+
+    public function svikorisnici()
+    {
+        $user = DB::table('users')->orderBy('name')->paginate(12);
+
+        return view('korisnici.svikorisnici', ["users"=>$user]);
+    }
+
+    public function profile(User $user)
+    {
+        $devices = Device::all()->where('user_id', '=', $user->id )->sortByDesc('created_at');
+        return view('korisnici.profil', compact('user', 'devices'));
     }
 
     public function delete($id)
     {
         DB::table('users')->where("id", $id)->delete();
         return redirect('/users')->with('success','Uspješno ste uklonili korisnika.');
+    }
 
+    public function deleteprofil($id)
+    {
+        DB::table('users')->where("id", $id)->delete();
+        return redirect('/');
+    }
+
+    public function search(Request $request)
+    {
+        if (auth()->user()->role != "Admin"){
+            abort('403', 'Samo admin ima pristup ovom dijelu sustava.');
+        }
+        $search = $request->input('search');
+
+        $users = User::query()
+            ->where('name', 'LIKE', "%{$search}%")
+            ->orWhere('email', 'LIKE', "%{$search}%")
+            ->orderByDesc('id')
+            ->get();
+
+        return view('korisnici.search', compact('users', 'search'));
+    }
+
+    public function searchprofile(Request $request)
+    {
+        $search2 = $request->input('search2');
+
+        $users = User::query()
+            ->where('name', 'LIKE', "%{$search2}%")
+            ->orWhere('email', 'LIKE', "%{$search2}%")
+            ->orderBy('name')
+            ->get();
+
+        return view('korisnici.searchprofile', compact('users', 'search2'));
     }
 
     public function add(Request $request)
@@ -52,5 +100,38 @@ class UsersController extends Controller
             ]);
             return redirect("/users")->with('success','Uspješno ste dodali novog korisnika.');
         }
+    }
+
+    public function edit(User $user)
+    {
+        if(auth()->user()->id !== $user->id){
+            return abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+        }
+        return view("korisnici.profiledit", compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+
+        if (request()->hasFile('profile_image')) {
+            $imagePath = request('profile_image')->store('uploads', 'public');
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+            $image->save();
+
+            $user->profile_image = $imagePath;
+
+        }
+
+        $user->update();
+
+        return redirect("/profile{$user->id}")->with('success', 'Uspješno ste uredili svoje informacije.');
+
     }
 }

@@ -13,29 +13,32 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
+
 
 Route::get('/o-nama', function () {
     return view('o-nama');
 });
 
-Route::get('/kontakt', function () {
-    return view('kontakt');
-});
-
+Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->name('users');
-Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@delete')->name('users.delete');
-Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->name('users.add');
+Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->middleware('role:Admin')->name('users');
+Route::get('/users/deleteuser/{id}', 'App\Http\Controllers\UsersController@delete')->middleware('role:Admin')->name('users.delete');
+Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deleteprofil')->name('profile.delete');
+Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->middleware('role:Admin')->name('users.add');
+Route::get('/profile{user}', 'App\Http\Controllers\UsersController@profile');
+Route::get('/profile{user}/edit', 'App\Http\Controllers\UsersController@edit')->name('user.edit');
+Route::put('/profile/update/{user}', 'App\Http\Controllers\UsersController@update');
+Route::get('/searchuser/', 'App\Http\Controllers\UsersController@search')->name('searchuser');
+Route::get('/searchprofile/', 'App\Http\Controllers\UsersController@searchprofile')->name('searchprofile');
+Route::get('/listofprofiles', 'App\Http\Controllers\UsersController@svikorisnici')->name('listofprofiles');
 
 Route::get('/search/', 'App\Http\Controllers\DeviceController@search')->name('search');
-Route::get('/oglasi/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->name('dostupni');
-Route::get('/oglasi/prodani', 'App\Http\Controllers\DeviceController@prodani')->name('prodani');
+Route::get('/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->name('dostupni');
+Route::get('/prodani', 'App\Http\Controllers\DeviceController@prodani')->name('prodani');
 
 Route::get('/oglasi','App\Http\Controllers\DeviceController@index')->middleware('auth')->name('devices.index');
 Route::get('/mojioglasi','App\Http\Controllers\DeviceController@mojioglasi')->middleware('auth');;

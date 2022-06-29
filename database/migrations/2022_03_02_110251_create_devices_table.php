@@ -15,7 +15,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(('device_type_id'))->constrained('DeviceType');
+            $table->foreignId(('device_type_id'))->constrained('device_types');
             $table->string('naziv');
             $table->string('sistem')->nullable();
             $table->year('godina_izdanja')->nullable();

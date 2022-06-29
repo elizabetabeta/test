@@ -8,8 +8,8 @@
                 @include('layouts.menu')
 
             </div>
-            <div class="col-md-9">
-                <div class="card">
+            <div class="col-md-9" id="visina">
+                <div class="card" id="prozirno">
                     <div class="card-header">Vaši oglasi</div>
                     <div class="card-body">
                         @if (session('status'))
@@ -25,6 +25,7 @@
                             </div>
                         @endif
 
+                        <!--<i class="fa-solid fa-mobile-screen-button"></i>-->
                         <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter2">
                             Dodaj novi oglas
                         </button>
@@ -34,7 +35,7 @@
                             @foreach($devices as $device)
                                 @if(auth()->user()->id == $device->user_id)
 
-                                    <div class="card mb-3">
+                                    <div class="card mb-3" id="oglasikartice">
                                         <div class="row g-0">
                                             <div class="col-md-4">
                                                 <a href="/oglasi/{{ $device->id }}">
@@ -44,8 +45,11 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">{{ $device->type->naziv }}</h5> <hr>
-                                                    <h5 class="card-text">{{ $device->naziv }}</h5>
+                                                    <a href="/oglasi/{{ $device->id }}" style="text-decoration: none">
+                                                    <h5 class="card-title">{{ $device->naziv }}</h5>
+                                                    </a>
+                                                        <hr>
+                                                    <h5 class="card-text">{{ $device->type->naziv }}</h5>
                                                     <p class="card-text">{{ $device->opis }}</p>
                                                     <p class="card-text">{{ $device->cijena }} KM</p>
                                                     @if( $device->isSold === 0 )
@@ -81,7 +85,7 @@
                                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Dodavanje oglasa</h5>
+                                                <h5 class="modal-title text-primary" id="exampleModalLongTitle">Dodavanje oglasa</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Zatvori">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -162,6 +166,11 @@
                                                     <div class="form-group">
                                                         <label for="opis">Opis vašeg uređaja</label>
                                                         <input type="text" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
+
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="location">Lokacija</label>
+                                                        <input type="text" class="form-control" name="location" id="location" placeholder="Lokacija uređaja">
 
                                                     </div>
                                                     <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>

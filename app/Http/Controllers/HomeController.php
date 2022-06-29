@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Device;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use DB;
 
 class HomeController extends Controller
 {
@@ -26,4 +24,20 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function kontakt()
+    {
+        return View('kontakt');
+    }
+
+    public function welcome()
+    {
+        $devices = Device::all()->count();
+        $devicess = Device::query()->orderBy('created_at', 'DESC')->paginate(5);
+        $prodanidevices = Device::all()->where('isSold','!=',  0)->count();
+        $dostupnidevices = Device::all()->where('isSold','=',  0)->count();
+        $users = User::all()->count();
+        $userss = User::query()->orderByDesc('created_at')->paginate(8);
+
+        return View('/welcome', compact('devices','devicess', 'prodanidevices', 'dostupnidevices', 'users', 'userss'));
+    }
 }
