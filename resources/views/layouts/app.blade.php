@@ -172,7 +172,7 @@
     }
 
     .py-4{
-        background-image: url("loginregister.jpg");
+        background-image: url("/storage/uploads/loginregister.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

@@ -50,7 +50,7 @@ Route::get('/oglasi/edit/{device}', 'App\Http\Controllers\DeviceController@edit'
 Route::put('/oglasi/update/{device}', 'App\Http\Controllers\DeviceController@update');
 Route::get('/devices/isSold/{id}', 'App\Http\Controllers\DeviceController@changeIsSold')->name('devices.isSold');
 
-Route::get('/oglasi/{device}', 'App\Http\Controllers\DeviceController@show');
+Route::get('/oglasi/{device}', 'App\Http\Controllers\DeviceController@show')->middleware('auth');
 Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
 Route::get('/devices/delete2/{id}', 'App\Http\Controllers\DeviceController@delete2')->name('devices.delete2');
 Route::get('devices/edit/{id}', 'App\Http\Controllers\DeviceController@edit')->name('devices.edit');
