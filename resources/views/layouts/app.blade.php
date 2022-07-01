@@ -38,11 +38,11 @@
                     <!-- Left Side Of Navbar -->
                     <!--<ul class="navbar-nav me-auto">
                         <li>
-                            <a class="nav-link" href="/oglasi" id="slova">Oglasi</a>
+                            <a class="nav-link" href="/oglasi" id="slova">oglasi</a>
                         </li>
 
                         <li>
-                            <a class="nav-link" href="/mojioglasi" id="slova">Moji Oglasi</a>
+                            <a class="nav-link" href="/mojioglasi" id="slova">Moji oglasi</a>
                         </li>
 
                         <li>
