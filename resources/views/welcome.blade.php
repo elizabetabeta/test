@@ -49,7 +49,9 @@
 
             <div class="container" id="sve">
 
-                <h1 id="naslov" class="text-primary" style="text-align:center;font-size:40px">Prodaja uređaja PRUR</h1>
+                <h1 id="naslov" class="text-primary" style="text-align:center;font-size:40px">Prodaja uređaja PRUR
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </h1>
                 <hr>
 
                 <br>
@@ -63,7 +65,7 @@
                             <span class="info-box-icon">
                                  <a href ="https://docs.google.com/document/d/1wjlTuFE9WsNjAdaUO1eB5VC4M6KlusyK/edit"
                                     target="_blank">
-                                    <i class="fa-solid fa-link"></i>
+                                    <i class="fa-solid fa-eye"></i>
                                  </a>
                             </span>
                             <div class="info-box-content">
@@ -76,7 +78,7 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
                                 <a href="/kontakt" target="_blank">
-                                    <i class="fa-solid fa-link"></i>
+                                    <i class="fa-solid fa-users"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">
@@ -88,7 +90,7 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
                                 <a href="https://github.com/elizabetabeta/test_laravel" target="_blank">
-                                    <i class="fa-solid fa-link"></i>
+                                    <i class="fa-brands fa-github"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">
@@ -100,7 +102,7 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
                                 <a href="#o_projektu">
-                                    <i class="fa-solid fa-link"></i>
+                                    <i class="fa-solid fa-pager"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">
@@ -111,7 +113,7 @@
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
                                 <a href="#tehnologije">
-                                    <i class="fa-solid fa-link"></i>
+                                    <i class="fa-solid fa-mobile"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">

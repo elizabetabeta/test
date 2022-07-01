@@ -195,6 +195,10 @@
         background-color: #d285ff;
     }
 
+    .footer {
+        bottom:0;
+    }
+
     #footer2, #navbar2{
         background-color: transparent;
     }
@@ -217,6 +221,20 @@
 
     #visina {
         min-height: 470px;
+    }
+
+    .content {
+        height: 100%;
+    }
+
+    html, body {
+        margin:0;
+        padding:0;
+        height:100%;
+    }
+    .page {
+        min-height:100%;
+        position:relative;
     }
 
 </style>
