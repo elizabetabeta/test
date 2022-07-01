@@ -14,7 +14,7 @@ class DefaultForIsSold extends Migration
     public function up()
     {
         Schema::table('devices', function ($table) {
-            $table->boolean('isSold')->default('0');
+            $table->boolean('isSold')->default(0)->change();
         });
     }
 
