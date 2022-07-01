@@ -15,7 +15,7 @@ class Device extends Model
       'device_type_id', 'naziv', 'sistem', 'godina_izdanja',
       'boja', 'velicina','kapacitet_baterije',
       'memorija', 'RAM', 'kontakt', 'user_id', 'cijena',
-      'image', 'opis'
+      'image', 'opis', 'location'
     ];
 
     public function user()
