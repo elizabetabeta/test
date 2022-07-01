@@ -229,61 +229,9 @@
 
     #visina {
         min-height: 470px;
+        bottom: 0px;
     }
 
-    @media only screen and (min-height: 500px) {
-        #visina {
-            min-height: 500px;
-        }
-    }
-
-    @media only screen and (min-height: 600px) {
-        #visina {
-            min-height: 600px;
-        }
-    }
-
-    @media only screen and (min-height: 700px) {
-        #visina {
-            min-height: 700px;
-        }
-    }
-
-    @media only screen and (min-height: 800px) {
-        #visina {
-            min-height: 800px;
-        }
-    }
-
-    @media only screen and (min-height: 900px) {
-        #visina {
-            min-height: 900px;
-        }
-    }
-
-    @media only screen and (min-height: 1000px) {
-        #visina {
-            min-height: 1000px;
-        }
-    }
-
-    @media only screen and (min-height: 1500px) {
-        #visina {
-            min-height: 1500px;
-        }
-    }
-
-    @media only screen and (min-height: 1900px) {
-        #visina {
-            min-height: 1900px;
-        }
-    }
-
-    @media only screen and (min-height: 2000px) {
-        #visina {
-            min-height: 2000px;
-        }
-    }
 
     content {
         min-height: 100%;
