@@ -206,11 +206,6 @@
         background-color: transparent;
     }
 
-    .footer {
-        bottom: 0px;
-        width: 100%;
-        height: 50px;
-    }
 
     #email, #password, #remember, #name, #password-confirm {
         background-color: transparent;

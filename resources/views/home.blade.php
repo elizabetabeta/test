@@ -16,9 +16,7 @@
                 </h1>
 
                 <br>
-                <div class="text-center">
-
-                </div>
+                <img src="https://i.pinimg.com/originals/c0/f8/ba/c0f8ba185db581d6f312d860f8004257.png">
 
             </div>
         </div>
