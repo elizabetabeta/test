@@ -15,7 +15,7 @@
 
                 </h1>
 
-                <img src="lapitopi.png">
+                <img src="lapitopi.png" style=" display: block; margin-left: auto;margin-right: auto; width: 50%;">
 
             </div>
         </div>
