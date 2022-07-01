@@ -203,6 +203,7 @@
     }
 
     .footer{
+        padding-top: 2px;
         height: 50px;
     }
 
