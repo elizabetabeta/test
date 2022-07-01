@@ -220,7 +220,8 @@
     }
 
     #visina {
-        min-height: 470px;
+        /*min-height: 470px;*/
+        min-height: 100%;
     }
 
     .content {
