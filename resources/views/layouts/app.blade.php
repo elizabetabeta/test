@@ -202,10 +202,13 @@
         background-color: #d285ff;
     }
 
+    .footer{
+        height: 50px;
+    }
+
     #footer2, #navbar2{
         background-color: transparent;
     }
-
 
     #email, #password, #remember, #name, #password-confirm {
         background-color: transparent;
@@ -225,18 +228,33 @@
 
     #visina {
         min-height: 470px;
-        bottom: 0px;
+    }
+    @media only screen and (min-width: 1500px) {
+        #visina {
+            min-height: 880px;
+        }
     }
 
+    @media only screen and (min-height: 1000px) {
+        #visina {
+            min-height: 1000px;
+        }
+    }
+
+    @media only screen and (min-width: 1900px) {
+        #visina {
+            min-height: 880px;
+        }
+    }
 
     content {
         min-height: 100%;
     }
 
-    body {
-        max-width: 100%;
-        margin: 0 auto !important;
-        float: none !important;
+    html, body {
+        margin:0;
+        padding:0;
+        min-height:100%;
     }
 
 </style>
