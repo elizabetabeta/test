@@ -197,6 +197,7 @@
 
     .footer {
         bottom:0;
+        position: absolute;
     }
 
     #footer2, #navbar2{
