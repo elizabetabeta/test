@@ -115,12 +115,18 @@
 </html>
 <style>
 
+    #app{
+        min-height: 100%;
+    }
+
     #pozadina{
         background-color: transparent;
+        background-size: cover;
     }
 
     .container {
         background-color: transparent;
+        min-height: 100%;
         /*background-image: url("plavo.png");
         background-repeat: repeat-y;*/
     }
@@ -184,6 +190,7 @@
         background-size: cover;
         background-color: rgba(255, 255, 255, 0.486);
         background-blend-mode: overlay;
+
     }
 
     #prozirno{
@@ -195,13 +202,13 @@
         background-color: #d285ff;
     }
 
-    .footer {
-        bottom:0;
-        position: absolute;
-    }
-
     #footer2, #navbar2{
         background-color: transparent;
+    }
+
+    .footer {
+        bottom: 0px;
+        width: 100%;
     }
 
     #email, #password, #remember, #name, #password-confirm {
@@ -221,22 +228,34 @@
     }
 
     #visina {
-        /*min-height: 470px;*/
-        min-height: 100%;
+        min-height: 470px;
+    }
+    @media only screen and (min-width: 1500px) {
+        #visina {
+            min-height: 880px;
+        }
     }
 
-    .content {
-        height: 100%;
+    @media only screen and (min-height: 1000px) {
+        #visina {
+            min-height: 880px;
+        }
+    }
+
+    @media only screen and (min-width: 1900px) {
+        #visina {
+            min-height: 880px;
+        }
+    }
+
+    content {
+        min-height: 100%;
     }
 
     html, body {
         margin:0;
         padding:0;
-        height:100%;
-    }
-    .page {
         min-height:100%;
-        position:relative;
     }
 
 </style>
