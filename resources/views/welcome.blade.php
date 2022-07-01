@@ -27,8 +27,8 @@
     <body class="antialiased">
         <nav class="navbar" style="background-color: #d285ff">
             <div class="container">
-                <a class="navbar-brand" style="color: white" href="{{ url('/') }}">
-                    {{ config('app.name', 'PRUR') }}
+                <a class="navbar-brand" style="color: white;" href="{{ url('/') }}">
+                    PRUR <i class="fa-solid fa-mobile-screen-button"></i>
                 </a>
             @if (Route::has('login'))
                 <div class="hidden ms-auto top-0 right-0 py-4 sm:block">

@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm">
             <div class="container" id="navbar2">
                 <a class="navbar-brand" id="slova" href="{{ url('/') }}">
-                    {{ config('app.name', 'PRUR') }}
+                    PRUR <i class="fa-solid fa-mobile-screen-button"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -190,6 +190,7 @@
         background-size: cover;
         background-color: rgba(255, 255, 255, 0.486);
         background-blend-mode: overlay;
+        min-height: 100%;
 
     }
 
@@ -203,7 +204,6 @@
     }
 
     .footer{
-        padding-top: 2px;
         height: 50px;
     }
 

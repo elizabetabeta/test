@@ -31,8 +31,8 @@
                         </button>
                             <br><br><br>
                             @if($number == 0)
-                                <h1 class="text text-primary">Niste dodali ni jedan oglas! Dodajte sada!</h1>
-                            <img src="https://i.pinimg.com/originals/c0/f8/ba/c0f8ba185db581d6f312d860f8004257.png">
+                                <h1 class="text text-primary text-center">Niste dodali ni jedan oglas! Dodajte sada!</h1>
+                                    <img src="lapitopi.png" style=" display: block; margin-left: auto;margin-right: auto; width: 50%;">
                                 <br><br>
                                 @else
 
