@@ -94,10 +94,16 @@
                                             </a>
                                         </td>
                                         <td>
+                                            <a href="/user{{ $user->id }}/edit" type="btn btn-success" class="btn btn-success mb-2">
+                                                Rola
+                                            </a>
+                                            @if($user->role != "Admin")
                                             <button type="button" class="btn btn-danger mb-2" data-toggle="modal"
                                                     data-target="#modalForDelete">
                                                 Obriši
                                             </button>
+                                            @endif
+
                                         </td>
                                     </tr>
                                     @endforeach
@@ -138,7 +144,7 @@
                         </div>
 
 
-                        <!-- Modal -->
+                        <!-- Modal za dodavanje novog korisnika -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <form method="POST" action="{{ route('users.add') }}">
                                 @csrf

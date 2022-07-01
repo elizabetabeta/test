@@ -17,8 +17,10 @@
                     <div class="form-group">
                         <label for="device_type_id" class="col-md-4 col-form-label">Tip uređaja</label>
                         <select
-                            class="form-control" name="device_type_id" id="device_type_id">
-                            @foreach($type as $t)
+                            class="form-control"  name="device_type_id" id="device_type_id">
+                            <option value="{{ $device->device_type_id }}">Izaberi tip uređaja</option>
+
+                        @foreach($type as $t)
                                 <option value="{{$t->id}}">
                                     {{$t->naziv}}
                                 </option>

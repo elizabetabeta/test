@@ -20,7 +20,7 @@ Route::get('/o-nama', function () {
     return view('o-nama');
 });
 
-Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt')->middleware('auth');
+Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt');
 ;
 Auth::routes();
 
@@ -30,19 +30,24 @@ Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->mi
 Route::get('/users/deleteuser/{id}', 'App\Http\Controllers\UsersController@delete')->middleware('role:Admin')->name('users.delete');
 Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deleteprofil')->name('profile.delete');
 Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->middleware('role:Admin')->name('users.add');
+
 Route::get('/profile{user}', 'App\Http\Controllers\UsersController@profile');
 Route::get('/profile{user}/edit', 'App\Http\Controllers\UsersController@edit')->name('user.edit');
 Route::put('/profile/update/{user}', 'App\Http\Controllers\UsersController@update');
+
+Route::get('/user{user}/edit', 'App\Http\Controllers\UsersController@editrole')->name('user.editrole');
+Route::put('/user/update/{user}', 'App\Http\Controllers\UsersController@changerole');
+
 Route::get('/searchuser/', 'App\Http\Controllers\UsersController@search')->name('searchuser');
 Route::get('/searchprofile/', 'App\Http\Controllers\UsersController@searchprofile')->name('searchprofile');
 Route::get('/listofprofiles', 'App\Http\Controllers\UsersController@svikorisnici')->name('listofprofiles');
 
 Route::get('/search/', 'App\Http\Controllers\DeviceController@search')->name('search');
-Route::get('/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->name('dostupni');
-Route::get('/prodani', 'App\Http\Controllers\DeviceController@prodani')->name('prodani');
+Route::get('/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->middleware('auth')->name('dostupni');
+Route::get('/prodani', 'App\Http\Controllers\DeviceController@prodani')->middleware('auth')->name('prodani');
 
 Route::get('/oglasi','App\Http\Controllers\DeviceController@index')->middleware('auth')->name('devices.index');
-Route::get('/mojioglasi','App\Http\Controllers\DeviceController@mojioglasi')->middleware('auth');;
+Route::get('/mojioglasi','App\Http\Controllers\DeviceController@mojioglasi')->middleware('auth');
 Route::post('/oglas', 'App\Http\Controllers\DeviceController@store');
 //Route::post('/oglasEdit', 'App\Http\Controllers\DeviceController@update');
 

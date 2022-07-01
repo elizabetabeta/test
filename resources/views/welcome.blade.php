@@ -25,87 +25,36 @@
         </style>
     </head>
     <body class="antialiased">
-        <div>
+        <nav class="navbar" style="background-color: #d285ff">
+            <div class="container">
+                <a class="navbar-brand" style="color: white" href="{{ url('/') }}">
+                    {{ config('app.name', 'PRUR') }}
+                </a>
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                <div class="hidden ms-auto top-0 right-0 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Oglasi</a>
+                        <a href="{{ url('/home') }}" class="text-sm text-light">Oglasi</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Prijava</a>
+                        <a href="{{ route('login') }}" class="text-sm text-light">Prijava</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Registracija</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-light">Registracija</a>
                         @endif
                     @endauth
                 </div>
             @endif
+            </div>
+        </nav>
             <br><br>
 
             <div class="container" id="sve">
 
-                <h1 class="text-primary" style="text-align:center;font-size:40px">Prodaja uređaja PRUR</h1>
+                <h1 id="naslov" class="text-primary" style="text-align:center;font-size:40px">Prodaja uređaja PRUR</h1>
                 <hr>
 
                 <br>
 
-                <div class="row">
-                    <div class="col-lg-3 col-6">
 
-                        <div class="small-box bg-info">
-                            <div class="inner">
-                                <h3>{{ $devices }}</h3>
-                                <p>Oglasa</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa-solid fa-rectangle-ad"></i>
-                            </div>
-                            <a href="/oglasi" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-warning">
-                            <div class="inner">
-                                <h3>{{ $prodanidevices }}</h3>
-                                <p>Prodanih uređaja</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa-solid fa-box"></i>
-                            </div>
-                            <a href="/prodani" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-success">
-                            <div class="inner">
-                                <h3>{{ $dostupnidevices }}</h3>
-                                <p>Dostupnih uređaja</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
-                            <a href="/dostupni" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-3 col-6">
-
-                        <div class="small-box bg-danger">
-                            <div class="inner">
-                                <h3>{{ $users }}</h3>
-                                <p>Korisnika</p>
-                            </div>
-                            <div class="icon">
-                                <i class="fa-solid fa-user"></i>
-                            </div>
-                            <a href="/listofprofiles" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-
-                </div>
                 <div class="row">
 
                     <div class="col-md-4">
@@ -118,7 +67,7 @@
                                  </a>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Link za viziju</span>
+                                <span class="info-box-text">Vizija</span>
 
                             </div>
 
@@ -138,24 +87,24 @@
 
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
-                                <a href="#o_projektu">
+                                <a href="https://github.com/elizabetabeta/test_laravel" target="_blank">
                                     <i class="fa-solid fa-link"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">O našem projektu</span>
+                                <span class="info-box-text">Github</span>
                             </div>
 
                         </div>
 
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
-                                <a href="#motivacija">
+                                <a href="#o_projektu">
                                     <i class="fa-solid fa-link"></i>
                                 </a>
                             </span>
                             <div class="info-box-content">
-                                <span class="info-box-text">Motivacija</span>
+                                <span class="info-box-text">O našem projektu</span>
                             </div>
 
                         </div>
@@ -172,10 +121,68 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <img src="pozadina.jpg" class="img-fluid">
+                        <img src="pozadina.jpg" class="img-fluid pb-2">
                     </div>
 
                     </div>
+                <div class="row">
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box ">
+                            <div class="inner ">
+                                <h3>{{ $devices }}</h3>
+                                <p>Oglasa</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-rectangle-ad"></i>
+                            </div>
+                            <a href="/oglasi" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box ">
+                            <div class="inner">
+                                <h3>{{ $prodanidevices }}</h3>
+                                <p>Prodanih uređaja</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-box"></i>
+                            </div>
+                            <a href="/prodani" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box ">
+                            <div class="inner">
+                                <h3>{{ $dostupnidevices }}</h3>
+                                <p>Dostupnih uređaja</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-circle-check"></i>
+                            </div>
+                            <a href="/dostupni" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-6">
+
+                        <div class="small-box ">
+                            <div class="inner">
+                                <h3>{{ $users }}</h3>
+                                <p>Registriranih Korisnika</p>
+                            </div>
+                            <div class="icon">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <a href="/listofprofiles" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
 
 
                     <div class="row">
@@ -246,23 +253,26 @@
 
                         <br> <br> <br>
 
-                        <h3 class="text text-primary" id="o_projektu">O našem projektu:</h3>
+
+                <div class="text-center">
+                        <h3 class="text" id="o_projektu"><br>O našem projektu:</h3>
                         <p id="text">
 
                             <br>
                             Cilj našek projekta je napraviti stranicu za prodaju i kupovinu uređaja kao što su računala
-                            , laptopi, mobiteli, te tableti. Na ovoj web aplikaciji korisnici će moći praviti svoje profile na kojima će moći
+                            , laptopi, mobiteli, <br> te tableti. Na ovoj web aplikaciji korisnici će moći <br> praviti svoje profile na kojima će moći
                             kupovati ili prodavati svoje nove ili korištene uređaje.
 
                         </p>
-                        <br><br>
-                        <h3 class="text text-primary" id="motivacija">Motivacija:</h3>
+                        <br>
+                        <h3 class="text" id="motivacija">Motivacija:</h3>
                         <p id="text">
-                            <br>
                             Želimo testirati naše znanje i naučiti više o kreiranju stranica na internetu uz pomoć novih tehnologija.
 
                         </p>
-                        <br> <br>
+                </div>
+                        <br> <br> <br> <br><br> <br>
+
                         <h4 class="text text-primary" id="tehnologije">Tehnologije koje smo koristili u ovome projektu su:</h4>
                         <br>
                         <div class="row">
@@ -286,10 +296,14 @@
                             <img class="img-fluid" style="max-height: 150px"
                                  src ="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png">
                             </div>
+                            <br>
+                            <!--<a href="#naslov" style="height: 30px; width: 30px;
+                            border-radius: 15px; background-color: #7e57c2; color: white;margin-left: auto">
+                                <i class="fa-solid fa-arrow-up"></i>
+                            </a>-->
 
                         </div>
              </div>
-        </div>
         <br>
         <footer class="border-top footer text-light">
             <div class="container" id="footer2">
@@ -304,9 +318,46 @@
         scroll-behavior: smooth;
     }
 
-    body{
-        background-color: whitesmoke;
+    @media only screen and (max-width: 600px) {
+        body{
+            background-color: whitesmoke;
+            background-image: url("pozz.png");
+            background-position: bottom;
+            background-position-y: 2000px;
+            background-blend-mode: normal;
+            background-repeat: no-repeat;
+        }
+        #o_projektu{
+            color: black;
+        }
+        #motivacija{
+            color: white;
+        }
     }
+    @media only screen and (min-width: 600px) and (max-width: 1000px) {
+        #o_projektu{
+            color: dodgerblue;
+        }
+        #motivacija{
+            color: dodgerblue;
+        }
+    }
+
+    @media only screen and (min-width: 1000px) {
+
+        body {
+            background-color: whitesmoke;
+            background-image: url("pozz.png");
+            background-position: bottom;
+            background-position-y: 1000px;
+            background-blend-mode: normal;
+            background-repeat: no-repeat;
+        }
+        #o_projektu, #motivacija{
+            color: white;
+        }
+    }
+
 
     .footer{
         background-color: #d285ff;
@@ -317,6 +368,15 @@
     #footer2{
         background-color: transparent;
     }
+
+    .info-box {
+        border-radius: 20px;
+    }
+
+    .small-box {
+        background-color: #d285ff;
+    }
+
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>

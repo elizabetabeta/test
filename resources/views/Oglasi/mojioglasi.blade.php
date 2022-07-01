@@ -30,7 +30,10 @@
                             Dodaj novi oglas
                         </button>
                             <br><br><br>
-
+                            @if($number == 0)
+                                <h1 class="text text-primary">Niste dodali ni jedan oglas! Dodajte sada!</h1>
+                                <br><br>
+                                @else
 
                             @foreach($devices as $device)
                                 @if(auth()->user()->id == $device->user_id)
@@ -75,6 +78,7 @@
                                     </div>
                             @endif
                         @endforeach
+                        @endif
                         {{$devices->links('pagination::bootstrap-4')}}
 
 

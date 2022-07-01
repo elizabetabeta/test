@@ -66,6 +66,12 @@
                                 </li>
                             @endif
                         @else
+                            <li>
+                                <img class="rounded-circle"
+                                     style="height: 35px; width: 35px"
+                                    src="/storage/{{ Auth::user()->profile_image }}"
+                                     alt=".">
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -172,7 +178,7 @@
     }
 
     .py-4{
-        background-image: url("/storage/uploads/loginregister.jpg");
+        background-image: url("loginregister.jpg");
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

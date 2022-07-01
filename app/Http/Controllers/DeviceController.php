@@ -69,12 +69,13 @@ class DeviceController extends Controller
         if (auth()->user()->role !== 'Admin') {
             $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(6);
             $type = DeviceType::all();
-        }
-        if (auth()->user()->role == 'Admin') {
+        } else {
             return abort('403', "Ups! Admin može samo uređivati i brisati oglase, a ne dodavati svoje.");
         }
 
-        return view('oglasi.mojioglasi',['devices'=>$devices], compact('type'));
+        $number = Device::query()->where('user_id', '=', auth()->user()->id)->count();
+
+        return view('oglasi.mojioglasi',['devices'=>$devices], compact('type', 'number'));
 
     }
 

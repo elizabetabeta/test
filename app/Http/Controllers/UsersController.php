@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controller;
 use Intervention\Image\Facades\Image;
+use function Sodium\compare;
 
 
 class UsersController extends Controller
@@ -105,7 +106,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         if(auth()->user()->id !== $user->id){
-            return abort('403', "Niste vlasnik oglasa ili admin/moderator!");
+            return abort('403', "Niste vlasnik profila!");
         }
         return view("korisnici.profiledit", compact('user'));
     }
@@ -132,6 +133,27 @@ class UsersController extends Controller
         $user->update();
 
         return redirect("/profile{$user->id}")->with('success', 'Uspješno ste uredili svoje informacije.');
+
+    }
+
+    public function editrole(User $user)
+    {
+        if(auth()->user()->role != "Admin"){
+            return abort('403', "Niste Admin!");
+        }
+        return view("korisnici.rolechange", compact('user'));
+    }
+
+    public function changerole(Request $request, $id)
+    {
+
+        $user = User::find($id);
+
+        $user->role = $request->input('role');
+
+        $user->update();
+
+        return redirect("/users")->with('success', 'Uspješno ste promijenili ulogu korisnika.');
 
     }
 }
