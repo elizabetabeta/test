@@ -238,10 +238,10 @@
         min-height: 100%;
     }
 
-    html, body {
-        margin:0;
-        padding:0;
-        min-height:100%;
+    body {
+        max-width: 100%;
+        margin: 0 auto !important;
+        float: none !important;
     }
 
 </style>
