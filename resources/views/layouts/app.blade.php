@@ -135,7 +135,7 @@
             background-color: transparent;
             height: 600px;
             width: 300px;
-            margin-left: 80px;
+            margin: auto;
             background-image: url("mobitel.png");
             background-size: 400px;
             background-position: center center;
@@ -159,6 +159,7 @@
             border: 1px solid transparent;
             height: 500px;
             width: 800px;
+            margin: auto;
             background: transparent;
             background-image: url("laptop.png");
             background-size: 950px;
