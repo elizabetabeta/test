@@ -1,20 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container"> <!--enctype="multipart/form-data"-->
+    <div class="container" id="bijelo"> <!--enctype="multipart/form-data"-->
         <form action="{{ url('oglasi/update/'.$device->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
 
-            <div class="row">
                 <div class="form-group row">
 
                     <div class = "row">
-                        <h1>Uredi oglas</h1>
+                        <h1 class="text text-primary">Uredi oglas</h1>
                     </div>
                     <br><br><br>
 
-                    <div class="form-group">
+                    <div class="row">
+
+                    <div class="form-group col-6">
                         <label for="device_type_id" class="col-md-4 col-form-label">Tip uređaja</label>
                         <select
                             class="form-control"  name="device_type_id" id="device_type_id">
@@ -29,8 +30,8 @@
                         </select>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="naziv" class="col-md-4 col-form-label">naziv</label>
+                    <div class="form-group col-6">
+                        <label for="naziv" class="col-md-4 col-form-label">Naziv</label>
 
                         <input id="naziv" type="text" class="form-control @error('naziv') is-invalid @enderror"
                                name="naziv" value="{{ old('naziv') ?? $device->naziv }}"
@@ -43,8 +44,12 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="sistem" class="col-md-4 col-form-label">sistem</label>
+                    </div>
+
+                    <div class="row">
+
+                    <div class="form-group col-6">
+                        <label for="sistem" class="col-md-4 col-form-label">Sistem</label>
 
                         <input id="sistem" type="text" class="form-control @error('sistem') is-invalid @enderror"
                                name="sistem" value="{{ old('sistem') ?? $device->sistem }}"
@@ -57,8 +62,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="cijena" class="col-md-4 col-form-label">cijena</label>
+                    <div class="form-group col-6">
+                        <label for="cijena" class="col-md-4 col-form-label">Cijena</label>
 
                         <input id="cijena" type="text" class="form-control @error('cijena') is-invalid @enderror"
                                name="cijena" value="{{ old('cijena') ?? $device->cijena }}"
@@ -71,8 +76,12 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="godina_izdanja" class="col-md-4 col-form-label">godina_izdanja</label>
+                    </div>
+
+                    <div class="row">
+
+                    <div class="form-group col-6">
+                        <label for="godina_izdanja" class="col-md-4 col-form-label">Godina izdanja</label>
 
                         <input id="godina_izdanja" type="text" class="form-control @error('godina_izdanja') is-invalid @enderror"
                                name="godina_izdanja" value="{{ old('godina_izdanja') ?? $device->godina_izdanja }}"
@@ -85,8 +94,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="boja" class="col-md-4 col-form-label">boja</label>
+                    <div class="form-group col-6">
+                        <label for="boja" class="col-md-4 col-form-label">Boja</label>
 
                         <input id="boja" type="text" class="form-control @error('boja') is-invalid @enderror"
                                name="boja" value="{{ old('boja') ?? $device->boja }}"
@@ -99,8 +108,11 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="velicina" class="col-md-4 col-form-label">velicina</label>
+                    </div>
+
+                    <div class="row">
+                    <div class="form-group col-6">
+                        <label for="velicina" class="col-md-4 col-form-label">Veličina</label>
 
                         <input id="velicina" type="text" class="form-control @error('velicina') is-invalid @enderror"
                                name="velicina" value="{{ old('velicina') ?? $device->velicina }}"
@@ -113,8 +125,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
-                        <label for="kapacitet_baterije" class="col-md-4 col-form-label">kapacitet_baterije</label>
+                    <div class="form-group col-6">
+                        <label for="kapacitet_baterije" class="col-md-4 col-form-label">Kapacitet baterije</label>
 
                         <input id="kapacitet_baterije" type="text" class="form-control @error('kapacitet_baterije') is-invalid @enderror"
                                name="kapacitet_baterije" value="{{ old('kapacitet_baterije') ?? $device->kapacitet_baterije }}"
@@ -126,8 +138,11 @@
                                     </span>
                         @enderror
                     </div>
+                    </div>
 
-                    <div class="form-group row">
+                    <div class="row">
+
+                    <div class="form-group col-6">
                         <label for="memorija" class="col-md-4 col-form-label">memorija</label>
 
                         <input id="memorija" type="text" class="form-control @error('memorija') is-invalid @enderror"
@@ -141,7 +156,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group col-6">
                         <label for="RAM" class="col-md-4 col-form-label">RAM</label>
 
                         <input id="RAM" type="text" class="form-control @error('RAM') is-invalid @enderror"
@@ -154,8 +169,11 @@
                                     </span>
                         @enderror
                     </div>
+                    </div>
 
-                    <div class="form-group row">
+                    <div class="row">
+
+                    <div class="form-group col-6">
                         <label for="kontakt" class="col-md-4 col-form-label">kontakt</label>
 
                         <input id="kontakt" type="text" class="form-control @error('kontakt') is-invalid @enderror"
@@ -169,7 +187,7 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
+                    <div class="form-group col-6">
                         <label for="location" class="col-md-4 col-form-label">Lokacija</label>
 
                         <input id="location" type="text" class="form-control @error('location') is-invalid @enderror"
@@ -183,7 +201,8 @@
                         @enderror
                     </div>
 
-                    <div class="form-group row">
+                        <div class="row">
+                        <div class="form-group col">
                         <label for="opis" class="col-md-4 col-form-label">opis</label>
 
                         <input id="opis" type="text" class="form-control @error('opis') is-invalid @enderror"
@@ -195,10 +214,11 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
-                    </div>
+                        </div>
+                        </div>
 
                     <div class="row">
-                        <label for="image" class="col-md-4 col-form-label">Profile Picture</label>
+                        <label for="image" class="col-md-4 col-form-label">Slika uređaja</label>
 
                         <input type="file" class="form-control-file" id = "image" name="image">
                         @error('image')
@@ -212,10 +232,14 @@
                         <button class="btn btn-primary" type="submit">
                             Spremi promjene
                         </button>
-                        <a href="/oglasi/{{ $device->id }}}" class="btn btn-outline-primary">
+                        <a href="/oglasi{{ $device->id }}}" class="btn btn-secondary">
                             Odustani
                         </a>
                     </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
 
                 </div>
             </div>
@@ -223,3 +247,10 @@
     </div>
 
         @endsection
+
+<style>
+    #bijelo{
+        background-image: linear-gradient(whitesmoke, antiquewhite);
+        border-radius: 15px;
+    }
+</style>

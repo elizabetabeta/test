@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="slika">
         <form action="{{ url('profile/update/'.$user->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -14,7 +14,9 @@
                     </div>
                     <br><br><br>
 
-                    <div class="form-group row">
+                    <div class="row">
+
+                    <div class="form-group col">
                         <label for="name" class="col-md-4 col-form-label">Korisničko ime</label>
 
                         <input id="name2" type="text" class="form-control @error('name') is-invalid @enderror"
@@ -27,8 +29,11 @@
                                     </span>
                         @enderror
                     </div>
+                </div>
 
-                    <div class="form-group row">
+                    <div class="row">
+
+                    <div class="form-group col">
                         <label for="email" class="col-md-4 col-form-label">Email</label>
 
                         <input id="email2" type="text" class="form-control @error('email') is-invalid @enderror"
@@ -40,6 +45,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                         @enderror
+                    </div>
                     </div>
 
                     <div class="row">
@@ -58,15 +64,15 @@
                             Spremi promjene
                         </button>
                         <br><br>
+
                         <hr>
                         <button type="button" class="btn btn-outline-danger mb-2" data-toggle="modal"
                                 data-target="#modalForDelete">
                             Obriši svoj profil
                         </button>
                     </div>
-                    <br><br><br>
-                    <br><br><br>
-                    <br><br><br>
+
+
                 </div>
             </div>
         </form>
@@ -100,3 +106,10 @@
     </div>
 
 @endsection
+
+<style>
+    #slika {
+        background-image: linear-gradient(whitesmoke, antiquewhite);
+        border-radius: 15px;
+    }
+</style>

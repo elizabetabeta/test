@@ -2,11 +2,12 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container" id="slika">
         <div class="row">
             <div class="col-4">
 
-                     <img src="/storage/{{ $device->image }}" id="imgshadow" style="height: 300px; width: 300px">
+                     <img class="ms-4"
+                         src="/storage/{{ $device->image }}" id="imgshadow" style="height: 300px; width: 300px;">
 
                 <br><br><br>
 
@@ -31,8 +32,10 @@
                 @endif
 
 
-                @if(Auth::user()->id == $device->user_id || auth()->user()->role == "Admin")
-                <a href="/oglasi/edit/{{ $device->id }}" class = "btn btn-primary mb-2">
+                @if(Auth::user()->id == $device->user_id
+                || auth()->user()->role == "Admin"
+                || auth()->user()->role == "Moderator")
+                <a href="/oglasi{{ $device->id }}edit" class = "btn btn-primary mb-2">
                     Uredi
                 </a>
 
@@ -256,16 +259,12 @@
     }
 
     .table{
-        border-color: transparent;
-        color: transparent;
+        background-color: white;
     }
 
-    .container{
-        background-image: url("loginregister.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        background-color: rgba(255, 255, 255, 0.486);
-        background-blend-mode: overlay;
+    #slika{
+        background-image: linear-gradient(whitesmoke, antiquewhite);
+        border-radius: 15px;
+
     }
 </style>

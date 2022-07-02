@@ -6,7 +6,8 @@
             <div class="col-md-3">
 
                 @include('layouts.menu')
-                <h2 class="text text-light text-center">Broj oglasa: {{ $devices->count() }}</h2>
+                <br>
+                <h2 class="text text-light">Broj oglasa: {{ $devices->count() }}</h2>
 
             </div>
             <div class = "col-md-9" id="vis">
@@ -36,7 +37,7 @@
                 </div>
 
                 @if(Auth::user()->id == $user->id)
-                    <a href="/profile{{ $user->id }}/edit" class = "btn btn-primary mb-2 float-right">
+                    <a href="/editprofile{{ $user->id }}" class = "btn btn-primary mb-2 float-right">
                         Uredi svoj profil
                     </a>
                 @endif

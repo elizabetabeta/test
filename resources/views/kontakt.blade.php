@@ -3,13 +3,9 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-           <!-- <div class="col-md-3">
-
-            </div>
-            <div class = "col-md-9"> -->
 
 
-            <section class="mb-4 ms-5">
+            <section class="mb-4">
 
     <!--Section heading-->
     <h2 class="h1-responsive font-weight-bold text-light text-center my-4">Kontaktiraj nas!</h2>
@@ -85,16 +81,16 @@
         <!--Grid column-->
         <div class="col-md-3 text-center text-light">
             <ul class="list-unstyled mb-0">
-                <li><i class="bi bi-geo-alt"></i>
-                    <p>Tamo tamo daleko</p>
+                <li><i class="fa-solid fa-location-dot"></i>
+                    <p>Mostar, BiH</p>
                 </li>
 
-                <li><i class="bi bi-telephone"></i>
-                    <p>+ 2345 678 901</p>
+                <li><i class="fa-solid fa-phone"></i>
+                    <p>+387 -- --- ---</p>
                 </li>
 
-                <li><i class="bi bi-envelope"></i>
-                    <p>contact@email.com</p>
+                <li><i class="fa-solid fa-envelope"></i>
+                    <p>contact@fpmoz.sum.ba</p>
                 </li>
             </ul>
         </div>

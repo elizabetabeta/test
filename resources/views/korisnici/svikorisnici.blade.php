@@ -24,6 +24,15 @@
                     <div class ="row pt-1 d-flex justify-content-center text-center">
                     @foreach($users as $user)
                             <div class = "col-3">
+                                @if(auth()->user()->id == $user->id)
+                                    <a href="/profile{{ $user->id }}">
+                                        <img src="/storage/{{ $user->profile_image }}" class="rounded-circle"
+                                             style="height: 80px; width: 80px;border: medium solid lightgreen">
+                                    </a>
+                                    <h2 style="color: lightgreen">
+                                        {{ $user->name }}
+                                    </h2>
+                                @else
                                 <a href="/profile{{ $user->id }}">
                             <img src="/storage/{{ $user->profile_image }}" class="rounded-circle"
                                  style="height: 80px; width: 80px;border: medium solid white">
@@ -31,6 +40,7 @@
                                 <h2>
                                     {{ $user->name }}
                                 </h2>
+                                @endif
                             </div>
                         @endforeach
                     </div>

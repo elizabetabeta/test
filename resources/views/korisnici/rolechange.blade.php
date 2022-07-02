@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="min-height: 480px">
+    <div class="container" style="min-height: 480px" id="slika">
         <form action="{{ url('user/update/'.$user->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -13,8 +13,8 @@
                         <h1 class="text text-primary">Promijeni ulogu za {{ $user->name }}</h1>
                     </div>
                     <br><br><br>
-
-                    <div class="form-group row">
+                    <div class="row">
+                    <div class="form-group col">
                         <label for="role" class="col-md-4 col-form-label">Uloga</label>
 
                         <select id="role" class="form-control @error('role') is-invalid @enderror"
@@ -38,6 +38,7 @@
                                     </span>
                         @enderror
                     </div>
+                    </div>
 
                     <br>
                     <div class="pt-4">
@@ -55,3 +56,11 @@
     </div>
 
 @endsection
+
+<style>
+    #slika{
+        background-image: linear-gradient(whitesmoke, antiquewhite);
+        border-radius: 15px;
+
+    }
+</style>

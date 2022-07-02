@@ -34,22 +34,21 @@
                                 <h1 class="text text-primary text-center">Niste dodali ni jedan oglas! Dodajte sada!</h1>
                                     <img src="lapitopi.png" style=" display: block; margin-left: auto;margin-right: auto; width: 50%;">
                                 <br><br>
-                                @else
+                            @else
 
                             @foreach($devices as $device)
-                                @if(auth()->user()->id == $device->user_id)
 
                                     <div class="card mb-3" id="oglasikartice">
                                         <div class="row g-0">
                                             <div class="col-md-4">
-                                                <a href="/oglasi/{{ $device->id }}">
+                                                <a href="/oglasi{{ $device->id }}">
                                                     <img style="border-radius: 25px"
                                                         src="/storage/{{ $device->image }}" class="img-fluid rounded-start pb-2 ps-2" alt="Nema slike...">
                                                 </a>
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <a href="/oglasi/{{ $device->id }}" style="text-decoration: none">
+                                                    <a href="/oglasi{{ $device->id }}" style="text-decoration: none">
                                                     <h5 class="card-title">{{ $device->naziv }}</h5>
                                                     </a>
                                                         <hr>
@@ -68,7 +67,7 @@
                                                         </h4>
                                                     @endif
                                                     <br>
-                                                    <a href="/oglasi/{{ $device->id }}">
+                                                    <a href="/oglasi{{ $device->id }}">
                                                         <p class="card-text"><small class="text-muted">
                                                                 Više...
                                                             </small></p>
@@ -77,7 +76,6 @@
                                             </div>
                                         </div>
                                     </div>
-                            @endif
                         @endforeach
                         @endif
                         {{$devices->links('pagination::bootstrap-4')}}

@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <a href="/oglasi/{{ $device->id }}" style="text-decoration: none">
+                                            <a href="/oglasi{{ $device->id }}" style="text-decoration: none">
                                                 <h5 class="card-text">{{ $device->naziv }}</h5>
                                             </a>
                                             <hr>
@@ -98,7 +98,7 @@
                                                 </h4>
                                             @endif
                                             <br>
-                                            <a href="/oglasi/{{ $device->id }}">
+                                            <a href="/oglasi{{ $device->id }}">
                                                 <p class="card-text"><small class="text-muted">
                                                         Više...
                                                     </small></p>

@@ -28,7 +28,7 @@
         <nav class="navbar" style="background-color: #d285ff">
             <div class="container">
                 <a class="navbar-brand" style="color: white;" href="{{ url('/') }}">
-                    PRUR <i class="fa-solid fa-mobile-screen-button"></i>
+                    <img src="logo.png" class="pb-2"> <i class="fa-solid fa-mobile-screen-button"></i>
                 </a>
             @if (Route::has('login'))
                 <div class="hidden ms-auto top-0 right-0 py-4 sm:block">
@@ -49,11 +49,11 @@
 
             <div class="container" id="sve">
 
-                <h1 id="naslov" class="text-primary" style="text-align:center;font-size:40px">Prodaja uređaja PRUR
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </h1>
-                <hr>
 
+                    <img src="naslov.png" class="center" style="display: block;
+                      margin-left: auto;
+                      margin-right: auto;
+                      ">
                 <br>
 
 
@@ -123,15 +123,18 @@
                         </div>
                     </div>
                     <div class="col-md-8">
-                        <img src="pozadina.jpg" class="img-fluid pb-2">
+                        <img src="pozadina.jpg" class="img-fluid pb-2" style="border-radius: 15px">
                     </div>
 
                     </div>
+
+                <br><br>
+
                 <div class="row">
                     <div class="col-lg-3 col-6">
 
-                        <div class="small-box ">
-                            <div class="inner ">
+                        <div class="small-box">
+                            <div class="inner">
                                 <h3>{{ $devices }}</h3>
                                 <p>Oglasa</p>
                             </div>
@@ -185,7 +188,7 @@
                     </div>
 
                 </div>
-
+                <br><br>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -199,10 +202,12 @@
                                     @foreach($devicess as $d)
                                     <li class="item">
                                         <div class="product-img">
+                                            <a href="/oglasi{{ $d->id }}">
                                             <img src="/storage/{{ $d->image }}" alt="Device image" class="img-size-50">
+                                            </a>
                                         </div>
                                         <div class="product-info">
-                                            <a href="/oglasi/{{ $d->id }}" class="product-title">
+                                            <a href="/oglasi{{ $d->id }}" class="product-title">
                                                 {{ $d->naziv }}
                                                 <span class="badge badge-primary float-right">
                                                     {{ $d->cijena }} KM
@@ -233,7 +238,9 @@
                                 <ul class="users-list clearfix">
                                     @foreach($userss as $u)
                                     <li>
+                                        <a href="/profile{{ $u->id }}">
                                         <img src="/storage/{{ $u->profile_image }}" alt="User Image">
+                                        </a>
                                         <a class="users-list-name" href="/profile{{ $u->id }}">
                                             {{ $u->name }}
                                         </a>
@@ -253,9 +260,7 @@
                     </div>
 
 
-                        <br> <br> <br>
-
-
+                <div id="pozzy"><br><br><br> <br> <br>
                 <div class="text-center">
                         <h3 class="text" id="o_projektu"><br>O našem projektu:</h3>
                         <p id="text">
@@ -270,34 +275,34 @@
                         <h3 class="text" id="motivacija">Motivacija:</h3>
                         <p id="text">
                             Želimo testirati naše znanje i naučiti više o kreiranju stranica na internetu uz pomoć novih tehnologija.
-
-                        </p>
+                        </p> <br> <br> <br> <br> <br> <br>
                 </div>
-                        <br> <br> <br> <br><br> <br>
+                </div>
 
                         <h4 class="text text-primary" id="tehnologije">Tehnologije koje smo koristili u ovome projektu su:</h4>
                         <br>
                         <div class="row">
+                            <ul style="font-size: 30px; font-family: 'Times New Roman', Times, serif">
+                                <li>
+                                    HTML <i class="fa-brands fa-html5"></i>
+                                </li>
+                                <li>
+                                    CSS <i class="fa-brands fa-css3-alt"></i>
+                                </li>
+                                <li>
+                                    JavaScript <i class="fa-brands fa-js"></i>
+                                </li>
+                                <li>
+                                    Bootstrap <i class="fa-brands fa-bootstrap"></i>
+                                </li>
+                                <li>
+                                    Laravel <i class="fa-brands fa-laravel"></i>
+                                </li>
+                                <li>
+                                    Font Awesome <i class="fa-solid fa-font-awesome"></i>
+                                </li>
+                            </ul>
 
-                            <div class="col-3">
-                                <img class="img-fluid" style="max-height: 150px"
-                                    src ="https://i.pinimg.com/originals/4a/75/25/4a7525f0f00df7f2aac5604b10cab82c.png">
-                            </div>
-
-                            <div class="col-3">
-                                <img class="img-fluid"  style="height: 150px"
-                                     src ="https://www.picng.com/upload/php/png_php_64921.png">
-                            </div>
-
-                            <div class="col-3">
-                            <img class="img-fluid" style="max-height: 150px"
-                                src ="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Laravel.svg/1200px-Laravel.svg.png">
-                            </div>
-
-                            <div class="col-3">
-                            <img class="img-fluid" style="max-height: 150px"
-                                 src ="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/512px-Bootstrap_logo.svg.png">
-                            </div>
                             <br>
                             <!--<a href="#naslov" style="height: 30px; width: 30px;
                             border-radius: 15px; background-color: #7e57c2; color: white;margin-left: auto">
@@ -320,45 +325,28 @@
         scroll-behavior: smooth;
     }
 
+
     @media only screen and (max-width: 600px) {
-        body{
-            background-color: whitesmoke;
-            background-image: url("pozz.png");
-            background-position: bottom;
-            background-position-y: 2000px;
-            background-blend-mode: normal;
-            background-repeat: no-repeat;
-        }
-        #o_projektu{
-            color: black;
-        }
-        #motivacija{
-            color: white;
-        }
-    }
-    @media only screen and (min-width: 600px) and (max-width: 1000px) {
-        #o_projektu{
-            color: dodgerblue;
-        }
-        #motivacija{
+        #o_projektu, #motivacija {
             color: dodgerblue;
         }
     }
 
-    @media only screen and (min-width: 1000px) {
 
-        body {
-            background-color: whitesmoke;
-            background-image: url("pozz.png");
-            background-position: bottom;
-            background-position-y: 1000px;
-            background-blend-mode: normal;
-            background-repeat: no-repeat;
+    @media only screen and (min-width: 600px) {
+
+    #pozzy {
+        background-image: url("pozz.png");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+
         }
-        #o_projektu, #motivacija{
-            color: white;
+    #o_projektu, #motivacija {
+        color: white;
         }
     }
+
 
 
     .footer{
@@ -377,6 +365,11 @@
 
     .small-box {
         background-color: #d285ff;
+        color: white;
+    }
+
+    body {
+        background-image: linear-gradient(whitesmoke, antiquewhite);
     }
 
 </style>

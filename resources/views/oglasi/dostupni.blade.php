@@ -67,14 +67,14 @@
                             <div class="card mb-3" id="oglasikartice">
                                 <div class="row g-0">
                                     <div class="col-md-4">
-                                        <a href="/oglasi/{{ $device->id }}">
+                                        <a href="/oglasi{{ $device->id }}">
                                             <img style="border-radius: 25px"
                                                  src="/storage/{{ $device->image }}" class="img-fluid rounded-start pb-2 ps-2" alt="Nema slike...">
                                         </a>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
-                                            <a href="/oglasi/{{ $device->id }}" style="text-decoration: none">
+                                            <a href="/oglasi{{ $device->id }}" style="text-decoration: none">
                                             <h5 class="card-title text-primary">{{ $device->naziv }}</h5>
                                             </a><hr>
                                             <h5 class="card-text">{{ $device->type->naziv }}</h5>
@@ -92,7 +92,7 @@
                                                 </h4>
                                             @endif
                                             <br>
-                                            <a href="/oglasi/{{ $device->id }}">
+                                            <a href="/oglasi{{ $device->id }}">
                                                 <p class="card-text"><small class="text-muted">
                                                         Više...
                                                     </small></p>

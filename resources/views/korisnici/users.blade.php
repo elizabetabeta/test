@@ -94,8 +94,8 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <a href="/user{{ $user->id }}/edit" type="btn btn-success" class="btn btn-success mb-2">
-                                                Rola
+                                            <a href="/user{{ $user->id }}edit" type="btn btn-success" class="btn btn-success mb-2">
+                                                Uloga
                                             </a>
                                             @if($user->role != "Admin")
                                             <button type="button" class="btn btn-danger mb-2" data-toggle="modal"

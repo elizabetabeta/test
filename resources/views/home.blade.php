@@ -9,6 +9,8 @@
                 @include('layouts.menu')
 
             </div>
+
+
             <div class = "col-md-9 text-center" id="visina">
 
                 <h1 class="text text-light">Dobrodošli! <br>

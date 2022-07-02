@@ -66,12 +66,14 @@ class DeviceController extends Controller
 
     public function mojioglasi(){
         //$devices = DB::select('select * from devices order by created_at desc ');
-        if (auth()->user()->role !== 'Admin') {
-            $devices = Device::with('type')->orderBy('created_at', 'DESC')->paginate(6);
-            $type = DeviceType::all();
-        } else {
-            return abort('403', "Ups! Admin može samo uređivati i brisati oglase, a ne dodavati svoje.");
+        if(auth()->user()->role == "Admin"){
+            abort('403', 'Admin može samo uređivati oglase, ne dodavati i svoje.');
         }
+        $devices = Device::query()->where('user_id', '=', auth()->user()->id)->
+        with('type')->orderBy('created_at', 'DESC')->paginate(6);
+
+        $type = DeviceType::all();
+
 
         $number = Device::query()->where('user_id', '=', auth()->user()->id)->count();
 
@@ -217,7 +219,7 @@ class DeviceController extends Controller
         $device->update();
 
 
-        return redirect("/oglasi/{$device->id}")->with('success','Uspješno ste uredili oglas.');
+        return redirect("/oglasi{$device->id}")->with('success','Uspješno ste uredili oglas.');
     }
 
 

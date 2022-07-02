@@ -28,7 +28,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm">
             <div class="container" id="navbar2">
                 <a class="navbar-brand" id="slova" href="{{ url('/') }}">
-                    PRUR <i class="fa-solid fa-mobile-screen-button"></i>
+                    <img src="logo.png" class="pb-2"> <i class="fa-solid fa-mobile-screen-button"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -36,19 +36,6 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <!--<ul class="navbar-nav me-auto">
-                        <li>
-                            <a class="nav-link" href="/oglasi" id="slova">oglasi</a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link" href="/mojioglasi" id="slova">Moji oglasi</a>
-                        </li>
-
-                        <li>
-                            <a class="nav-link" href="/kontakt" id="slova">Kontakt</a>
-                        </li>
-                    </ul>-->
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -130,6 +117,7 @@
         /*background-image: url("plavo.png");
         background-repeat: repeat-y;*/
     }
+
     @media only screen and (max-width: 600px) {
         #kartica{
             background-color: transparent;

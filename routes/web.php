@@ -32,10 +32,10 @@ Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deletepro
 Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->middleware('role:Admin')->name('users.add');
 
 Route::get('/profile{user}', 'App\Http\Controllers\UsersController@profile');
-Route::get('/profile{user}/edit', 'App\Http\Controllers\UsersController@edit')->name('user.edit');
+Route::get('/editprofile{user}', 'App\Http\Controllers\UsersController@edit');
 Route::put('/profile/update/{user}', 'App\Http\Controllers\UsersController@update');
 
-Route::get('/user{user}/edit', 'App\Http\Controllers\UsersController@editrole')->name('user.editrole');
+Route::get('/user{user}edit', 'App\Http\Controllers\UsersController@editrole')->name('user.editrole');
 Route::put('/user/update/{user}', 'App\Http\Controllers\UsersController@changerole');
 
 Route::get('/searchuser/', 'App\Http\Controllers\UsersController@search')->name('searchuser');
@@ -51,14 +51,13 @@ Route::get('/mojioglasi','App\Http\Controllers\DeviceController@mojioglasi')->mi
 Route::post('/oglas', 'App\Http\Controllers\DeviceController@store');
 //Route::post('/oglasEdit', 'App\Http\Controllers\DeviceController@update');
 
-Route::get('/oglasi/edit/{device}', 'App\Http\Controllers\DeviceController@edit')->name('device.edit');
+Route::get('/oglasi{device}edit', 'App\Http\Controllers\DeviceController@edit')->name('device.edit');
 Route::put('/oglasi/update/{device}', 'App\Http\Controllers\DeviceController@update');
 Route::get('/devices/isSold/{id}', 'App\Http\Controllers\DeviceController@changeIsSold')->name('devices.isSold');
 
-Route::get('/oglasi/{device}', 'App\Http\Controllers\DeviceController@show')->middleware('auth');
+Route::get('/oglasi{device}', 'App\Http\Controllers\DeviceController@show')->middleware('auth');
 Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
 Route::get('/devices/delete2/{id}', 'App\Http\Controllers\DeviceController@delete2')->name('devices.delete2');
-Route::get('devices/edit/{id}', 'App\Http\Controllers\DeviceController@edit')->name('devices.edit');
 
 
 
