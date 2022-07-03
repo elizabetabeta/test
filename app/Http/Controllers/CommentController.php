@@ -44,11 +44,12 @@ class CommentController extends Controller
         return view("korisnici.komentardelete", compact('comment'));
     }
 
-    public function commentdelete($id)
+    public function commentdelete(Comment $comment)
     {
-        DB::table('comments')->where("id", $id)->delete();
 
-        return redirect("/listofprofiles");
+        DB::table('comments')->where("id", $comment->id)->delete();
+
+        return redirect("/comments{$comment->profile_id}")->with('success', 'Uspješno ste obrisali komentar!');
     }
 
 }
