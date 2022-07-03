@@ -25,7 +25,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <nav class="navbar" style="background-color: #d285ff">
+        <nav class="navbar" style="background-color: #d285ff" id="pocetak">
             <div class="container">
                 <a class="navbar-brand" style="color: white;" href="{{ url('/') }}">
                     <img src="logo.png" class="pb-2"> <i class="fa-solid fa-mobile-screen-button"></i>
@@ -312,9 +312,12 @@
                         </div>
              </div>
         <br>
-        <footer class="border-top footer text-light">
+        <footer class="border-top footer text-light" style="padding-top: 8px">
             <div class="container" id="footer2">
                 &copy; 2022 - PRUR - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
+                <a class="float-right" id="gore" href="#pocetak">
+                    <i class="fa-solid fa-arrow-up" style="padding-left: 6px; padding-top: 4px"></i>
+                </a>
             </div>
         </footer>
     </body>
@@ -350,9 +353,12 @@
 
 
     .footer{
-        background-color: #d285ff;
-        height: 30px;
-        color: white;
+        background-color:  #d285ff;
+        height: 45px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
     }
 
     #footer2{
@@ -370,6 +376,16 @@
 
     body {
         background-image: linear-gradient(whitesmoke, antiquewhite);
+        padding-bottom: 45px;
+    }
+
+    #gore{
+        height: 25px;
+        width: 25px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: thin solid white;
+        color: white;
     }
 
 </style>

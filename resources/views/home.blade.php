@@ -2,7 +2,7 @@
 
 @section('content')
     <html>
-    <div class="container">
+    <div class="container" id="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
 
@@ -25,3 +25,9 @@
     </div>
     </html>
 @endsection
+
+<style>
+    #visina {
+        min-height: 100%;
+    }
+</style>

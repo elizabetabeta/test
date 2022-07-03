@@ -40,16 +40,25 @@ class UsersController extends Controller
         return view('korisnici.profil', compact('user', 'devices'));
     }
 
-    public function delete($id)
+    public function userdelete(User $user)
     {
-        DB::table('users')->where("id", $id)->delete();
-        return redirect('/users')->with('success','Uspješno ste uklonili korisnika.');
+        return view("korisnici.showdelete", compact('user'));
     }
 
     public function deleteprofil($id)
     {
         DB::table('users')->where("id", $id)->delete();
+        DB::table('devices')->where('user_id', $id)->delete();
+
         return redirect('/');
+    }
+
+    public function deleteuser($id)
+    {
+        DB::table('users')->where("id", $id)->delete();
+        DB::table('devices')->where('user_id', $id)->delete();
+
+        return redirect('/users')->with('success', 'Uspješno ste obrisali korisnika.');
     }
 
     public function search(Request $request)
@@ -156,4 +165,5 @@ class UsersController extends Controller
         return redirect("/users")->with('success', 'Uspješno ste promijenili ulogu korisnika.');
 
     }
+
 }

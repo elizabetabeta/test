@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
 
@@ -36,6 +36,9 @@
                     </div>
                 </div>
 
+                <a href="/comments{{ $user->id }}" class = "btn btn-primary mb-2">
+                    Komentari
+                </a>
                 @if(Auth::user()->id == $user->id)
                     <a href="/editprofile{{ $user->id }}" class = "btn btn-primary mb-2 float-right">
                         Uredi svoj profil
@@ -78,10 +81,11 @@
         </div>
         <br><br>
     </div>
+    </div>
 @endsection
 
 <style>
-    #vis{
-        min-height: 425px;
+    #visina {
+        min-height: 100%;
     }
 </style>

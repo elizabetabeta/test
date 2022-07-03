@@ -15,11 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
 
-
-Route::get('/o-nama', function () {
-    return view('o-nama');
-});
-
 Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt');
 ;
 Auth::routes();
@@ -27,13 +22,21 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->middleware('role:Admin')->name('users');
-Route::get('/users/deleteuser/{id}', 'App\Http\Controllers\UsersController@delete')->middleware('role:Admin')->name('users.delete');
-Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deleteprofil')->name('profile.delete');
+Route::get('/userdelete{user}', 'App\Http\Controllers\UsersController@userdelete')->middleware('role:Admin');
+
+Route::get('/profile/delete/{id}', 'App\Http\Controllers\UsersController@deleteprofil')->name('profile.delete');
+Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deleteuser')->name('user.delete');
+
 Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->middleware('role:Admin')->name('users.add');
 
 Route::get('/profile{user}', 'App\Http\Controllers\UsersController@profile');
 Route::get('/editprofile{user}', 'App\Http\Controllers\UsersController@edit');
 Route::put('/profile/update/{user}', 'App\Http\Controllers\UsersController@update');
+
+Route::get('/comments{user}', 'App\Http\Controllers\CommentController@comments');
+Route::post('/comment/add/{user}', 'App\Http\Controllers\CommentController@makecomment');
+Route::get('/deletecomment{comment}', 'App\Http\Controllers\CommentController@delete');
+Route::get('/comment/delete/{comment}', 'App\Http\Controllers\CommentController@commentdelete')->name('comment.delete');
 
 Route::get('/user{user}edit', 'App\Http\Controllers\UsersController@editrole')->name('user.editrole');
 Route::put('/user/update/{user}', 'App\Http\Controllers\UsersController@changerole');
@@ -43,6 +46,8 @@ Route::get('/searchprofile/', 'App\Http\Controllers\UsersController@searchprofil
 Route::get('/listofprofiles', 'App\Http\Controllers\UsersController@svikorisnici')->name('listofprofiles');
 
 Route::get('/search/', 'App\Http\Controllers\DeviceController@search')->name('search');
+Route::get('/searchprodani/', 'App\Http\Controllers\DeviceController@searchProdani')->name('searchprodani');
+Route::get('/searchdostupni/', 'App\Http\Controllers\DeviceController@searchDostupni')->name('searchdostupni');
 Route::get('/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->middleware('auth')->name('dostupni');
 Route::get('/prodani', 'App\Http\Controllers\DeviceController@prodani')->middleware('auth')->name('prodani');
 

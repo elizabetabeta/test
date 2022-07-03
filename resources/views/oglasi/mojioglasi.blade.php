@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
 
                 @include('layouts.menu')
 
             </div>
-            <div class="col-md-9" id="visina">
+            <div class="col-md-9">
                 <div class="card" id="prozirno">
                     <div class="card-header">Vaši oglasi</div>
                     <div class="card-body">
@@ -199,3 +199,9 @@
     </div>
 
 @endsection
+
+<style>
+    #visina {
+        min-height: 100%;
+    }
+</style>

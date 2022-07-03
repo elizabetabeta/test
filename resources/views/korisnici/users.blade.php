@@ -98,10 +98,9 @@
                                                 Uloga
                                             </a>
                                             @if($user->role != "Admin")
-                                            <button type="button" class="btn btn-danger mb-2" data-toggle="modal"
-                                                    data-target="#modalForDelete">
+                                            <a href="/userdelete{{ $user->id }}" class="btn btn-danger mb-2">
                                                 Obriši
-                                            </button>
+                                            </a>
                                             @endif
 
                                         </td>
@@ -115,34 +114,6 @@
 
                             </div>
                         </div>
-
-                        <!-- MODAL ZA DELETE KORISNIKA -->
-                        <div class="modal fade" id="modalForDelete" tabindex="-1" aria-labelledby="modalForDelete" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-danger" id="exampleModalLabel">
-                                            Jeste li sigurni da želite ukloniti ovog korisnika?
-                                        </h5>
-                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body align-center">
-                                        <table>
-                                            <tr>
-                                                <td>
-                                                    <p class="text-danger"> Pažljivo! Ako ga obrišete, ne možete ga vratiti!</p>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-                                        <a href="{{ route("users.delete", $user->id) }}" class = "btn btn-danger">Obriši</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
 
                         <!-- Modal za dodavanje novog korisnika -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

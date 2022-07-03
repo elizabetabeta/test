@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
                 @include('layouts.menu')
@@ -59,6 +59,8 @@
                                     </div>-->
                                 </div>
                                 <div class="card-body table-responsive p-0">
+                                    @if($users->isNotEmpty())
+
                                     <table class="table table-striped table-valign-middle">
                                         <thead>
                                         <tr>
@@ -71,7 +73,8 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($users as $user)
+
+                                            @foreach($users as $user)
                                             <tr>
                                                 <td>
                                                     <img src="/storage/{{ $user->profile_image }}"
@@ -94,45 +97,21 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <button type="button" class="btn btn-danger mb-2" data-toggle="modal"
-                                                            data-target="#modalForDelete">
+                                                    <a href="/userdelete{{ $user->id }}" class="btn btn-danger mb-2">
                                                         Obriši
-                                                    </button>
+                                                    </a>
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
+                                    @else
+                                        <div>
+                                            <h2 class="text text-danger"><b>Nema korisnika sa takvim nazivom.</b></h2>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
-
-                            <!-- MODAL ZA DELETE KORISNIKA -->
-                            <div class="modal fade" id="modalForDelete" tabindex="-1" aria-labelledby="modalForDelete" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-danger" id="exampleModalLabel">
-                                                Jeste li sigurni da želite ukloniti ovog korisnika?
-                                            </h5>
-                                            <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body align-center">
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        <p class="text-danger"> Pažljivo! Ako ga obrišete, ne možete ga vratiti!</p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
-                                            <a href="{{ route("users.delete", $user->id) }}" class = "btn btn-danger">Obriši</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -205,5 +184,12 @@
                 </div>
             </div>
         </div>
+    </div>
 
 @endsection
+
+        <style>
+            #visina{
+                min-height: 100%;
+            }
+        </style>

@@ -25,7 +25,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-gray shadow-sm" id="pocetak">
             <div class="container" id="navbar2">
                 <a class="navbar-brand" id="slova" href="{{ url('/') }}">
                     <img src="logo.png" class="pb-2"> <i class="fa-solid fa-mobile-screen-button"></i>
@@ -92,6 +92,9 @@
     <footer class="border-top footer text-light">
         <div class="container" id="footer2">
             &copy; 2022 - PRUR - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
+            <a class="float-right" id="gore" href="#pocetak">
+                <i class="fa-solid fa-arrow-up" style="padding-left: 7px; padding-top: 5px"></i>
+            </a>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -101,10 +104,6 @@
 </body>
 </html>
 <style>
-
-    #app{
-        min-height: 100%;
-    }
 
     #pozadina{
         background-color: transparent;
@@ -153,12 +152,7 @@
             background-size: 950px;
             background-position: top;
             background-repeat: no-repeat;
-            /*height: 500px;
-            width: 800px;
-            background-image: url("https://i.pinimg.com/originals/31/8c/20/318c201e1e2e314e5d9098ff0a1ad6ab.png");
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 800px;*/
+
         }
     }
      #nodeco{
@@ -176,10 +170,11 @@
         background-image: url("loginregister.jpg");
         background-repeat: no-repeat;
         background-position: center;
+        background-height: 100vh;
+        background-width: 100vw;
         background-size: cover;
         background-color: rgba(255, 255, 255, 0.486);
         background-blend-mode: overlay;
-        min-height: 100%;
 
     }
 
@@ -193,8 +188,13 @@
     }
 
     .footer{
-        height: 50px;
+        height: 45px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
     }
+
 
     #footer2, #navbar2{
         background-color: transparent;
@@ -216,35 +216,17 @@
         border-color: transparent;
     }
 
-    #visina {
-        min-height: 470px;
-    }
-    @media only screen and (min-width: 1500px) {
-        #visina {
-            min-height: 880px;
-        }
-    }
-
-    @media only screen and (min-height: 1000px) {
-        #visina {
-            min-height: 1000px;
-        }
+    #gore{
+        height: 25px;
+        width: 25px;
+        border-radius: 10px;
+        background-color: transparent;
+        border: thin solid white;
+        color: white;
     }
 
-    @media only screen and (min-width: 1900px) {
-        #visina {
-            min-height: 880px;
-        }
-    }
-
-    content {
-        min-height: 100%;
-    }
-
-    html, body {
-        margin:0;
-        padding:0;
-        min-height:100%;
+    body {
+        padding-bottom: 45px;
     }
 
 </style>

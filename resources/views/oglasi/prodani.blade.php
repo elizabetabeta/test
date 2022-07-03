@@ -28,7 +28,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <form action="{{ route('search') }}" method="GET" role="search">
+                                <form action="{{ route('searchprodani') }}" method="GET" role="search">
 
                                     <div class="input-group">
                                         <div class="form-outline">
@@ -38,7 +38,7 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
-                                    <p><small class="text-muted">Pretraži po nazivu, sistemu ili max cijeni...</small></p>
+                                    <p><small class="text-muted">Pretraži prodane uređaje po nazivu, sistemu ili max cijeni...</small></p>
                                 </form>
                             </div>
                             <div class="col">

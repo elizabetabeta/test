@@ -64,6 +64,46 @@ class DeviceController extends Controller
         return view('oglasi.search', compact('devices', 'search', 'number'));
     }
 
+    public function searchDostupni(Request $request)
+    {
+        $search = $request->input('search');
+
+        $devices = Device::query()
+            ->with('type')
+            ->where('isSold','=',  0)
+            ->where(function($query) use ($search) {
+                $query->where('naziv', 'LIKE', "%{$search}%")
+                    ->orWhere('sistem', 'LIKE', "%{$search}%")
+                    ->orWhereBetween('cijena', [ 1, $search ]);
+            })
+            ->orderByDesc('created_at')
+            ->get();
+
+        $number = $devices->where('isSold','!=',  0)->count();
+
+        return view('oglasi.searchdostupni', compact('devices', 'search', 'number'));
+    }
+
+    public function searchProdani(Request $request)
+    {
+        $search = $request->input('search');
+
+        $devices = Device::query()
+            ->with('type')
+            ->where('isSold','!=',  0)
+            ->where(function($query) use ($search) {
+                $query->where('naziv', 'LIKE', "%{$search}%")
+                    ->orWhere('sistem', 'LIKE', "%{$search}%")
+                    ->orWhereBetween('cijena', [ 1, $search ]);
+            })
+            ->orderByDesc('created_at')
+            ->get();
+
+        $number = $devices->where('isSold','!=',  0)->count();
+
+        return view('oglasi.searchprodani', compact('devices', 'search', 'number'));
+    }
+
     public function mojioglasi(){
         //$devices = DB::select('select * from devices order by created_at desc ');
         if(auth()->user()->role == "Admin"){

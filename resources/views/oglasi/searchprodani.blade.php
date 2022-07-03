@@ -6,8 +6,6 @@
         <div class="row justify-content-center">
             <div class="col-md-3">
                 @include('layouts.menu')
-                <br>
-                <h2 class="text text-light text-center" id="broj">Broj oglasa: {{ $number }}</h2>
 
                 <br>
             </div>
@@ -30,7 +28,7 @@
 
                             <div class="row">
                                 <div class="col">
-                                    <form action="{{ route('search') }}" method="GET" role="search">
+                                    <form action="{{ route('searchprodani') }}" method="GET" role="search">
 
                                         <div class="input-group">
                                             <div class="form-outline">

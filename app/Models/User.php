@@ -43,6 +43,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * @var mixed
+     */
 
     public function profileImage()
     {
@@ -55,6 +58,10 @@ class User extends Authenticatable
         return $this->hasMany(Device::class, 'id');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'comment');
+    }
     //public function roles()
     //{
     //  return $this->belongsToMany(Role::class);

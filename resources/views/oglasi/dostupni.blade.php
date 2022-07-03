@@ -27,7 +27,7 @@
 
                         <div class="row">
                             <div class="col">
-                                <form action="{{ route('search') }}" method="GET" role="search">
+                                <form action="{{ route('searchdostupni') }}" method="GET" role="search">
 
                                     <div class="input-group">
                                         <div class="form-outline">

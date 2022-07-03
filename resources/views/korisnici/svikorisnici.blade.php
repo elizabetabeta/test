@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id ="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
 
@@ -13,7 +13,7 @@
 
                         <div class="input-group">
                             <div class="form-outline">
-                                <input type="text" name="searchprofile" placeholder="Pretraži..." class="form-control" />
+                                <input type="text" name="search2" placeholder="Pretraži..." class="form-control" />
                             </div>
                             <button type="submit" class="btn btn-primary">
                                 <i class="fas fa-search"></i>
@@ -54,3 +54,9 @@
         </div>
     </div>
 @endsection
+
+<style>
+    #visina {
+        min-height: 100%;
+    }
+</style>

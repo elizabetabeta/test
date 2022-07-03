@@ -36,8 +36,7 @@
             href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
         <a style="background-color: #d285ff; color: white"
             href="/listofprofiles" class="list-group-item list-group-item-action">Svi profili</a>
-        <a style="background-color: #d285ff; color: white"
-           href="/kontakt" class="list-group-item list-group-item-action">Kontakt</a>
+
 </div>
 @endUser
 @Moderator
@@ -58,6 +57,8 @@
             href = "{{ route("users") }}" class="list-group-item list-group-item-action">Administracija korisnika</a>
         <a style="background-color: #d285ff; color: white"
             href="/oglasi" class="list-group-item list-group-item-action">Uređivanje oglasa</a>
+        <a style="background-color: #d285ff; color: white"
+           href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
     </div>
 @endAdmin
 
