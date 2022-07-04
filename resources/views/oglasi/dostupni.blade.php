@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
+    <div class="container" id="visina">
         <div class="row justify-content-center">
             <div class="col-md-3">
                 @include('layouts.menu')
                 <br>
                 <h2 class="text text-light text-center" id="broj">Broj dostupnih uređaja: {{ $number }}</h2>
             </div>
-            <div class="col-md-9" id="visina">
+            <div class="col-md-9">
                 <div class="card">
                     <div class="card-header">Dostupni uređaji</div>
                     <div class="card-body">
@@ -218,3 +218,8 @@
 
 @endsection
 
+<style>
+    #visina{
+        min-height: 100%;
+    }
+</style>
