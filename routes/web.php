@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,56 +17,55 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@welcome')->name('welcome');
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 
-Route::get('/kontakt', 'App\Http\Controllers\HomeController@kontakt');
+Route::get('/kontakt', [HomeController::class, 'kontakt']);
 ;
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
-Route::get('/users', [App\Http\Controllers\UsersController::class, 'index'])->middleware('role:Admin')->name('users');
-Route::get('/userdelete{user}', 'App\Http\Controllers\UsersController@userdelete')->middleware('role:Admin');
+Route::get('/users', [UsersController::class, 'index'])->middleware('role:Admin')->name('users');
+Route::get('/userdelete{user}', [UsersController::class, 'userdelete'])->middleware('role:Admin');
 
-Route::get('/profile/delete/{id}', 'App\Http\Controllers\UsersController@deleteprofil')->name('profile.delete');
-Route::get('/users/delete/{id}', 'App\Http\Controllers\UsersController@deleteuser')->name('user.delete');
+Route::get('/profile/delete/{id}',  [UsersController::class, 'deleteprofil'])->name('profile.delete');
+Route::get('/users/delete/{id}', [UsersController::class, 'deleteuser'])->name('user.delete');
 
-Route::post('/users/add', 'App\Http\Controllers\UsersController@add')->middleware('role:Admin')->name('users.add');
+Route::post('/users/add', [UsersController::class, 'add'])->middleware('role:Admin')->name('users.add');
 
-Route::get('/profile{user}', 'App\Http\Controllers\UsersController@profile');
-Route::get('/editprofile{user}', 'App\Http\Controllers\UsersController@edit');
-Route::put('/profile/update/{user}', 'App\Http\Controllers\UsersController@update');
+Route::get('/profile{user}', [UsersController::class, 'profile']);
+Route::get('/editprofile{user}', [UsersController::class, 'edit']);
+Route::put('/profile/update/{user}',  [UsersController::class, 'update']);
 
-Route::get('/comments{user}', 'App\Http\Controllers\CommentController@comments');
-Route::post('/comment/add/{user}', 'App\Http\Controllers\CommentController@makecomment');
-Route::get('/deletecomment{comment}', 'App\Http\Controllers\CommentController@delete');
-Route::get('/comment/delete/{comment}', 'App\Http\Controllers\CommentController@commentdelete')->name('comment.delete');
+Route::get('/comments{user}', [CommentController::class, 'comments']);
+Route::post('/comment/add/{user}', [CommentController::class, 'makecomment']);
+Route::get('/deletecomment{comment}', [CommentController::class, 'delete']);
+Route::get('/comment/delete/{comment}', [CommentController::class, 'commentdelete'])->name('comment.delete');
 
-Route::get('/user{user}edit', 'App\Http\Controllers\UsersController@editrole')->name('user.editrole');
-Route::put('/user/update/{user}', 'App\Http\Controllers\UsersController@changerole');
+Route::get('/user{user}edit', [UsersController::class, 'editrole'])->name('user.editrole');
+Route::put('/user/update/{user}', [UsersController::class, 'changerole']);
 
-Route::get('/searchuser/', 'App\Http\Controllers\UsersController@search')->name('searchuser');
-Route::get('/searchprofile/', 'App\Http\Controllers\UsersController@searchprofile')->name('searchprofile');
-Route::get('/listofprofiles', 'App\Http\Controllers\UsersController@svikorisnici')->name('listofprofiles');
+Route::get('/searchuser/', [UsersController::class, 'search'])->name('searchuser');
+Route::get('/searchprofile/', [UsersController::class, 'searchprofile'])->name('searchprofile');
+Route::get('/listofprofiles', [UsersController::class, 'svikorisnici'])->name('listofprofiles');
 
-Route::get('/search/', 'App\Http\Controllers\DeviceController@search')->name('search');
-Route::get('/searchprodani/', 'App\Http\Controllers\DeviceController@searchProdani')->name('searchprodani');
-Route::get('/searchdostupni/', 'App\Http\Controllers\DeviceController@searchDostupni')->name('searchdostupni');
-Route::get('/dostupni', 'App\Http\Controllers\DeviceController@dostupni')->middleware('auth')->name('dostupni');
-Route::get('/prodani', 'App\Http\Controllers\DeviceController@prodani')->middleware('auth')->name('prodani');
+Route::get('/search/', [DeviceController::class, 'search'])->name('search');
+Route::get('/searchprodani/', [DeviceController::class, 'searchProdani'])->name('searchprodani');
+Route::get('/searchdostupni/', [DeviceController::class, 'searchDostupni'])->name('searchdostupni');
+Route::get('/dostupni', [DeviceController::class, 'dostupni'])->middleware('auth')->name('dostupni');
+Route::get('/prodani', [DeviceController::class, 'prodani'])->middleware('auth')->name('prodani');
 
-Route::get('/oglasi','App\Http\Controllers\DeviceController@index')->middleware('auth')->name('devices.index');
-Route::get('/mojioglasi','App\Http\Controllers\DeviceController@mojioglasi')->middleware('auth');
-Route::post('/oglas', 'App\Http\Controllers\DeviceController@store');
-//Route::post('/oglasEdit', 'App\Http\Controllers\DeviceController@update');
+Route::get('/oglasi',[DeviceController::class, 'index'])->middleware('auth')->name('devices.index');
+Route::get('/mojioglasi',[DeviceController::class, 'mojioglasi'])->middleware('auth');
+Route::post('/oglas', [DeviceController::class, 'store']);
 
-Route::get('/oglasi{device}edit', 'App\Http\Controllers\DeviceController@edit')->name('device.edit');
-Route::put('/oglasi/update/{device}', 'App\Http\Controllers\DeviceController@update');
-Route::get('/devices/isSold/{id}', 'App\Http\Controllers\DeviceController@changeIsSold')->name('devices.isSold');
+Route::get('/oglasi{device}edit', [DeviceController::class, 'edit'])->name('device.edit');
+Route::put('/oglasi/update/{device}', [DeviceController::class, 'update']);
+Route::get('/devices/isSold/{id}', [DeviceController::class, 'changeIsSold'])->name('devices.isSold');
 
-Route::get('/oglasi{device}', 'App\Http\Controllers\DeviceController@show')->middleware('auth');
-Route::get('/devices/delete/{id}', 'App\Http\Controllers\DeviceController@delete')->name('devices.delete');
-Route::get('/devices/delete2/{id}', 'App\Http\Controllers\DeviceController@delete2')->name('devices.delete2');
+Route::get('/oglasi{device}', [DeviceController::class, 'show'])->middleware('auth');
+Route::get('/devices/delete/{id}', [DeviceController::class, 'delete'])->name('devices.delete');
+Route::get('/devices/delete2/{id}', [DeviceController::class, 'delete2'])->name('devices.delete2');
 
 
 

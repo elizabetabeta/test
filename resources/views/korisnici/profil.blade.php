@@ -57,7 +57,7 @@
                     <div class ="row pt-5 d-flex justify-content-center">
                         @foreach($devices as $device)
                             <div class = "col-4 pb-4">
-                                <a href="/oglasi/{{ $device->id }}">
+                                <a href="/oglasi{{ $device->id }}">
                                     <img src="/storage/{{ $device->image }}" class = w-100
                                          style="border-radius: 15px;border: medium solid white">
                                 </a>
@@ -67,7 +67,7 @@
                     <div class ="row pt-5">
                         @foreach($devices as $device)
                             <div class = "col-4 pb-4">
-                                <a href="/oglasi/{{ $device->id }}">
+                                <a href="/oglasi{{ $device->id }}">
                                     <img src="/storage/{{ $device->image }}" class = w-100
                                          style="border-radius: 15px;border: medium solid white">
                                 </a>

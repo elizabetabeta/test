@@ -61,7 +61,7 @@
                     @endif
                             @foreach($komentari as $comment)
                             @if($comment->user->id == auth()->user()->id)
-                            <div class ="row pt-1 ms-2">
+                            <div class ="row ms-2">
                                 <div class ="col-1">
                                     <a href="/profile{{ $comment->user->id }}">
                                         <img src="/storage/{{ $comment->user->profile_image }}"
@@ -76,8 +76,10 @@
                                 </div>
                                     <div class="col">
 
-                                    <button class="btn btn-outline-primary"> Uredi </button>
-                                    <a href="/deletecomment{{ $comment->id }}" class="btn btn-danger"> Obriši </a>
+                                    <a href="/deletecomment{{ $comment->id }}" style="border-radius: 15px; border-color: transparent"
+                                       class="btn btn-outline-danger">
+                                        Obriši
+                                    </a>
 
                                     </div>
                             </div>
@@ -85,13 +87,36 @@
                                 <div class="col-10">
                                 <p id="tekst"> {{ $comment->comment }}</p>
                                     <small class=" d-flex justify-content-end text-muted">
-                                        {{ $comment->created_at }}
+                                        {{ $comment->created_at->format('H:i (d-m-Y)') }}
                                     </small>
                                 </div>
                             </div>
+                            @elseif($comment->user->id == $user->id)
+                                <div class ="row ms-2">
+                                    <div class ="col-1">
+                                        <a href="/profile{{ $comment->user->id }}">
+                                            <img src="/storage/{{ $comment->user->profile_image }}"
+                                                 class="rounded-circle float-right"
+                                                 style="height: 35px; width: 35px;border: medium solid lightskyblue">
+                                        </a>
+                                    </div>
+                                    <div class="col-8">
+                                        <a href="/profile{{ $comment->user->id }}" style="text-decoration: none;">
+                                            <h6 class="text text-primary pt-2"> {{ $comment->user->name }}</h6>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row ms-2">
+                                    <div class="col-10">
+                                        <p id="tekst"> {{ $comment->comment }}</p>
+                                        <small class=" d-flex justify-content-end text-muted">
+                                            {{ $comment->created_at->format('H:i (d-m-Y)') }}
+                                        </small>
+                                    </div>
+                                </div>
 
                                 @else
-                        <div class ="row pt-1 ms-2">
+                        <div class ="row ms-2">
                         <div class ="col-1">
                             <a href="/profile{{ $comment->user->id }}">
                                     <img src="/storage/{{ $comment->user->profile_image }}"
@@ -109,9 +134,8 @@
                                 <div class="col-10">
                                     <p id="tekst"> {{ $comment->comment }}</p>
                                     <small class=" d-flex justify-content-end text-muted">
-                                        {{ $comment->created_at }}
+                                        {{ $comment->created_at->format('H:i (d-m-Y)') }}
                                     </small>
-                                    <br>
                                 </div>
                             </div>
                         @endif
@@ -166,7 +190,7 @@
         min-height: 100%;
     }
     #kart{
-        background-image: linear-gradient(whitesmoke, navajowhite);
+        background-image: linear-gradient(whitesmoke, whitesmoke);
         border-radius: 15px;
     }
 

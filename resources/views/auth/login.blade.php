@@ -80,3 +80,8 @@
 </div>
 @endsection
 
+<style>
+    #pozadina{
+        min-height: 100%;
+    }
+</style>

@@ -89,7 +89,7 @@
             @yield('content')
         </main>
     </div>
-    <footer class="border-top footer text-light">
+    <footer class="footer text-light">
         <div class="container" id="footer2">
             &copy; 2022 - PRUR - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
             <a class="float-right" id="gore" href="#pocetak">
@@ -184,7 +184,7 @@
     }
 
     .footer, .navbar{
-        background-color: #d285ff;
+        background-image: linear-gradient(to right, #15041f, #370252);
     }
 
     .footer{

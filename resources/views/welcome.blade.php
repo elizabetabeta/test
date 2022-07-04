@@ -25,7 +25,7 @@
         </style>
     </head>
     <body class="antialiased">
-        <nav class="navbar" style="background-color: #d285ff" id="pocetak">
+        <nav class="navbar" style="height: 100px; background-image: linear-gradient(to right, #15041f, #370252)" id="pocetak">
             <div class="container">
                 <a class="navbar-brand" style="color: white;" href="{{ url('/') }}">
                     <img src="logo.png" class="pb-2"> <i class="fa-solid fa-mobile-screen-button"></i>
@@ -50,16 +50,20 @@
             <div class="container" id="sve">
 
 
-                    <img src="naslov.png" class="center" style="display: block;
+                    <!--<img src="naslov.png" class="center" style="display: block;
                       margin-left: auto;
                       margin-right: auto;
                       ">
-                <br>
+                <br>-->
 
 
                 <div class="row">
 
-                    <div class="col-md-4">
+
+                    <div class="col-md-9">
+                        <!--<img src="pozadina.jpg" class="img-fluid pb-2" style="border-radius: 15px">-->
+                    </div>
+                    <div class="col-md-3">
 
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
@@ -122,9 +126,6 @@
 
                         </div>
                     </div>
-                    <div class="col-md-8">
-                        <img src="pozadina.jpg" class="img-fluid pb-2" style="border-radius: 15px">
-                    </div>
 
                     </div>
 
@@ -138,7 +139,7 @@
                                 <h3>{{ $devices }}</h3>
                                 <p>Oglasa</p>
                             </div>
-                            <div class="icon">
+                            <div class="icon" id="ikona">
                                 <i class="fa-solid fa-rectangle-ad"></i>
                             </div>
                             <a href="/oglasi" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
@@ -152,7 +153,7 @@
                                 <h3>{{ $prodanidevices }}</h3>
                                 <p>Prodanih uređaja</p>
                             </div>
-                            <div class="icon">
+                            <div class="icon" id="ikona">
                                 <i class="fa-solid fa-box"></i>
                             </div>
                             <a href="/prodani" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
@@ -166,7 +167,7 @@
                                 <h3>{{ $dostupnidevices }}</h3>
                                 <p>Dostupnih uređaja</p>
                             </div>
-                            <div class="icon">
+                            <div class="icon" id="ikona">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
                             <a href="/dostupni" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
@@ -180,7 +181,7 @@
                                 <h3>{{ $users }}</h3>
                                 <p>Registriranih Korisnika</p>
                             </div>
-                            <div class="icon">
+                            <div class="icon" id="ikona">
                                 <i class="fa-solid fa-user"></i>
                             </div>
                             <a href="/listofprofiles" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
@@ -192,27 +193,27 @@
 
                     <div class="row">
                         <div class="col-md-6">
-                        <div class="card">
+                        <div class="card" style="background-color: #15041f; border-radius: 15px">
                             <div class="card-header">
-                                <h3 class="card-title text-primary">Zadnji dodani oglasi</h3>
+                                <h3 class="card-title text-warning">Novi oglasi</h3>
                             </div>
 
                             <div class="card-body p-0">
                                 <ul class="products-list product-list-in-card pl-2 pr-2">
                                     @foreach($devicess as $d)
-                                    <li class="item">
+                                    <li class="item" style="background-color: black">
                                         <div class="product-img">
                                             <a href="/oglasi{{ $d->id }}">
                                             <img src="/storage/{{ $d->image }}" alt="Device image" class="img-size-50">
                                             </a>
                                         </div>
                                         <div class="product-info">
-                                            <a href="/oglasi{{ $d->id }}" class="product-title">
+                                            <a href="/oglasi{{ $d->id }}" class="product-title" id="text">
                                                 {{ $d->naziv }}
-                                                <span class="badge badge-primary float-right">
+                                                <span class="badge badge-warning float-right">
                                                     {{ $d->cijena }} KM
                                                 </span></a>
-                                            <span class="product-description">
+                                            <span class="product-description" style="color: gray">
                                               {{ $d->opis }}
                                             </span>
                                         </div>
@@ -221,7 +222,7 @@
                                 </ul>
                             </div>
 
-                            <div class="card-footer text-center">
+                            <div class="card-footer text-center" style="color: gray">
                                 <a href="/oglasi" class="uppercase">Pogledaj sve oglase</a>
                             </div>
 
@@ -229,29 +230,31 @@
 
                     </div>
                         <div class="col-md-6">
-                        <div class="card">
+                        <div class="card" style="background-color: #15041f; border-radius: 15px">
                             <div class="card-header">
-                                <h3 class="card-title text-primary">Novi korisnici</h3>
+                                <h3 class="card-title text-warning">Novi korisnici</h3>
                             </div>
 
-                            <div class="card-body p-0">
+                            <div class="card-body p-0" style="background-color: black">
                                 <ul class="users-list clearfix">
                                     @foreach($userss as $u)
                                     <li>
                                         <a href="/profile{{ $u->id }}">
                                         <img src="/storage/{{ $u->profile_image }}" alt="User Image">
                                         </a>
-                                        <a class="users-list-name" href="/profile{{ $u->id }}">
+                                        <a class="users-list-name" id="text" href="/profile{{ $u->id }}">
                                             {{ $u->name }}
                                         </a>
-                                        <span class="users-list-date">{{ $u->created_at->toDateString() }}</span>
+                                        <span class="users-list-date" style="color: gray">
+                                            {{ $u->created_at->toDateString() }}
+                                        </span>
                                     </li>
                                     @endforeach
                                 </ul>
 
                             </div>
 
-                            <div class="card-footer text-center">
+                            <div class="card-footer text-center" style="color: gray">
                                 <a href="/listofprofiles">Pogledaj sve korisnike</a>
                             </div>
 
@@ -259,30 +262,34 @@
                     </div>
                     </div>
 
+                <br><br><br><br>
 
-                <div id="pozzy"><br><br><br> <br> <br>
+                <div id="pozzy">
                 <div class="text-center">
-                        <h3 class="text" id="o_projektu"><br>O našem projektu:</h3>
+                        <h3 class="text text-warning" id="o_projektu"><br>O našem projektu:</h3>
                         <p id="text">
 
-                            <br>
                             Cilj našek projekta je napraviti stranicu za prodaju i kupovinu uređaja kao što su računala
                             , laptopi, mobiteli, <br> te tableti. Na ovoj web aplikaciji korisnici će moći <br> praviti svoje profile na kojima će moći
                             kupovati ili prodavati svoje nove ili korištene uređaje.
 
                         </p>
                         <br>
-                        <h3 class="text" id="motivacija">Motivacija:</h3>
+                        <h3 class="text text-warning" id="motivacija">Motivacija:</h3>
                         <p id="text">
                             Želimo testirati naše znanje i naučiti više o kreiranju stranica na internetu uz pomoć novih tehnologija.
-                        </p> <br> <br> <br> <br> <br> <br>
+                            <br><br><br>
                 </div>
                 </div>
 
-                        <h4 class="text text-primary" id="tehnologije">Tehnologije koje smo koristili u ovome projektu su:</h4>
-                        <br>
-                        <div class="row">
-                            <ul style="font-size: 30px; font-family: 'Times New Roman', Times, serif">
+                <br><br><br> <br>
+                <h4 class="text text-warning" id="tehnologije">&nbsp;Tehnologije koje smo koristili u ovome projektu su:</h4>
+
+                <br>
+
+                <div class="info-box">
+                        <div class="info-box-content">
+                            <ul style="font-size: 30px; font-family: 'Times New Roman', Times, serif; color: whitesmoke">
                                 <li>
                                     HTML <i class="fa-brands fa-html5"></i>
                                 </li>
@@ -310,9 +317,10 @@
                             </a>-->
 
                         </div>
+                </div>
              </div>
         <br>
-        <footer class="border-top footer text-light" style="padding-top: 8px">
+        <footer class="footer text-light" style="padding-top: 8px">
             <div class="container" id="footer2">
                 &copy; 2022 - PRUR - <a href="/kontakt" style="color:lightblue; text-decoration:none" >Kontakt</a>
                 <a class="float-right" id="gore" href="#pocetak">
@@ -330,30 +338,41 @@
 
 
     @media only screen and (max-width: 600px) {
-        #o_projektu, #motivacija {
-            color: dodgerblue;
+        #pozzy {
+            background-color: #15041f;
+            border-radius: 150px;
+        }
+        #text{
+            color: white;
+        }
+        #tehnologije{
+            background-color: black;
+            border-radius: 100px;
         }
     }
 
 
     @media only screen and (min-width: 600px) {
+        #pozzy {
+            background-color: #15041f;
+            border-radius: 200px;
+            }
 
-    #pozzy {
-        background-image: url("pozz.png");
-        background-repeat: no-repeat;
-        background-size: auto;
-        background-position: center;
+        #text{
+            color: whitesmoke;
+            }
 
-        }
-    #o_projektu, #motivacija {
-        color: white;
-        }
+        #tehnologije{
+            background-color: black;
+            border-radius: 150px;
+            width: 550px;
+            }
     }
 
 
 
     .footer{
-        background-color:  #d285ff;
+        background-image: linear-gradient(to right, #15041f, #370252);
         height: 45px;
         position: fixed;
         left: 0;
@@ -362,7 +381,7 @@
     }
 
     #footer2{
-        background-color: transparent;
+        background-image: linear-gradient(to right, #15041f, #370252);
     }
 
     .info-box {
@@ -370,13 +389,28 @@
     }
 
     .small-box {
-        background-color: #d285ff;
+        background-color: rgba(0, 0, 0, 0.9);
         color: white;
     }
 
+    #ikona{
+        color: rgba(225, 225, 225, 0.2);
+    }
+
+    .info-box {
+        background-color: rgba(0, 0, 0, 0.5);
+        color: whitesmoke;
+    }
+
     body {
-        background-image: linear-gradient(whitesmoke, antiquewhite);
         padding-bottom: 45px;
+
+        background-image: url("novapozz.jpg");
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
     }
 
     #gore{

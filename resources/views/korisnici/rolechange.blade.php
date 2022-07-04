@@ -38,6 +38,10 @@
                                     </span>
                         @enderror
                     </div>
+                        <small class="text-danger"> Pažljivo! Ako promijenite ulogu
+                             korisnika koji ima oglase u ulogu admina, svi oglasi će biti obrisani!
+                        </small>
+                        <br>
                     </div>
 
                     <br>

@@ -160,6 +160,11 @@ class UsersController extends Controller
 
         $user->role = $request->input('role');
 
+        if($user->role == 'Admin'){
+            $dev = Device::query()->where('user_id','=', $user->id);
+            $dev->delete();
+        }
+
         $user->update();
 
         return redirect("/users")->with('success', 'Uspješno ste promijenili ulogu korisnika.');
