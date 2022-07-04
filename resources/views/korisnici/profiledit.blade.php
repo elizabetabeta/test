@@ -63,6 +63,7 @@
                         <button class="btn btn-primary" type="submit">
                             Spremi promjene
                         </button>
+                        <a href="/profile{{ $user->id }}" class="btn btn-secondary"> Odustani </a>
                         <br><br>
 
                         <hr>

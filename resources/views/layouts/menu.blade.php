@@ -27,37 +27,37 @@
 <body class="antialiased">
 
 @User
-    <div class="list-group" style="border-radius: 15px;">
-        <a style="background-image: linear-gradient(to right, #15041f, #370252); color: white"
+    <div class="list-group" style="border-radius: 20px;">
+        <a style="background-color: #370252; color: white"
             href="/oglasi" class="list-group-item list-group-item-action">Svi oglasi</a>
-        <a style="background-image: linear-gradient(to right, #15041f, #370252); color: white"
+        <a style="background-color: #370252; color: white"
             href="/mojioglasi" class="list-group-item list-group-item-action">Moji oglasi</a>
-        <a style="background-image: linear-gradient(to right, #15041f, #370252); color: white"
+        <a style="background-color: #370252; color: white"
             href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
-        <a style="background-image: linear-gradient(to right, #15041f, #370252); color: white"
+        <a style="background-color: #370252; color: white"
             href="/listofprofiles" class="list-group-item list-group-item-action">Svi profili</a>
 
 </div>
 @endUser
 @Moderator
     <div class="list-group">
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href="/oglasi" class="list-group-item list-group-item-action">Uređivanje oglasa</a>
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href="/mojioglasi" class="list-group-item list-group-item-action">Moji oglasi</a>
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href="/listofprofiles" class="list-group-item list-group-item-action">Svi profili</a>
     </div>
 @endModerator
 @Admin
     <div class="list-group">
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href = "{{ route("users") }}" class="list-group-item list-group-item-action">Administracija korisnika</a>
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
             href="/oglasi" class="list-group-item list-group-item-action">Uređivanje oglasa</a>
-        <a style="background-color: #d285ff; color: white"
+        <a style="background-color: #370252; color: white"
            href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
     </div>
 @endAdmin

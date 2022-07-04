@@ -65,6 +65,7 @@
                     </div>
                     <div class="col-md-3">
 
+
                         <div class="info-box mb-3">
                             <span class="info-box-icon">
                                  <a href ="https://docs.google.com/document/d/1wjlTuFE9WsNjAdaUO1eB5VC4M6KlusyK/edit"
@@ -130,10 +131,11 @@
                     </div>
 
                 <br><br>
+                <br><br>
 
                 <div class="row">
-                    <div class="col-lg-3 col-6">
 
+                    <div class="col-lg-3 col-6">
                         <div class="small-box">
                             <div class="inner">
                                 <h3>{{ $devices }}</h3>
@@ -189,7 +191,8 @@
                     </div>
 
                 </div>
-                <br><br>
+
+                <br><br><br>
 
                     <div class="row">
                         <div class="col-md-6">
@@ -389,7 +392,8 @@
     }
 
     .small-box {
-        background-color: rgba(0, 0, 0, 0.9);
+        background-color: rgba(29, 0, 54, 0.95);
+        border-radius: 15px;
         color: white;
     }
 

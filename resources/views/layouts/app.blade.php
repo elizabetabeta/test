@@ -54,10 +54,12 @@
                             @endif
                         @else
                             <li>
+                                <a href="/profile{{ auth()->user()->id }}">
                                 <img class="rounded-circle"
-                                     style="height: 35px; width: 35px"
+                                     style="height: 35px; width: 35px; border: medium solid white"
                                     src="/storage/{{ Auth::user()->profile_image }}"
                                      alt=".">
+                                </a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -167,19 +169,18 @@
     }
 
     .py-4{
-        background-image: url("loginregister.jpg");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-height: 100vh;
-        background-width: 100vw;
-        background-size: cover;
-        background-color: rgba(255, 255, 255, 0.486);
-        background-blend-mode: overlay;
+        background-image: url("https://removal.ai/wp-content/uploads/2021/09/black-background-08-vecteezy.png");
 
+        min-height: 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        /*background-blend-mode: overlay;*/
     }
 
     #prozirno{
-        background-image: linear-gradient(whitesmoke, antiquewhite);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border: transparent;
     }
 

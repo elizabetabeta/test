@@ -13,7 +13,7 @@
             <div class = "col-md-9" id="vis">
                 <div class="text text-light">
                     <div class ="d-flex">
-                        <div class = "col-5 p-3">
+                        <div class = "col-4 p-3">
 
                     <img src="/storage/{{ $user->profile_image }}" class="rounded-circle float-right"
                          style="height: 160px; width: 160px;border: medium solid white">
@@ -88,4 +88,5 @@
     #visina {
         min-height: 100%;
     }
+
 </style>

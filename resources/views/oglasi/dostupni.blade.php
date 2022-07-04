@@ -37,7 +37,7 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
-                                    <p><small class="text-muted">Pretraži po nazivu, sistemu ili max cijeni...</small></p>
+                                    <p><small class="text-muted">Pretraži dostupne uređaje po nazivu, sistemu ili max cijeni...</small></p>
                                 </form>
                             </div>
                             <div class="col">
