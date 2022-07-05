@@ -34,10 +34,15 @@
 
                         <h2>
                             <i class="fa-solid fa-location-dot"></i>
-                            @if($user->location != NULL)
-                            {{ $user->location }}
+                            @if($user->location == NULL)
+                                @if(auth()->user()->id == $user->id)
+                                    <a style="text-decoration: none"
+                                        href="editprofile{{ $user->id }}">Dodaj lokaciju</a>
+                                @else
+                                    <small>Korisnik nije dodao lokaciju</small>
+                                @endif
                             @else
-                                <a href="editprofile{{ $user->id }}">dodaj lokaciju</a>
+                                {{ $user->location }}
                             @endif
                         </h2>
                             <small class="text-light">
