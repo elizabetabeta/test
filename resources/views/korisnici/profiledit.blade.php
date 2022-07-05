@@ -23,7 +23,7 @@
                         <input id="name2" type="text" class="form-control @error('name') is-invalid @enderror"
                                name="name" value="{{ old('name') ?? $user->name }}"
                                autocomplete="name" autofocus
-                               maxlength="20">
+                               minlength="5" maxlength="20">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -41,7 +41,7 @@
                         <input id="email2" type="text" class="form-control @error('email') is-invalid @enderror"
                                name="email" value="{{ old('email') ?? $user->email }}"
                                autocomplete="email" autofocus
-                               maxlength="100">
+                               minlength="5" maxlength="100">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
