@@ -27,7 +27,7 @@
                             Dobrodošli {{ Auth()->user()->name }}!
                         </h1>
                         <img class="img-fluid float-right"
-                             src="https://www.pngall.com/wp-content/uploads/2016/04/Computer-PC-Download-PNG.png">
+                             src="pc.png">
                         </div>
                 </div>
 

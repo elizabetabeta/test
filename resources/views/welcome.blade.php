@@ -155,7 +155,10 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-rectangle-ad"></i>
                             </div>
-                            <a href="/oglasi" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/oglasi" id="informacije"
+                               style="margin-left:65px">Više informacija
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -169,7 +172,10 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-box"></i>
                             </div>
-                            <a href="/prodani" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/prodani" id="informacije"
+                               style="margin-left:65px">Više informacija
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -183,7 +189,10 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
-                            <a href="/dostupni" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/dostupni" id="informacije"
+                               style="margin-left:65px">Više informacija
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -197,7 +206,10 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <a href="/listofprofiles" class="small-box-footer">Više informacija <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/listofprofiles" id="informacije"
+                               style="margin-left:65px">Više informacija
+                                <i class="fas fa-arrow-circle-right"></i>
+                            </a>
                         </div>
                     </div>
 
@@ -411,6 +423,10 @@
 
     #ikona{
         color: rgba(225, 225, 225, 0.2);
+    }
+
+    #informacije{
+        color: rgba(225, 225, 225, 0.5);
     }
 
     .info-box {

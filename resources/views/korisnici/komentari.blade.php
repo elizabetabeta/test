@@ -70,7 +70,7 @@
                                 <div class="card-body">
                                     @foreach($komentari as $comment)
 
-                                    <div class="row">
+                                    <div class="row justify-content-center">
                                         <div class="col">
                                             <div class="d-flex flex-start">
                                                 <a href="/profile{{ $comment->user->id }}">
@@ -115,32 +115,29 @@
                                                                 <span class="small"> obriši </span></a>
                                                             @endif
                                                         </div>
+                                                        @if ($comment->comment == trim($comment->comment) && str_contains($comment->comment, ' '))
+                                                            <p class="small mb-0">
+                                                                {{ $comment->comment }}
+                                                            </p>
+                                                        @else
                                                         <p class="small mb-0">
-                                                            {{ str::limit($comment->comment, 30, '...') }}
+                                                            {{ str::limit($comment->comment, 50, '...') }}
                                                         </p>
-                                                        @if (strlen($comment->comment) > 30)
+                                                        @if (strlen($comment->comment) > 50)
                                                             <p class="small mb-0">
-                                                                  ...{{ substr($comment->comment, 30, 30) }}
+                                                                  ...{{ substr($comment->comment, 50, 50) }}
                                                             </p>
-                                                            @if(strlen($comment->comment) > 60)
+                                                            @if(strlen($comment->comment) > 100)
                                                             <p class="small mb-0">
-                                                                ...{{ substr($comment->comment, 60, 30) }}
+                                                                ...{{ substr($comment->comment, 100, 50) }}
                                                             </p>
-                                                                @if(strlen($comment->comment) > 90)
-                                                                    <p class="small mb-0">
-                                                                        ...{{ substr($comment->comment, 90, 30) }}
-                                                                    </p>
-                                                                @if(strlen($comment->comment) > 120)
-                                                                    <p class="small mb-0">
-                                                                        ...{{ substr($comment->comment, 120, 30) }}
-                                                                    </p>
                                                                 @if(strlen($comment->comment) > 150)
                                                                     <p class="small mb-0">
                                                                         ...{{ substr($comment->comment, 150, 30) }}
                                                                     </p>
+
                                                                 @endif
-                                                                    @endif
-                                                                @endif
+                                                        @endif
                                                         @endif
                                                         @endif
 
@@ -203,7 +200,7 @@
         min-height: 100%;
     }
     #kart{
-        background-image: linear-gradient(whitesmoke, #c69bd4);
+        background-image: linear-gradient(whitesmoke, whitesmoke);
         border-radius: 15px;
     }
 
