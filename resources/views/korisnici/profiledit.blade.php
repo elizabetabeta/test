@@ -23,7 +23,7 @@
                         <input id="name2" type="text" class="form-control @error('name') is-invalid @enderror"
                                name="name" value="{{ old('name') ?? $user->name }}"
                                autocomplete="name" autofocus
-                               minlength="5" maxlength="20">
+                               minlength="1" maxlength="20">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">

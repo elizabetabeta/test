@@ -95,8 +95,8 @@ class UsersController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:30'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
@@ -124,6 +124,11 @@ class UsersController extends Controller
     {
 
         $user = User::find($id);
+
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+        ]);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
