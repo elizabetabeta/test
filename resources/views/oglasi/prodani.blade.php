@@ -10,7 +10,7 @@
 
             </div>
             <div class="col-md-9">
-                <div class="card">
+                <div class="card" id="prozirno">
                     <div class="card-header">Prodani uređaji</div>
                     <div class="card-body">
                         @if (session('status'))

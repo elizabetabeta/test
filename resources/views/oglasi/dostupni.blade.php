@@ -9,7 +9,7 @@
                 <h2 class="text text-light text-center" id="broj">Broj dostupnih uređaja: {{ $number }}</h2>
             </div>
             <div class="col-md-9">
-                <div class="card">
+                <div class="card" id="prozirno">
                     <div class="card-header">Dostupni uređaji</div>
                     <div class="card-body">
                         @if (session('status'))

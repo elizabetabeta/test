@@ -9,7 +9,7 @@
                 <br>
             </div>
             <div class="col-md-9" id="visina">
-                <div class="card">
+                <div class="card" id="prozirno">
                     <div class="card-header">Oglasi</div>
                     <div class="card-body">
                         @if (session('status'))

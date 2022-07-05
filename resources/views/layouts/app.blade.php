@@ -198,6 +198,7 @@
 
 
     #footer2, #navbar2{
+        padding-top: 10px;
         background-color: transparent;
     }
 
