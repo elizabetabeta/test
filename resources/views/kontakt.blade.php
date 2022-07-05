@@ -25,7 +25,7 @@
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="name2" name="name" class="form-control">
+                            <input type="text" id="name2" name="firstname" class="form-control">
                             <label for="name" class="text-light">Vaše ime</label>
                         </div>
                     </div>
@@ -34,8 +34,8 @@
                     <!--Grid column-->
                     <div class="col-md-6">
                         <div class="md-form mb-0">
-                            <input type="text" id="email2" name="email" class="form-control">
-                            <label for="email" class="text-light">Vaš email</label>
+                            <input type="text" id="email2" name="lastname" class="form-control">
+                            <label for="email" class="text-light">Vaše prezime</label>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -72,8 +72,11 @@
             </form>
 
             <div class="text-center text-md-left">
-                <a href="mailto:#" class="btn btn-primary">Send</a>
+                <button type="submit" class="btn btn-primary"
+                        onclick="submitForm()">Pošalji</button>
+
             </div>
+
             <div class="status"></div>
         </div>
         <!--Grid column-->
@@ -90,7 +93,7 @@
                 </li>
 
                 <li><i class="fa-solid fa-envelope"></i>
-                    <p>contact@fpmoz.sum.ba</p>
+                    <p>projektprur@gmail.com</p>
                 </li>
             </ul>
         </div>
@@ -149,3 +152,13 @@
             </div>
         </div>
 @endsection
+
+<script>
+    function submitForm(){
+        var fname = document.getElementsByName("firstname")[0].value;
+        var lname = document.getElementsByName("lastname")[0].value;
+        var subject = document.getElementsByName("subject")[0].value;
+        var message = document.getElementsByName("message")[0].value;
+        window.open("mailto:projektprur@gmail.com?subject="+subject+"&body="+message+"%0d%0a%0d%0a"+fname+"%20"+lname);
+    }
+</script>

@@ -82,7 +82,6 @@
                                             <h5 class="card-title text-primary">{{ $device->naziv }}</h5>
                                             </a><hr>
                                             <h5 class="card-text">{{ $device->type->naziv }}</h5>
-                                            <p class="card-text">{{ $device->opis }}</p>
                                             <p class="card-text">{{ $device->cijena }} KM</p>
                                             @if( $device->isSold === 0 )
                                                 <h4 class="text text-success">
@@ -96,9 +95,13 @@
                                                 </h4>
                                             @endif
                                             <br>
-                                            <a href="/oglasi{{ $device->id }}">
-                                                <p class="card-text"><small class="text-muted">
-                                                        Više...
+
+                                            <small>
+                                                Dodano {{ $device->created_at->diffForHumans() }}
+                                            </small>
+                                            <a href="/oglasi{{ $device->id }}" style="text-decoration: none">
+                                                <p class="card-text"><small>
+                                                        <br>Više...
                                                     </small></p>
                                             </a>
                                         </div>
@@ -143,64 +146,69 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="naziv">Naziv uređaja</label>
-                                                    <input type="text" class="form-control" name="naziv" id="naziv" value="{{ old('naziv') }}" placeholder="Naziv uređaja">
+                                                    <input maxlength="60" type="text" class="form-control" name="naziv" id="naziv" value="{{ old('naziv') }}" placeholder="Naziv uređaja">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="sistem">Operativni sistem</label>
-                                                    <input type="text" class="form-control" name="sistem" id="sistem" placeholder="Unesite sistem">
+                                                    <input maxlength="60" type="text" class="form-control" name="sistem" id="sistem" placeholder="Unesite sistem">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="godina_izdanja">Godina izdanja</label>
-                                                    <input type="number" class="form-control" name="godina_izdanja" id="godina_izdanja" placeholder="Unesite godinu izdanja uređaja">
+                                                    <input min="1990" max="{{ now()->year }}" type="number" class="form-control" name="godina_izdanja" id="godina_izdanja" placeholder="Unesite godinu izdanja uređaja">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="velicina">Velicina uređaja</label>
-                                                    <input type="number" class="form-control" name="velicina" id="velicina" placeholder="Velicina uređaja">
+                                                    <input min="0" max="10000" type="number" step="0.1" class="form-control" name="velicina" id="velicina" placeholder="Velicina uređaja">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="kapacitet_baterije">kapacitet baterije uređaja</label>
-                                                    <input type="number" class="form-control" name="kapacitet_baterije" id="kapacitet_baterije" placeholder="Kapacitet baterije">
+                                                    <input min="0" max="100000" type="number" class="form-control" name="kapacitet_baterije" id="kapacitet_baterije" placeholder="Kapacitet baterije">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="memorija">Memorija uređaja</label>
-                                                    <input type="number" class="form-control" name="memorija" id="memorija" placeholder="Memorija uređaja">
+                                                    <input min="0" max="10000" type="number" class="form-control" name="memorija" id="memorija" placeholder="Memorija uređaja">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="RAM">RAM uređaja</label>
-                                                    <input type="number" class="form-control" name="RAM" id="RAM" placeholder="RAM uređaja">
+                                                    <input min="0" max="10000" type="number" class="form-control" name="RAM" id="RAM" placeholder="RAM uređaja">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="kontakt">Vaš kontakt</label>
-                                                    <input type="text" class="form-control" name="kontakt" id="kontakt" placeholder="Unesite način na koji vas korisnici mogu kontaktirati">
+                                                    <input maxlength="190" type="text" class="form-control" name="kontakt" id="kontakt" placeholder="Unesite način na koji vas korisnici mogu kontaktirati">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="cijena">Cijena uređaja</label>
-                                                    <input type="number" class="form-control" name="cijena" id="cijena" placeholder="Cijena uređaja">
+                                                    <input min="0" max="10000" type="number" class="form-control" name="cijena" id="cijena" placeholder="Cijena uređaja">
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="boja">Boja uređaja</label>
-                                                    <input type="text" class="form-control" name="boja" id="boja" placeholder="Boja uređaja">
+                                                    <input maxlength="50" type="text" class="form-control" name="boja" id="boja" placeholder="Boja uređaja">
 
 
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="opis">Opis vašeg uređaja</label>
-                                                    <input type="text" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
+                                                    <input maxlength="190" type="text" class="form-control" name="opis" id="opis" placeholder="Ukratko opišite vaš uređaj">
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="location">Lokacija</label>
+                                                    <input maxlength="100" type="text" class="form-control" name="location" id="location" placeholder="Lokacija uređaja">
 
                                                 </div>
                                                 <label for="image" class="col-md-4 col-form-label">Dodajte sliku</label>

@@ -146,18 +146,10 @@
                         </tr>
                         <tr>
                             <th>
-                                Kratki opis uređaja:
+                                Dodan:
                             </th>
                             <td>
-                                {{ $device->opis }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>
-                                Dodan datuma:
-                            </th>
-                            <td>
-                                {{ $device->created_at->format('d.m.Y.') }}
+                                {{ $device->created_at->diffForHumans() }}
                             </td>
                         </tr>
                         <tr>
@@ -171,6 +163,14 @@
                                         </a>
                                     </td>
                             @endforeach
+                        </tr>
+                        <tr>
+                            <th>
+                                Kratki opis uređaja:
+                            </th>
+                            <td>
+                                {{ $device->opis }}
+                            </td>
                         </tr>
                     </table>
                 </div>

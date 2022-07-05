@@ -127,6 +127,7 @@ class UsersController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
+        $user->location = $request->input('location');
 
 
         if (request()->hasFile('profile_image')) {

@@ -68,5 +68,3 @@ Route::get('/devices/delete/{id}', [DeviceController::class, 'delete'])->name('d
 Route::get('/devices/delete2/{id}', [DeviceController::class, 'delete2'])->name('devices.delete2');
 
 
-
-

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="slika">
+    <div class="container" id="visina">
+        <div class="p-3 pb-4" id="slika">
         <form action="{{ url('profile/update/'.$user->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -21,7 +22,8 @@
 
                         <input id="name2" type="text" class="form-control @error('name') is-invalid @enderror"
                                name="name" value="{{ old('name') ?? $user->name }}"
-                               autocomplete="name" autofocus>
+                               autocomplete="name" autofocus
+                               maxlength="20">
 
                         @error('name')
                         <span class="invalid-feedback" role="alert">
@@ -38,7 +40,8 @@
 
                         <input id="email2" type="text" class="form-control @error('email') is-invalid @enderror"
                                name="email" value="{{ old('email') ?? $user->email }}"
-                               autocomplete="email" autofocus>
+                               autocomplete="email" autofocus
+                               maxlength="100">
 
                         @error('email')
                         <span class="invalid-feedback" role="alert">
@@ -46,6 +49,24 @@
                                     </span>
                         @enderror
                     </div>
+
+                        <div class="row">
+
+                            <div class="form-group col">
+                                <label for="location" class="col-md-4 col-form-label">Lokacija</label>
+
+                                <input id="location" type="text" class="form-control @error('location') is-invalid @enderror"
+                                       name="location" value="{{ old('location') ?? $user->location }}"
+                                       autocomplete="location" autofocus
+                                       maxlength="30">
+
+                                @error('location')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">
@@ -77,6 +98,7 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
 
     <!-- MODAL ZA DELETE KORISNIKA -->
@@ -112,5 +134,9 @@
     #slika {
         background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
+    }
+
+    #visina{
+        min-height: 100%;
     }
 </style>

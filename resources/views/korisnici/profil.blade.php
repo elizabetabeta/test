@@ -21,17 +21,29 @@
                         <div class="col">
                             <br>
                         <h2>
+                            <i class="fa-solid fa-user"></i>
                              {{ $user->name }}
                         </h2>
+
                         <h2>
-                            {{ $user->email }}
+                            <i class="fa-solid fa-envelope"></i>
+                            <a href="mailto:{{ $user->email }}" style="text-decoration: none; color: white">
+                            {{ Str::limit($user->email, 20, $end='...') }}
+                            </a>
                         </h2>
+
                         <h2>
-                            Datum registracije:
+                            <i class="fa-solid fa-location-dot"></i>
+                            @if($user->location != NULL)
+                            {{ $user->location }}
+                            @else
+                                <a href="editprofile{{ $user->id }}">dodaj lokaciju</a>
+                            @endif
                         </h2>
-                        <h2>
-                            {{ $user->created_at->format('d.m.Y.') }}
-                        </h2>
+                            <small class="text-light">
+                                Datum registracije:
+                                {{ $user->created_at->format('d.m.Y.') }}
+                            </small>
                             </div>
                         </div>
                 </div>
@@ -89,10 +101,12 @@
         min-height: 100%;
     }
 
-    @media only screen and (min-width: 413px) {
+    @media only screen and (min-width: 750px) {
         #flo{
             float: right;
         }
+
     }
+
 
 </style>

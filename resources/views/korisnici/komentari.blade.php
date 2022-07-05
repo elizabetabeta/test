@@ -20,17 +20,23 @@
                         <div class="col">
                             <br>
                             <h2>
+                                <i class="fa-solid fa-user"></i>
                                 {{ $user->name }}
                             </h2>
                             <h2>
-                                {{ $user->email }}
+                                <i class="fa-solid fa-envelope"></i>
+                                <a href="mailto:{{ $user->email }}" style="text-decoration: none; color: white">
+                                    {{ Str::limit($user->email, 20, $end='...') }}
+                                </a>
                             </h2>
                             <h2>
-                                Datum pridruživanja:
+                                <i class="fa-solid fa-location-dot"></i>
+                                {{ $user->location }}
                             </h2>
-                            <h2>
+                            <small class="text-light">
+                                Datum registracije:
                                 {{ $user->created_at->format('d.m.Y.') }}
-                            </h2>
+                            </small>
                         </div>
                     </div>
                 </div>
@@ -110,8 +116,34 @@
                                                             @endif
                                                         </div>
                                                         <p class="small mb-0">
-                                                            {{ $comment->comment }}
+                                                            {{ str::limit($comment->comment, 30, '...') }}
                                                         </p>
+                                                        @if (strlen($comment->comment) > 30)
+                                                            <p class="small mb-0">
+                                                                  ...{{ substr($comment->comment, 30, 30) }}
+                                                            </p>
+                                                            @if(strlen($comment->comment) > 60)
+                                                            <p class="small mb-0">
+                                                                ...{{ substr($comment->comment, 60, 30) }}
+                                                            </p>
+                                                                @if(strlen($comment->comment) > 90)
+                                                                    <p class="small mb-0">
+                                                                        ...{{ substr($comment->comment, 90, 30) }}
+                                                                    </p>
+                                                                @if(strlen($comment->comment) > 120)
+                                                                    <p class="small mb-0">
+                                                                        ...{{ substr($comment->comment, 120, 30) }}
+                                                                    </p>
+                                                                @if(strlen($comment->comment) > 150)
+                                                                    <p class="small mb-0">
+                                                                        ...{{ substr($comment->comment, 150, 30) }}
+                                                                    </p>
+                                                                @endif
+                                                                    @endif
+                                                                @endif
+                                                        @endif
+                                                        @endif
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -143,7 +175,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="comment">Vaš komentar:</label>
-                            <input type="text" maxlength="191" class="form-control @error('comment') is-invalid @enderror" name="comment" id="comment" placeholder="Komentar...">
+                            <input type="text" maxlength="180" class="form-control @error('comment') is-invalid @enderror" name="comment" id="comment" placeholder="Komentar...">
 
                             @error('comment')
                             <span class="invalid-feedback" role="alert">
@@ -181,9 +213,10 @@
         border-radius: 15px;
     }
 
-    @media only screen and (min-width: 413px) {
+    @media only screen and (min-width: 750px) {
         #flo{
             float: right;
         }
     }
+
 </style>

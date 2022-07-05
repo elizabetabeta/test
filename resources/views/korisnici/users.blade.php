@@ -130,7 +130,8 @@
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <label for="name">Ime korisnika</label>
-                                                <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name2" value="{{ old('name') }}" placeholder="Unesite ime korisnika">
+                                                <input type="text" maxlength="30"
+                                                       class="form-control @error('name') is-invalid @enderror" name="name" id="name2" value="{{ old('name') }}" placeholder="Unesite ime korisnika">
 
                                                 @error('name')
                                                      <span class="invalid-feedback" role="alert">
@@ -141,7 +142,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="email">Email adresa</label>
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email2" aria-describedby="emailHelp" placeholder="Unesite e-mail">
+                                                <input type="email" maxlength="191" class="form-control @error('email') is-invalid @enderror" name="email" id="email2" aria-describedby="emailHelp" placeholder="Unesite e-mail">
 
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">

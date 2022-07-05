@@ -83,7 +83,6 @@
                                             </a>
                                             <hr>
                                             <h5 class="card-text">{{ $device->type->naziv }}</h5>
-                                            <p class="card-text">{{ $device->opis }}</p>
                                             <p class="card-text">{{ $device->cijena }} KM</p>
                                             @if( $device->isSold === 0 )
                                                 <h4 class="text text-success">
@@ -97,9 +96,12 @@
                                                 </h4>
                                             @endif
                                             <br>
-                                            <a href="/oglasi{{ $device->id }}">
-                                                <p class="card-text"><small class="text-muted">
-                                                        Više...
+                                            <small>
+                                                Dodano {{ $device->created_at->diffForHumans() }}
+                                            </small>
+                                            <a href="/oglasi{{ $device->id }}" style="text-decoration: none">
+                                                <p class="card-text"><small>
+                                                        <br>Više...
                                                     </small></p>
                                             </a>
                                         </div>
