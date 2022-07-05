@@ -113,7 +113,7 @@
                     {{$devices->links('pagination::bootstrap-4')}}
                         @else
                              <div>
-                                <h2 class="text text-danger">Nema dostupnih uređaja sa takvim nazivom.</h2>
+                                <h2 class="text text-danger">Nema prodanih uređaja.</h2>
                             </div>
                         @endif
 
