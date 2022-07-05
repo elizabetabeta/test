@@ -11,10 +11,10 @@
             </div>
             <div class = "col-md-9" >
                 <div class="text text-light">
-                    <div class ="d-flex">
-                        <div class = "col-5 p-3">
+                    <div class ="d-flex align-content-center flex-wrap">
+                        <div class = "col">
 
-                            <img src="/storage/{{ $user->profile_image }}" class="rounded-circle float-right"
+                            <img src="/storage/{{ $user->profile_image }}" class="rounded-circle" id="flo"
                                  style="height: 160px; width: 160px;border: medium solid white">
                         </div>
                         <div class="col">
@@ -29,7 +29,7 @@
                                 Datum pridruživanja:
                             </h2>
                             <h2>
-                                {{ $user->created_at->toDateString() }}
+                                {{ $user->created_at->format('d.m.Y.') }}
                             </h2>
                         </div>
                     </div>
@@ -59,93 +59,75 @@
                             Ovaj korisnik nema komentara. <br><br>
                         </h1>
                     @endif
-                            @foreach($komentari as $comment)
-                            @if($comment->user->id == auth()->user()->id)
-                            <div class ="row ms-2">
-                                <div class ="col-1">
-                                    <a href="/profile{{ $comment->user->id }}">
-                                        <img src="/storage/{{ $comment->user->profile_image }}"
-                                             class="rounded-circle float-right"
-                                             style="height: 35px; width: 35px;border: medium solid lightgreen">
-                                    </a>
-                                </div>
-                                <div class="col-8">
-                                    <a href="/profile{{ $comment->user->id }}" style="text-decoration: none;">
-                                        <h6 class="text text-primary pt-2"> {{ $comment->user->name }}</h6>
-                                    </a>
-                                </div>
-                                    <div class="col">
 
-                                    <a href="/deletecomment{{ $comment->id }}" style="border-radius: 15px; border-color: transparent"
-                                       class="btn btn-outline-danger">
-                                        Obriši
-                                    </a>
+                            <div class="card" style="background-color: whitesmoke;border-color: whitesmoke">
+                                <div class="card-body">
+                                    @foreach($komentari as $comment)
 
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="d-flex flex-start">
+                                                <a href="/profile{{ $comment->user->id }}">
+                                                @if($comment->user->id == auth()->user()->id)
+
+                                                <img class="rounded-circle shadow-1-strong me-3"
+                                                     src="/storage/{{ $comment->user->profile_image }}"
+                                                     style="border: medium solid lightgreen"
+                                                     alt="avatar" width="65"
+                                                     height="65" />
+                                                @elseif($comment->user->id == $user->id)
+                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                         src="/storage/{{ $comment->user->profile_image }}"
+                                                         style="border: medium solid lightskyblue"
+                                                         alt="avatar" width="65"
+                                                         height="65" />
+                                                @else
+                                                    <img class="rounded-circle shadow-1-strong me-3"
+                                                         src="/storage/{{ $comment->user->profile_image }}"
+                                                         style="border: medium solid white"
+                                                         alt="avatar" width="65"
+                                                         height="65" />
+                                                @endif
+                                                </a>
+                                                <div class="flex-grow-1 flex-shrink-1">
+                                                    <div>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <p class="mb-1">
+                                                                <a href="/profile{{ $comment->user->id }}"  style="text-decoration: none">
+                                                                {{ $comment->user->name }}
+                                                                </a>
+                                                                <span class="small">
+                                                                    - {{ $comment->created_at->diffForHumans() }}
+                                                                </span>
+                                                            </p>
+                                                            @if($comment->user->id == auth()->user()->id
+                                                                || auth()->user()->role == "Admin"
+                                                                || auth()->user()->role == "Moderator")
+                                                            <a href="/deletecomment{{ $comment->id }}"
+                                                               class="text-danger" style="text-decoration: none">
+                                                                <i class="fa-solid fa-ban"></i>
+                                                                <span class="small"> obriši </span></a>
+                                                            @endif
+                                                        </div>
+                                                        <p class="small mb-0">
+                                                            {{ $comment->comment }}
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                            </div>
-                            <div class="row ms-2">
-                                <div class="col-10">
-                                <p id="tekst"> {{ $comment->comment }}</p>
-                                    <small class=" d-flex justify-content-end text-muted">
-                                        {{ $comment->created_at->format('H:i (d-m-Y)') }}
-                                    </small>
-                                </div>
-                            </div>
-                            @elseif($comment->user->id == $user->id)
-                                <div class ="row ms-2">
-                                    <div class ="col-1">
-                                        <a href="/profile{{ $comment->user->id }}">
-                                            <img src="/storage/{{ $comment->user->profile_image }}"
-                                                 class="rounded-circle float-right"
-                                                 style="height: 35px; width: 35px;border: medium solid lightskyblue">
-                                        </a>
-                                    </div>
-                                    <div class="col-8">
-                                        <a href="/profile{{ $comment->user->id }}" style="text-decoration: none;">
-                                            <h6 class="text text-primary pt-2"> {{ $comment->user->name }}</h6>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row ms-2">
-                                    <div class="col-10">
-                                        <p id="tekst"> {{ $comment->comment }}</p>
-                                        <small class=" d-flex justify-content-end text-muted">
-                                            {{ $comment->created_at->format('H:i (d-m-Y)') }}
-                                        </small>
-                                    </div>
+                                        <hr>
+                                    @endforeach
                                 </div>
 
-                                @else
-                        <div class ="row ms-2">
-                        <div class ="col-1">
-                            <a href="/profile{{ $comment->user->id }}">
-                                    <img src="/storage/{{ $comment->user->profile_image }}"
-                                         class="rounded-circle float-right"
-                                         style="height: 35px; width: 35px;border: medium solid white">
-                            </a>
-                        </div>
-                            <div class="col">
-                                <a href="/profile{{ $comment->user->id }}" style="text-decoration: none;">
-                                <h6 class="text text-primary pt-2"> {{ $comment->user->name }}</h6>
-                                </a>
-                            </div>
-                        </div>
-                            <div class="row ms-2">
-                                <div class="col-10">
-                                    <p id="tekst"> {{ $comment->comment }}</p>
-                                    <small class=" d-flex justify-content-end text-muted">
-                                        {{ $comment->created_at->format('H:i (d-m-Y)') }}
-                                    </small>
-                                </div>
-                            </div>
-                        @endif
-                            @endforeach
                 </div>
 
                 </div>
             </div>
             <br><br>
         </div>
+    </div>
     <!-- Modal za dodavanje novog korisnika -->
     <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="comment" aria-hidden="true">
         <form method="POST" action="{{ url('comment/add/'.$user->id) }}">
@@ -181,7 +163,6 @@
         </form>
     </div>
 
-
 @endsection
 
 
@@ -190,7 +171,7 @@
         min-height: 100%;
     }
     #kart{
-        background-image: linear-gradient(whitesmoke, whitesmoke);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
     }
 
@@ -198,5 +179,11 @@
         border: thick solid white;
         background-color: white;
         border-radius: 15px;
+    }
+
+    @media only screen and (min-width: 413px) {
+        #flo{
+            float: right;
+        }
     }
 </style>

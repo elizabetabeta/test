@@ -110,7 +110,7 @@
 
 <style>
     #slika {
-        background-image: linear-gradient(whitesmoke, antiquewhite);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
     }
 </style>

@@ -7,7 +7,7 @@
             <div class="col-md-3">
                 @include('layouts.menu')
                 <br>
-                <h2 class="text text-light text-center" id="broj">Broj oglasa: {{ $number }}</h2>
+                <h2 class="text text-warning text-center" id="broj">Broj oglasa: {{ $number }}</h2>
             </div>
             <div class="col-md-9" id="visina">
                 <div class="card" id="prozirno">
@@ -55,9 +55,11 @@
                                 </div>
                                 <div class="col">
 
+                                    @if(Auth()->user()->role != 'Admin')
                                 <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
                                     Dodaj novi oglas
                                 </button>
+                                    @endif
                                 </div>
                             </div>
 
@@ -240,7 +242,7 @@
 
 <style>
     #broj{
-        background-color: transparent;
+        background-color: rgba(0,0,0,0.9);
         border: 1px solid white;
         border-radius: 15px;
         font-family: "Roboto", sans-serif;

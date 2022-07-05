@@ -29,7 +29,6 @@ class CommentController extends Controller
             'comment' => $data['comment'],
             'profile_id' => $user->id,
             'user_id' => auth()->id(),
-
         ]);
 
 
@@ -38,10 +37,14 @@ class CommentController extends Controller
 
     public function delete(Comment $comment)
     {
-        if (auth()->user()->id != $comment->user_id){
-            abort('403', 'Niste napisali ovaj komentar i ne možete ga brisati!');
+        if (auth()->user()->id == $comment->user_id
+            || auth()->user()->role == "Admin"
+            || auth()->user()->role == "Moderator")
+        {
+            return view("korisnici.komentardelete", compact('comment'));
+
         }
-        return view("korisnici.komentardelete", compact('comment'));
+        abort('403', 'Niste napisali ovaj komentar i ne možete ga brisati!');
     }
 
     public function commentdelete(Comment $comment)

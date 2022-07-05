@@ -157,7 +157,7 @@
                                 Dodan datuma:
                             </th>
                             <td>
-                                {{ $device->created_at->toDateString() }}
+                                {{ $device->created_at->format('d.m.Y.') }}
                             </td>
                         </tr>
                         <tr>

@@ -12,28 +12,28 @@
             </div>
             <div class = "col-md-9" id="vis">
                 <div class="text text-light">
-                    <div class ="d-flex">
-                        <div class = "col-4 p-3">
+                    <div class ="d-flex align-content-center flex-wrap">
+                        <div class = "col">
 
-                    <img src="/storage/{{ $user->profile_image }}" class="rounded-circle float-right"
+                    <img src="/storage/{{ $user->profile_image }}" class="rounded-circle" id="flo"
                          style="height: 160px; width: 160px;border: medium solid white">
                         </div>
                         <div class="col">
                             <br>
-                    <h2>
-                         {{ $user->name }}
-                    </h2>
-                    <h2>
-                        {{ $user->email }}
-                    </h2>
-                    <h2>
-                        Datum pridruživanja:
-                    </h2>
-                    <h2>
-                        {{ $user->created_at->toDateString() }}
-                    </h2>
+                        <h2>
+                             {{ $user->name }}
+                        </h2>
+                        <h2>
+                            {{ $user->email }}
+                        </h2>
+                        <h2>
+                            Datum registracije:
+                        </h2>
+                        <h2>
+                            {{ $user->created_at->format('d.m.Y.') }}
+                        </h2>
+                            </div>
                         </div>
-                    </div>
                 </div>
 
                 <a href="/comments{{ $user->id }}" class = "btn btn-primary mb-2">
@@ -87,6 +87,12 @@
 <style>
     #visina {
         min-height: 100%;
+    }
+
+    @media only screen and (min-width: 413px) {
+        #flo{
+            float: right;
+        }
     }
 
 </style>

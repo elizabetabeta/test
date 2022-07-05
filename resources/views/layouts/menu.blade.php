@@ -29,36 +29,59 @@
 @User
     <div class="list-group" style="border-radius: 20px;">
         <a style="background-color: #370252; color: white"
-            href="/oglasi" class="list-group-item list-group-item-action">Svi oglasi</a>
+            href="/oglasi" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-note-sticky"></i>
+            Svi oglasi</a>
         <a style="background-color: #370252; color: white"
-            href="/mojioglasi" class="list-group-item list-group-item-action">Moji oglasi</a>
+            href="/mojioglasi" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-circle-check"></i>
+            Moji oglasi</a>
         <a style="background-color: #370252; color: white"
-            href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
+            href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-user-check"></i>
+            Moj profil</a>
         <a style="background-color: #370252; color: white"
-            href="/listofprofiles" class="list-group-item list-group-item-action">Svi profili</a>
+            href="/listofprofiles" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-users"></i>
+            Svi profili</a>
 
 </div>
 @endUser
 @Moderator
     <div class="list-group">
         <a style="background-color: #370252; color: white"
-            href="/oglasi" class="list-group-item list-group-item-action">Uređivanje oglasa</a>
+            href="/oglasi" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Uređivanje oglasa</a>
         <a style="background-color: #370252; color: white"
-            href="/mojioglasi" class="list-group-item list-group-item-action">Moji oglasi</a>
+            href="/mojioglasi" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-note-sticky"></i>
+            Moji oglasi</a>
         <a style="background-color: #370252; color: white"
-            href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
+            href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-user-check"></i>
+            Moj profil</a>
         <a style="background-color: #370252; color: white"
-            href="/listofprofiles" class="list-group-item list-group-item-action">Svi profili</a>
+            href="/listofprofiles" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-users"></i>
+            Svi profili</a>
     </div>
 @endModerator
 @Admin
     <div class="list-group">
         <a style="background-color: #370252; color: white"
-            href = "{{ route("users") }}" class="list-group-item list-group-item-action">Administracija korisnika</a>
+            href = "{{ route("users") }}" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-user"></i>
+            Administracija korisnika
+        </a>
         <a style="background-color: #370252; color: white"
-            href="/oglasi" class="list-group-item list-group-item-action">Uređivanje oglasa</a>
+            href="/oglasi" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-pen-to-square"></i>
+            Uređivanje oglasa</a>
         <a style="background-color: #370252; color: white"
-           href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">Moj profil</a>
+           href="/profile{{ auth()->user()->id }}" class="list-group-item list-group-item-action">
+            <i class="fa-solid fa-user-check"></i>
+            Moj profil</a>
     </div>
 @endAdmin
 

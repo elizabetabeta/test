@@ -39,6 +39,9 @@
                                 </form>
                             </div>
                             <div class="col">
+                                <a href="/users" class="btn btn-outline-primary">Svi korisnici</a>
+                            </div>
+                            <div class="col">
 
                                 <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
                                     Dodaj novog korisnika
@@ -89,7 +92,7 @@
                                                     {{ $user->role }}
                                                 </td>
                                                 <td>
-                                                    {{ $user->created_at->toDateString() }}
+                                                    {{ $user->created_at->format('d.m.Y.') }}
                                                 </td>
                                                 <td>
                                                     <a href="/profile{{ $user->id }}" class="text-muted">
@@ -97,9 +100,14 @@
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="/userdelete{{ $user->id }}" class="btn btn-danger mb-2">
-                                                        Obriši
+                                                    <a href="/user{{ $user->id }}edit" type="btn btn-success" class="btn btn-success mb-2">
+                                                        Uloga
                                                     </a>
+                                                    @if($user->role != "Admin")
+                                                        <a href="/userdelete{{ $user->id }}" class="btn btn-danger mb-2">
+                                                            Obriši
+                                                        </a>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

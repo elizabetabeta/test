@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" style="min-height: 480px" id="slika">
+    <div class="container" id="visina">
+        <div id="slika" class="p-3">
         <form action="{{ url('user/update/'.$user->id) }}" method="POST">
             @csrf
             @method('PUT')
@@ -12,7 +13,7 @@
                     <div class = "row">
                         <h1 class="text text-primary">Promijeni ulogu za {{ $user->name }}</h1>
                     </div>
-                    <br><br><br>
+                    <br><br>
                     <div class="row">
                     <div class="form-group col">
                         <label for="role" class="col-md-4 col-form-label">Uloga</label>
@@ -38,8 +39,8 @@
                                     </span>
                         @enderror
                     </div>
-                        <small class="text-danger"> Pažljivo! Ako promijenite ulogu
-                             korisnika koji ima oglase u ulogu admina, svi oglasi će biti obrisani!
+                        <small class="text-danger"> Pažljivo! Ako promijenite ulogu korisnika
+                            iz user u ulogu admina, svi oglasi koje ima će biti obrisani!
                         </small>
                         <br>
                     </div>
@@ -47,9 +48,9 @@
                     <br>
                     <div class="pt-4">
                         <button class="btn btn-primary" type="submit">
-                            Promijeni rolu
+                            Promijeni ulogu
                         </button>
-                        <a href="/users" class="btn btn-outline-primary">
+                        <a href="/users" class="btn btn-secondary">
                             Odustani
                         </a>
                     </div>
@@ -57,14 +58,18 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
 
 @endsection
 
 <style>
     #slika{
-        background-image: linear-gradient(whitesmoke, antiquewhite);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
+    }
 
+    #visina {
+        min-height: 100%;
     }
 </style>

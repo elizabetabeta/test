@@ -11,12 +11,25 @@
             </div>
 
 
-            <div class = "col-md-9 text-center" id="visina">
+            <div class = "col-md-9" >
 
-                <h1 class="text text-light">Dobrodošli! <br>
 
-                </h1>
+                <!--<p class="text-light">{{ now()->format('d.m.Y.') }}</p>-->
 
+                <div class="row">
+                    <div class="col text-center text-light">
+                        <div class="text-light">
+                        <img src="logo.png" alt="slika"><i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+
+                        <h1 class="text text-light">
+                            <br>
+                            Dobrodošli {{ Auth()->user()->name }}!
+                        </h1>
+                        <img class="float-right"
+                             src="https://www.pngall.com/wp-content/uploads/2016/04/Computer-PC-Download-PNG.png">
+                        </div>
+                </div>
 
             </div>
         </div>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="bijelo"> <!--enctype="multipart/form-data"-->
+    <div class="container" id="bijelo">
         <form action="{{ url('oglasi/update/'.$device->id) }}" enctype="multipart/form-data" method="POST">
             @csrf
             @method('PUT')
@@ -250,7 +250,7 @@
 
 <style>
     #bijelo{
-        background-image: linear-gradient(whitesmoke, antiquewhite);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
     }
 </style>

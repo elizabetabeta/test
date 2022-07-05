@@ -33,7 +33,7 @@
             @if (Route::has('login'))
                 <div class="hidden ms-auto top-0 right-0 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-light">Oglasi</a>
+                        <a href="{{ url('/oglasi') }}" class="text-sm text-light">Oglasi</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-light">Prijava</a>
 
@@ -74,7 +74,10 @@
                                  </a>
                             </span>
                             <div class="info-box-content">
+                                <a href ="https://docs.google.com/document/d/1wjlTuFE9WsNjAdaUO1eB5VC4M6KlusyK/edit"
+                                   target="_blank">
                                 <span class="info-box-text">Vizija</span>
+                                </a>
 
                             </div>
 
@@ -87,7 +90,9 @@
                                 </a>
                             </span>
                             <div class="info-box-content">
+                                <a href="/kontakt" target="_blank">
                                 <span class="info-box-text">O nama</span>
+                                </a>
                             </div>
 
                         </div>
@@ -99,7 +104,9 @@
                                 </a>
                             </span>
                             <div class="info-box-content">
+                                <a href="https://github.com/elizabetabeta/test_laravel" target="_blank">
                                 <span class="info-box-text">Github</span>
+                                </a>
                             </div>
 
                         </div>
@@ -111,7 +118,9 @@
                                 </a>
                             </span>
                             <div class="info-box-content">
+                                <a href="#o_projektu">
                                 <span class="info-box-text">O našem projektu</span>
+                                </a>
                             </div>
 
                         </div>
@@ -122,7 +131,9 @@
                                 </a>
                             </span>
                             <div class="info-box-content">
+                                <a href="#tehnologije">
                                 <span class="info-box-text">Tehnologije</span>
+                                </a>
                             </div>
 
                         </div>
@@ -249,7 +260,7 @@
                                             {{ $u->name }}
                                         </a>
                                         <span class="users-list-date" style="color: gray">
-                                            {{ $u->created_at->toDateString() }}
+                                            {{ $u->created_at->diffForHumans() }}
                                         </span>
                                     </li>
                                     @endforeach
@@ -273,8 +284,9 @@
                         <p id="text">
 
                             Cilj našek projekta je napraviti stranicu za prodaju i kupovinu uređaja kao što su računala
-                            , laptopi, mobiteli, <br> te tableti. Na ovoj web aplikaciji korisnici će moći <br> praviti svoje profile na kojima će moći
-                            kupovati ili prodavati svoje nove ili korištene uređaje.
+                            , laptopi, mobiteli, te tableti. <br> Na ovoj web aplikaciji korisnici mogu
+                            praviti svoje profile na kojima imaju mogućnost
+                            vidjeti ili dodati oglase za nove ili korištene uređaje.
 
                         </p>
                         <br>

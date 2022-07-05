@@ -37,7 +37,7 @@
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </div>
-                                    <p><small class="text-muted">Pretraži dostupne uređaje po nazivu, sistemu ili max cijeni...</small></p>
+                                    <p><small class="text-muted">Pretraži po nazivu, sistemu ili max cijeni...</small></p>
                                 </form>
                             </div>
                             <div class="col">
@@ -54,14 +54,18 @@
                             </div>
                             <div class="col">
 
+                                @if(Auth()->user()->role != 'Admin')
+
                                 <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
                                     Dodaj novi oglas
                                 </button>
+
+                                @endif
                             </div>
                         </div>
 
                         <br>
-
+                        @if($devices->isNotEmpty())
                         @foreach($devices as $device)
 
                             <div class="card mb-3" id="oglasikartice">
@@ -103,6 +107,11 @@
                             </div>
                         @endforeach
                     {{$devices->links('pagination::bootstrap-4')}}
+                        @else
+                                <div>
+                                    <h2 class="text text-danger">Nema dostupnih uređaja.</h2>
+                                </div>
+                        @endif
 
                     <!-- Modal -->
                         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

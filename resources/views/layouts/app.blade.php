@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'PRUR') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -169,7 +169,7 @@
     }
 
     .py-4{
-        background-image: url("https://removal.ai/wp-content/uploads/2021/09/black-background-08-vecteezy.png");
+        background-image: url("gray.jpg");
 
         min-height: 100%;
         background-repeat: no-repeat;

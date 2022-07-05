@@ -110,7 +110,7 @@
 
                             @else
                                 <div>
-                                    <h2 class="text text-danger">Nema oglasa sa takvim nazivom.</h2>
+                                    <h2 class="text text-danger">Nema dostupnih uređaja sa takvim nazivom.</h2>
                                 </div>
                             @endif
 

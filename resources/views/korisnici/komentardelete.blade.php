@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container" id="slika">
+    <div class="container" id="visina">
+        <div id="slika" class="p-3">
         <form>
             @csrf
 
@@ -45,6 +46,7 @@
                 </div>
             </div>
         </form>
+        </div>
     </div>
 
 
@@ -52,7 +54,11 @@
 
 <style>
     #slika {
-        background-image: linear-gradient(whitesmoke, antiquewhite);
+        background-image: linear-gradient(whitesmoke, #c69bd4);
         border-radius: 15px;
+    }
+
+    #visina {
+        min-height: 100%;
     }
 </style>

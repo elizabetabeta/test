@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" id="visina">
     <div class="row justify-content-center">
         <div class="col-md-3">
             @include('layouts.menu')
         </div>
         <div class="col-md-9" id="visina">
             <div class="card">
-                <div class="card-header">Administracija korisnika</div>
+                <div class="card-header text-primary">Administracija korisnika</div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -65,7 +65,7 @@
                                         <th>Ime</th>
                                         <th>E-mail</th>
                                         <th>Uloga</th>
-                                        <th>Datum registracije</th>
+                                        <th>Registracija</th>
                                         <th>Profil</th>
                                         <th>Akcije</th>
                                     </tr>
@@ -86,7 +86,7 @@
                                             {{ $user->role }}
                                         </td>
                                         <td>
-                                            {{ $user->created_at }}
+                                            {{ Carbon\Carbon::parse($user->created_at)->format('d.m.Y.') }}
                                         </td>
                                         <td>
                                             <a href="/profile{{ $user->id }}" class="text-muted">
@@ -186,5 +186,12 @@
         </div>
     </div>
 </div>
+</div>
 
 @endsection
+
+    <style>
+        #visina{
+            min-height: 100%;
+        }
+    </style>
