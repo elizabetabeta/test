@@ -26,9 +26,9 @@
                         @endif
 
                         <!--<i class="fa-solid fa-mobile-screen-button"></i>-->
-                        <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter2">
+                        <!--<button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter2">
                             Dodaj novi oglas
-                        </button>
+                        </button>-->
                             <br><br><br>
                             @if($number == 0)
                                 <h1 class="text text-primary text-center">Niste dodali ni jedan oglas! Dodajte sada!</h1>

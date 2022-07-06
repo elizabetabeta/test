@@ -54,13 +54,12 @@
                             </div>
                             <div class="col">
 
-                                @if(Auth()->user()->role != 'Admin')
 
-                                <button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
+
+                                <!--<button type="button" class="btn btn-primary mb-3 float-right" data-toggle="modal" data-target="#exampleModalCenter">
                                     Dodaj novi oglas
-                                </button>
+                                </button>-->
 
-                                @endif
                             </div>
                         </div>
 
