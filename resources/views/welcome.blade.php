@@ -155,8 +155,7 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-rectangle-ad"></i>
                             </div>
-                            <a href="/oglasi" id="informacije"
-                               style="margin-left:65px">Više informacija
+                            <a href="/oglasi" id="informacije">Više informacija
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -172,8 +171,7 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-box"></i>
                             </div>
-                            <a href="/prodani" id="informacije"
-                               style="margin-left:65px">Više informacija
+                            <a href="/prodani" id="informacije">Više informacija
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -189,8 +187,7 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-circle-check"></i>
                             </div>
-                            <a href="/dostupni" id="informacije"
-                               style="margin-left:65px">Više informacija
+                            <a href="/dostupni" id="informacije">Više informacija
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -206,8 +203,7 @@
                             <div class="icon" id="ikona">
                                 <i class="fa-solid fa-user"></i>
                             </div>
-                            <a href="/listofprofiles" id="informacije"
-                               style="margin-left:65px">Više informacija
+                            <a href="/listofprofiles" id="informacije">Više informacija
                                 <i class="fas fa-arrow-circle-right"></i>
                             </a>
                         </div>
@@ -427,6 +423,12 @@
 
     #informacije{
         color: rgba(225, 225, 225, 0.5);
+
+    }
+    @media only screen and (min-width: 765px) {
+        #informacije{
+            padding-left: 5px;
+        }
     }
 
     .info-box {
